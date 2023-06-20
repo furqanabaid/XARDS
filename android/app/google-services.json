@@ -1,0 +1,54 @@
+{
+  "project_info": {
+    "project_number": "460837106008",
+    "project_id": "xards-a3a19",
+    "storage_bucket": "xards-a3a19.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:460837106008:android:0dd755e77514901d50f52d",
+        "android_client_info": {
+          "package_name": "com.mycompany.xards"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "460837106008-5uf7rfecd0vrnas37vfqc956704dn7r7.apps.googleusercontent.com",
+          "client_type": 1,
+          "android_info": {
+            "package_name": "com.mycompany.xards",
+            "certificate_hash": "9bbb3186b2189ef16d8f272bdab59362c395cbb4"
+          }
+        },
+        {
+          "client_id": "460837106008-u0ubqe7u8b0l1ltrf0n6e6ksuhfg6g9p.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyD3PZIAjq7jYaEyJ_GIGrq9PTQzWQLUwLg"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": [
+            {
+              "client_id": "460837106008-u0ubqe7u8b0l1ltrf0n6e6ksuhfg6g9p.apps.googleusercontent.com",
+              "client_type": 3
+            },
+            {
+              "client_id": "460837106008-a2mkc54msjfenvve5btpb5nem55pn1bq.apps.googleusercontent.com",
+              "client_type": 2,
+              "ios_info": {
+                "bundle_id": "com.mycompany.xards"
+              }
+            }
+          ]
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}
