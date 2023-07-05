@@ -118,16 +118,27 @@ class _CropImageWidgetState extends State<CropImageWidget> {
                       ),
                       if (FFAppState().addEmployeeImage != null &&
                           FFAppState().addEmployeeImage != '')
-                        ClipRRect(
-                          borderRadius: BorderRadius.circular(8.0),
-                          child: Image.network(
-                            valueOrDefault<String>(
-                              FFAppState().addEmployeeImage,
-                              'https://picsum.photos/seed/282/600',
+                        InkWell(
+                          splashColor: Colors.transparent,
+                          focusColor: Colors.transparent,
+                          hoverColor: Colors.transparent,
+                          highlightColor: Colors.transparent,
+                          onTap: () async {
+                            setState(() {
+                              FFAppState().addEmployeeImage = 'abc';
+                            });
+                          },
+                          child: ClipRRect(
+                            borderRadius: BorderRadius.circular(8.0),
+                            child: Image.network(
+                              valueOrDefault<String>(
+                                FFAppState().addEmployeeImage,
+                                'https://picsum.photos/seed/282/600',
+                              ),
+                              width: 100.0,
+                              height: 100.0,
+                              fit: BoxFit.cover,
                             ),
-                            width: 100.0,
-                            height: 100.0,
-                            fit: BoxFit.cover,
                           ),
                         ),
                       Padding(
