@@ -295,7 +295,6 @@ class _EmployeeDetailsWidgetState extends State<EmployeeDetailsWidget>
                                                                                 ClipRRect(
                                                                               borderRadius: BorderRadius.circular(8.0),
                                                                               child: Container(
-                                                                                width: MediaQuery.sizeOf(context).width * 0.3,
                                                                                 height: 60.0,
                                                                                 decoration: BoxDecoration(
                                                                                   color: FlutterFlowTheme.of(context).secondaryBackground,
@@ -1042,16 +1041,13 @@ class _EmployeeDetailsWidgetState extends State<EmployeeDetailsWidget>
                                                 mobileEmployeeRecord
                                                         .profileImage !=
                                                     '')
-                                              Container(
-                                                width: 120.0,
-                                                height: 120.0,
-                                                clipBehavior: Clip.antiAlias,
-                                                decoration: BoxDecoration(
-                                                  shape: BoxShape.circle,
-                                                ),
+                                              ClipRRect(
+                                                borderRadius:
+                                                    BorderRadius.circular(8.0),
                                                 child: Image.network(
-                                                  mobileEmployeeRecord
-                                                      .profileImage,
+                                                  'https://picsum.photos/seed/475/600',
+                                                  width: 120.0,
+                                                  height: 120.0,
                                                   fit: BoxFit.cover,
                                                 ),
                                               ),
@@ -3077,288 +3073,14 @@ class _EmployeeDetailsWidgetState extends State<EmployeeDetailsWidget>
                                           width: 120.0,
                                           height: 120.0,
                                           decoration: BoxDecoration(),
-                                          child: Container(
-                                            width: 120.0,
-                                            height: 120.0,
-                                            child: Stack(
-                                              children: [
-                                                if (!webEmployeeRecord.isCircle)
-                                                  SingleChildScrollView(
-                                                    scrollDirection:
-                                                        Axis.horizontal,
-                                                    child: Row(
-                                                      mainAxisSize:
-                                                          MainAxisSize.max,
-                                                      children: [
-                                                        if (webEmployeeRecord
-                                                                .shapeIndex ==
-                                                            1)
-                                                          ClipRRect(
-                                                            borderRadius:
-                                                                BorderRadius
-                                                                    .circular(
-                                                                        7.0),
-                                                            child:
-                                                                Image.network(
-                                                              webEmployeeRecord
-                                                                  .profileImage,
-                                                              width: 120.0,
-                                                              height: 120.0,
-                                                              fit: BoxFit.fill,
-                                                            ),
-                                                          ),
-                                                        if (webEmployeeRecord
-                                                                .shapeIndex ==
-                                                            2)
-                                                          ClipRRect(
-                                                            borderRadius:
-                                                                BorderRadius
-                                                                    .circular(
-                                                                        7.0),
-                                                            child:
-                                                                Image.network(
-                                                              webEmployeeRecord
-                                                                  .profileImage,
-                                                              width: 120.0,
-                                                              height: 120.0,
-                                                              fit: BoxFit
-                                                                  .contain,
-                                                            ),
-                                                          ),
-                                                        if (webEmployeeRecord
-                                                                .shapeIndex ==
-                                                            3)
-                                                          ClipRRect(
-                                                            borderRadius:
-                                                                BorderRadius
-                                                                    .circular(
-                                                                        7.0),
-                                                            child:
-                                                                Image.network(
-                                                              webEmployeeRecord
-                                                                  .profileImage,
-                                                              width: 120.0,
-                                                              height: 120.0,
-                                                              fit: BoxFit.cover,
-                                                            ),
-                                                          ),
-                                                        if (webEmployeeRecord
-                                                                .shapeIndex ==
-                                                            4)
-                                                          ClipRRect(
-                                                            borderRadius:
-                                                                BorderRadius
-                                                                    .circular(
-                                                                        7.0),
-                                                            child:
-                                                                Image.network(
-                                                              webEmployeeRecord
-                                                                  .profileImage,
-                                                              width: 120.0,
-                                                              height: 120.0,
-                                                              fit: BoxFit
-                                                                  .fitWidth,
-                                                            ),
-                                                          ),
-                                                        if (webEmployeeRecord
-                                                                .shapeIndex ==
-                                                            5)
-                                                          ClipRRect(
-                                                            borderRadius:
-                                                                BorderRadius
-                                                                    .circular(
-                                                                        7.0),
-                                                            child:
-                                                                Image.network(
-                                                              webEmployeeRecord
-                                                                  .profileImage,
-                                                              width: 120.0,
-                                                              height: 120.0,
-                                                              fit: BoxFit
-                                                                  .fitHeight,
-                                                            ),
-                                                          ),
-                                                        if (webEmployeeRecord
-                                                                .shapeIndex ==
-                                                            6)
-                                                          ClipRRect(
-                                                            borderRadius:
-                                                                BorderRadius
-                                                                    .circular(
-                                                                        7.0),
-                                                            child:
-                                                                Image.network(
-                                                              webEmployeeRecord
-                                                                  .profileImage,
-                                                              width: 120.0,
-                                                              height: 120.0,
-                                                              fit: BoxFit.none,
-                                                            ),
-                                                          ),
-                                                        if (webEmployeeRecord
-                                                                .shapeIndex ==
-                                                            7)
-                                                          ClipRRect(
-                                                            borderRadius:
-                                                                BorderRadius
-                                                                    .circular(
-                                                                        7.0),
-                                                            child:
-                                                                Image.network(
-                                                              webEmployeeRecord
-                                                                  .profileImage,
-                                                              width: 120.0,
-                                                              height: 120.0,
-                                                              fit: BoxFit
-                                                                  .scaleDown,
-                                                            ),
-                                                          ),
-                                                      ],
-                                                    ),
-                                                  ),
-                                                if (webEmployeeRecord.isCircle)
-                                                  Row(
-                                                    mainAxisSize:
-                                                        MainAxisSize.max,
-                                                    children: [
-                                                      if (webEmployeeRecord
-                                                              .shapeIndex ==
-                                                          1)
-                                                        Container(
-                                                          width: 120.0,
-                                                          height: 120.0,
-                                                          clipBehavior:
-                                                              Clip.antiAlias,
-                                                          decoration:
-                                                              BoxDecoration(
-                                                            shape:
-                                                                BoxShape.circle,
-                                                          ),
-                                                          child: Image.network(
-                                                            webEmployeeRecord
-                                                                .profileImage,
-                                                            fit: BoxFit.fill,
-                                                          ),
-                                                        ),
-                                                      if (webEmployeeRecord
-                                                              .shapeIndex ==
-                                                          2)
-                                                        Container(
-                                                          width: 120.0,
-                                                          height: 120.0,
-                                                          clipBehavior:
-                                                              Clip.antiAlias,
-                                                          decoration:
-                                                              BoxDecoration(
-                                                            shape:
-                                                                BoxShape.circle,
-                                                          ),
-                                                          child: Image.network(
-                                                            webEmployeeRecord
-                                                                .profileImage,
-                                                            fit: BoxFit.contain,
-                                                          ),
-                                                        ),
-                                                      if (webEmployeeRecord
-                                                              .shapeIndex ==
-                                                          3)
-                                                        Container(
-                                                          width: 120.0,
-                                                          height: 120.0,
-                                                          clipBehavior:
-                                                              Clip.antiAlias,
-                                                          decoration:
-                                                              BoxDecoration(
-                                                            shape:
-                                                                BoxShape.circle,
-                                                          ),
-                                                          child: Image.network(
-                                                            webEmployeeRecord
-                                                                .profileImage,
-                                                            fit: BoxFit.cover,
-                                                          ),
-                                                        ),
-                                                      if (webEmployeeRecord
-                                                              .shapeIndex ==
-                                                          4)
-                                                        Container(
-                                                          width: 120.0,
-                                                          height: 120.0,
-                                                          clipBehavior:
-                                                              Clip.antiAlias,
-                                                          decoration:
-                                                              BoxDecoration(
-                                                            shape:
-                                                                BoxShape.circle,
-                                                          ),
-                                                          child: Image.network(
-                                                            webEmployeeRecord
-                                                                .profileImage,
-                                                            fit:
-                                                                BoxFit.fitWidth,
-                                                          ),
-                                                        ),
-                                                      if (webEmployeeRecord
-                                                              .shapeIndex ==
-                                                          5)
-                                                        Container(
-                                                          width: 120.0,
-                                                          height: 120.0,
-                                                          clipBehavior:
-                                                              Clip.antiAlias,
-                                                          decoration:
-                                                              BoxDecoration(
-                                                            shape:
-                                                                BoxShape.circle,
-                                                          ),
-                                                          child: Image.network(
-                                                            webEmployeeRecord
-                                                                .profileImage,
-                                                            fit: BoxFit
-                                                                .fitHeight,
-                                                          ),
-                                                        ),
-                                                      if (webEmployeeRecord
-                                                              .shapeIndex ==
-                                                          6)
-                                                        Container(
-                                                          width: 120.0,
-                                                          height: 120.0,
-                                                          clipBehavior:
-                                                              Clip.antiAlias,
-                                                          decoration:
-                                                              BoxDecoration(
-                                                            shape:
-                                                                BoxShape.circle,
-                                                          ),
-                                                          child: Image.network(
-                                                            webEmployeeRecord
-                                                                .profileImage,
-                                                            fit: BoxFit.none,
-                                                          ),
-                                                        ),
-                                                      if (webEmployeeRecord
-                                                              .shapeIndex ==
-                                                          7)
-                                                        Container(
-                                                          width: 120.0,
-                                                          height: 120.0,
-                                                          clipBehavior:
-                                                              Clip.antiAlias,
-                                                          decoration:
-                                                              BoxDecoration(
-                                                            shape:
-                                                                BoxShape.circle,
-                                                          ),
-                                                          child: Image.network(
-                                                            webEmployeeRecord
-                                                                .profileImage,
-                                                            fit: BoxFit.fill,
-                                                          ),
-                                                        ),
-                                                    ],
-                                                  ),
-                                              ],
+                                          child: ClipRRect(
+                                            borderRadius:
+                                                BorderRadius.circular(8.0),
+                                            child: Image.network(
+                                              webEmployeeRecord.profileImage,
+                                              width: 120.0,
+                                              height: 120.0,
+                                              fit: BoxFit.cover,
                                             ),
                                           ),
                                         ),

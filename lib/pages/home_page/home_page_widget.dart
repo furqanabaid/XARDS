@@ -2455,24 +2455,16 @@ class _HomePageWidgetState extends State<HomePageWidget>
                                                     mainAxisSize:
                                                         MainAxisSize.max,
                                                     children: [
-                                                      Container(
-                                                        width: 50.0,
-                                                        height: 50.0,
-                                                        clipBehavior:
-                                                            Clip.antiAlias,
-                                                        decoration:
-                                                            BoxDecoration(
-                                                          shape:
-                                                              BoxShape.circle,
-                                                        ),
+                                                      ClipRRect(
+                                                        borderRadius:
+                                                            BorderRadius
+                                                                .circular(8.0),
                                                         child: Image.network(
-                                                          valueOrDefault<
-                                                              String>(
-                                                            columnEmployeeRecord
-                                                                .profileImage,
-                                                            'https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcQo4KtC_Z0sTpmbwbdum3PHO7XYJpkubjT8bQ6Kqo6ImQ&s',
-                                                          ),
-                                                          fit: BoxFit.fitWidth,
+                                                          columnEmployeeRecord
+                                                              .profileImage,
+                                                          width: 50.0,
+                                                          height: 50.0,
+                                                          fit: BoxFit.cover,
                                                         ),
                                                       ),
                                                       Expanded(
