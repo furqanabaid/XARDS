@@ -198,21 +198,7 @@ class _CropImageWidgetState extends State<CropImageWidget> {
                           shape: _model.shape!,
                           pageName: 'addEmployee',
                           cropedImage: () async {
-                            FFAppState().update(() {});
-                            ScaffoldMessenger.of(context).showSnackBar(
-                              SnackBar(
-                                content: Text(
-                                  'yaha tak phnch gya hai',
-                                  style: TextStyle(
-                                    color: FlutterFlowTheme.of(context)
-                                        .primaryText,
-                                  ),
-                                ),
-                                duration: Duration(milliseconds: 4000),
-                                backgroundColor:
-                                    FlutterFlowTheme.of(context).secondary,
-                              ),
-                            );
+                            setState(() {});
                           },
                         ),
                       ),
