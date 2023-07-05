@@ -132,6 +132,12 @@ class FFAppState extends ChangeNotifier {
   set addEmployeeImage(String _value) {
     _addEmployeeImage = _value;
   }
+
+  String _updateEmployeeImage = '';
+  String get updateEmployeeImage => _updateEmployeeImage;
+  set updateEmployeeImage(String _value) {
+    _updateEmployeeImage = _value;
+  }
 }
 
 LatLng? _latLngFromString(String? val) {

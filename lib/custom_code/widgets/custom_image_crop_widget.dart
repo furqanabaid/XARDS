@@ -108,7 +108,7 @@ class _CustomImageCropWidgetState extends State<CustomImageCropWidget> {
                       if (widget.cropingFor == "addEmployee") {
                         FFAppState().addEmployeeImage = downloadUrl;
                       } else if (widget.cropingFor == "updateEmployee") {
-                        FFAppState().updateEmployee = downloadUrl;
+                        FFAppState().updateEmployeeImage = downloadUrl;
                       }
                     });
                     Navigator.pop(context);
