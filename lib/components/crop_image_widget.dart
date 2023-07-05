@@ -116,18 +116,20 @@ class _CropImageWidgetState extends State<CropImageWidget> {
                         thickness: 1.0,
                         color: FlutterFlowTheme.of(context).accent4,
                       ),
-                      ClipRRect(
-                        borderRadius: BorderRadius.circular(8.0),
-                        child: Image.network(
-                          valueOrDefault<String>(
-                            FFAppState().addEmployeeImage,
-                            'https://picsum.photos/seed/282/600',
+                      if (FFAppState().addEmployeeImage != null &&
+                          FFAppState().addEmployeeImage != '')
+                        ClipRRect(
+                          borderRadius: BorderRadius.circular(8.0),
+                          child: Image.network(
+                            valueOrDefault<String>(
+                              FFAppState().addEmployeeImage,
+                              'https://picsum.photos/seed/282/600',
+                            ),
+                            width: 100.0,
+                            height: 100.0,
+                            fit: BoxFit.cover,
                           ),
-                          width: 100.0,
-                          height: 100.0,
-                          fit: BoxFit.cover,
                         ),
-                      ),
                       Padding(
                         padding:
                             EdgeInsetsDirectional.fromSTEB(0.0, 0.0, 0.0, 5.0),

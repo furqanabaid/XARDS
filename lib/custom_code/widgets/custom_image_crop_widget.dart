@@ -38,6 +38,7 @@ class _CustomImageCropWidgetState extends State<CustomImageCropWidget> {
   CustomImageCropController controller = CustomImageCropController();
   bool boo = false;
   late String imageToShow;
+  late MemoryImage? image;
   @override
   Widget build(BuildContext context) {
     return Column(
@@ -90,15 +91,23 @@ class _CustomImageCropWidgetState extends State<CustomImageCropWidget> {
                   icon: const Icon(Icons.crop),
                   color: Color(0xFF000000),
                   onPressed: () async {
-                    final image = await controller.onCropImage();
+                    image = await controller.onCropImage();
+
                     setState(() {
-                      imageToShow = image.toString();
-                      boo = true;
                       if (image != null) {
-                        FFAppState().addEmployeeImage = imageToShow;
-                        widget.cropedImage();
+                        boo = true;
                       }
                     });
+
+                    // final image = await controller.onCropImage();
+                    // setState(() {
+                    //   imageToShow = image.toString();
+                    //   //boo = true;
+                    //   if (image != null) {
+                    //     FFAppState().addEmployeeImage = imageToShow;
+                    //     widget.cropedImage();
+                    //   }
+                    // });
                   },
                 )),
           ],

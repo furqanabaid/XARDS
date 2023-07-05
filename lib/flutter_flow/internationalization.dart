@@ -149,7 +149,7 @@ final kTranslationsMap = <Map<String, Map<String, String>>>[
     },
     '5ankyhh4': {
       'de': 'Manage Profile',
-      'en': 'Manage Profiles',
+      'en': 'Manage profiles',
     },
     'hielkku0': {
       'de': 'Logout',

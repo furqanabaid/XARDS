@@ -128,6 +128,11 @@ class _HomePageWidgetState extends State<HomePageWidget>
     super.initState();
     _model = createModel(context, () => HomePageModel());
 
+    // On page load action.
+    SchedulerBinding.instance.addPostFrameCallback((_) async {
+      setAppLanguage(context, 'de');
+    });
+
     _model.textController1 ??= TextEditingController();
     _model.textController2 ??= TextEditingController();
 
@@ -364,84 +369,90 @@ class _HomePageWidgetState extends State<HomePageWidget>
                             ),
                           ),
                         ),
-                        Material(
-                          color: Colors.transparent,
-                          elevation: 0.0,
-                          shape: RoundedRectangleBorder(
-                            borderRadius: BorderRadius.circular(12.0),
-                          ),
-                          child: Container(
-                            decoration: BoxDecoration(
-                              color: FlutterFlowTheme.of(context)
-                                  .primaryBackground,
-                              borderRadius: BorderRadius.circular(12.0),
-                              border: Border.all(
-                                color: Color(0x6B616161),
+                        Row(
+                          mainAxisSize: MainAxisSize.max,
+                          children: [
+                            Material(
+                              color: Colors.transparent,
+                              elevation: 0.0,
+                              shape: RoundedRectangleBorder(
+                                borderRadius: BorderRadius.circular(12.0),
                               ),
-                            ),
-                            child: Padding(
-                              padding: EdgeInsetsDirectional.fromSTEB(
-                                  12.0, 12.0, 12.0, 12.0),
-                              child: Row(
-                                mainAxisSize: MainAxisSize.max,
-                                children: [
-                                  Padding(
-                                    padding: EdgeInsetsDirectional.fromSTEB(
-                                        0.0, 0.0, 25.0, 0.0),
-                                    child: Row(
-                                      mainAxisSize: MainAxisSize.max,
-                                      children: [
-                                        AuthUserStreamWidget(
-                                          builder: (context) => Container(
-                                            width: 35.0,
-                                            height: 35.0,
-                                            clipBehavior: Clip.antiAlias,
-                                            decoration: BoxDecoration(
-                                              shape: BoxShape.circle,
-                                            ),
-                                            child: Image.network(
-                                              valueOrDefault<String>(
-                                                currentUserPhoto != null &&
-                                                        currentUserPhoto != ''
-                                                    ? currentUserPhoto
-                                                    : 'https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcQo4KtC_Z0sTpmbwbdum3PHO7XYJpkubjT8bQ6Kqo6ImQ&s',
-                                                'https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcQo4KtC_Z0sTpmbwbdum3PHO7XYJpkubjT8bQ6Kqo6ImQ&s',
-                                              ),
-                                              fit: BoxFit.cover,
-                                            ),
-                                          ),
-                                        ),
-                                        Padding(
-                                          padding:
-                                              EdgeInsetsDirectional.fromSTEB(
-                                                  10.0, 0.0, 0.0, 0.0),
-                                          child: Column(
-                                            mainAxisSize: MainAxisSize.max,
-                                            crossAxisAlignment:
-                                                CrossAxisAlignment.start,
-                                            children: [
-                                              AuthUserStreamWidget(
-                                                builder: (context) => Text(
-                                                  currentUserDisplayName,
-                                                  style: FlutterFlowTheme.of(
-                                                          context)
-                                                      .bodyMedium
-                                                      .override(
-                                                        fontFamily: 'Poppins',
-                                                        color:
-                                                            FlutterFlowTheme.of(
-                                                                    context)
-                                                                .secondaryText,
-                                                        fontSize: 12.0,
-                                                        fontWeight:
-                                                            FontWeight.w600,
-                                                      ),
+                              child: Container(
+                                decoration: BoxDecoration(
+                                  color: FlutterFlowTheme.of(context)
+                                      .primaryBackground,
+                                  borderRadius: BorderRadius.circular(12.0),
+                                  border: Border.all(
+                                    color: Color(0x6B616161),
+                                  ),
+                                ),
+                                child: Padding(
+                                  padding: EdgeInsetsDirectional.fromSTEB(
+                                      12.0, 12.0, 12.0, 12.0),
+                                  child: Row(
+                                    mainAxisSize: MainAxisSize.max,
+                                    children: [
+                                      Padding(
+                                        padding: EdgeInsetsDirectional.fromSTEB(
+                                            0.0, 0.0, 25.0, 0.0),
+                                        child: Row(
+                                          mainAxisSize: MainAxisSize.max,
+                                          children: [
+                                            AuthUserStreamWidget(
+                                              builder: (context) => Container(
+                                                width: 35.0,
+                                                height: 35.0,
+                                                clipBehavior: Clip.antiAlias,
+                                                decoration: BoxDecoration(
+                                                  shape: BoxShape.circle,
+                                                ),
+                                                child: Image.network(
+                                                  valueOrDefault<String>(
+                                                    currentUserPhoto != null &&
+                                                            currentUserPhoto !=
+                                                                ''
+                                                        ? currentUserPhoto
+                                                        : 'https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcQo4KtC_Z0sTpmbwbdum3PHO7XYJpkubjT8bQ6Kqo6ImQ&s',
+                                                    'https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcQo4KtC_Z0sTpmbwbdum3PHO7XYJpkubjT8bQ6Kqo6ImQ&s',
+                                                  ),
+                                                  fit: BoxFit.cover,
                                                 ),
                                               ),
-                                              Text(
-                                                currentUserEmail,
-                                                style:
-                                                    FlutterFlowTheme.of(context)
+                                            ),
+                                            Padding(
+                                              padding: EdgeInsetsDirectional
+                                                  .fromSTEB(
+                                                      10.0, 0.0, 0.0, 0.0),
+                                              child: Column(
+                                                mainAxisSize: MainAxisSize.max,
+                                                crossAxisAlignment:
+                                                    CrossAxisAlignment.start,
+                                                children: [
+                                                  AuthUserStreamWidget(
+                                                    builder: (context) => Text(
+                                                      currentUserDisplayName,
+                                                      style:
+                                                          FlutterFlowTheme.of(
+                                                                  context)
+                                                              .bodyMedium
+                                                              .override(
+                                                                fontFamily:
+                                                                    'Poppins',
+                                                                color: FlutterFlowTheme.of(
+                                                                        context)
+                                                                    .secondaryText,
+                                                                fontSize: 12.0,
+                                                                fontWeight:
+                                                                    FontWeight
+                                                                        .w600,
+                                                              ),
+                                                    ),
+                                                  ),
+                                                  Text(
+                                                    currentUserEmail,
+                                                    style: FlutterFlowTheme.of(
+                                                            context)
                                                         .bodyMedium
                                                         .override(
                                                           fontFamily: 'Poppins',
@@ -452,41 +463,45 @@ class _HomePageWidgetState extends State<HomePageWidget>
                                                           fontWeight:
                                                               FontWeight.w300,
                                                         ),
+                                                  ),
+                                                ],
                                               ),
-                                            ],
-                                          ),
-                                        ),
-                                      ],
-                                    ),
-                                  ),
-                                  InkWell(
-                                    splashColor: Colors.transparent,
-                                    focusColor: Colors.transparent,
-                                    hoverColor: Colors.transparent,
-                                    highlightColor: Colors.transparent,
-                                    onTap: () async {
-                                      scaffoldKey.currentState!.openEndDrawer();
-                                    },
-                                    child: Container(
-                                      width: 30.0,
-                                      height: 40.0,
-                                      decoration: BoxDecoration(),
-                                      child: Align(
-                                        alignment:
-                                            AlignmentDirectional(0.0, 0.0),
-                                        child: FaIcon(
-                                          FontAwesomeIcons.ellipsisV,
-                                          color: FlutterFlowTheme.of(context)
-                                              .secondaryText,
-                                          size: 18.0,
+                                            ),
+                                          ],
                                         ),
                                       ),
-                                    ),
+                                      InkWell(
+                                        splashColor: Colors.transparent,
+                                        focusColor: Colors.transparent,
+                                        hoverColor: Colors.transparent,
+                                        highlightColor: Colors.transparent,
+                                        onTap: () async {
+                                          scaffoldKey.currentState!
+                                              .openEndDrawer();
+                                        },
+                                        child: Container(
+                                          width: 30.0,
+                                          height: 40.0,
+                                          decoration: BoxDecoration(),
+                                          child: Align(
+                                            alignment:
+                                                AlignmentDirectional(0.0, 0.0),
+                                            child: FaIcon(
+                                              FontAwesomeIcons.ellipsisV,
+                                              color:
+                                                  FlutterFlowTheme.of(context)
+                                                      .secondaryText,
+                                              size: 18.0,
+                                            ),
+                                          ),
+                                        ),
+                                      ),
+                                    ],
                                   ),
-                                ],
+                                ),
                               ),
                             ),
-                          ),
+                          ],
                         ),
                       ],
                     ),
