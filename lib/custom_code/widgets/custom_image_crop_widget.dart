@@ -92,10 +92,11 @@ class _CustomImageCropWidgetState extends State<CustomImageCropWidget> {
                   color: Color(0xFF000000),
                   onPressed: () async {
                     image = await controller.onCropImage();
-
                     setState(() {
                       if (image != null) {
                         boo = true;
+                        FFAppState().addEmployeeImage = imageToShow;
+                        widget.cropedImage();
                       }
                     });
 
