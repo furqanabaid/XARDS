@@ -105,13 +105,13 @@ class _CustomImageCropWidgetState extends State<CustomImageCropWidget> {
                     var downloadUrl = await snapshot.ref.getDownloadURL();
 
                     setState(() {
-                      // if (widget.cropingFor == "addEmployee") {
-                      FFAppState().addEmployeeImage = downloadUrl;
-                      // } else if (widget.cropingFor == "updateEmployee") {
-                      //   FFAppState().updateEmployeeImage = downloadUrl;
-                      // }
+                      if (widget.cropingFor == "addEmployee") {
+                        FFAppState().addEmployeeImage = downloadUrl;
+                      } else if (widget.cropingFor == "updateEmployee") {
+                        FFAppState().updateEmployeeImage = downloadUrl;
+                      }
                     });
-                    Navigator.pop(context);
+                    Navigator.of(context).pop();
                   },
                 )),
           ],

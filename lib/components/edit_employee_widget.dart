@@ -1,6 +1,7 @@
 import '/auth/firebase_auth/auth_util.dart';
 import '/backend/backend.dart';
 import '/backend/firebase_storage/storage.dart';
+import '/components/crop_image_widget.dart';
 import '/flutter_flow/flutter_flow_theme.dart';
 import '/flutter_flow/flutter_flow_util.dart';
 import '/flutter_flow/flutter_flow_widgets.dart';
@@ -292,6 +293,24 @@ class _EditEmployeeWidgetState extends State<EditEmployeeWidget> {
                                           child: Column(
                                             mainAxisSize: MainAxisSize.max,
                                             children: [
+                                              if (FFAppState()
+                                                          .updateEmployeeImage !=
+                                                      null &&
+                                                  FFAppState()
+                                                          .updateEmployeeImage !=
+                                                      '')
+                                                ClipRRect(
+                                                  borderRadius:
+                                                      BorderRadius.circular(
+                                                          8.0),
+                                                  child: Image.network(
+                                                    FFAppState()
+                                                        .updateEmployeeImage,
+                                                    width: 150.0,
+                                                    height: 150.0,
+                                                    fit: BoxFit.cover,
+                                                  ),
+                                                ),
                                               if (_model.isDataUploading)
                                                 Padding(
                                                   padding: EdgeInsetsDirectional
@@ -392,6 +411,29 @@ class _EditEmployeeWidgetState extends State<EditEmployeeWidget> {
                                                         return;
                                                       }
                                                     }
+
+                                                    await showModalBottomSheet(
+                                                      isScrollControlled: true,
+                                                      backgroundColor:
+                                                          Colors.transparent,
+                                                      enableDrag: false,
+                                                      context: context,
+                                                      builder: (context) {
+                                                        return Padding(
+                                                          padding: MediaQuery
+                                                              .viewInsetsOf(
+                                                                  context),
+                                                          child:
+                                                              CropImageWidget(
+                                                            imagePath: _model
+                                                                .uploadedFileUrl,
+                                                            cropingFor:
+                                                                'updateEmployee',
+                                                          ),
+                                                        );
+                                                      },
+                                                    ).then((value) =>
+                                                        setState(() {}));
                                                   },
                                                   text: FFLocalizations.of(
                                                           context)
@@ -427,16 +469,6 @@ class _EditEmployeeWidgetState extends State<EditEmployeeWidget> {
                                                         BorderRadius.circular(
                                                             8.0),
                                                   ),
-                                                ),
-                                              ),
-                                              ClipRRect(
-                                                borderRadius:
-                                                    BorderRadius.circular(8.0),
-                                                child: Image.network(
-                                                  'https://picsum.photos/seed/410/600',
-                                                  width: 150.0,
-                                                  height: 200.0,
-                                                  fit: BoxFit.cover,
                                                 ),
                                               ),
                                             ],
