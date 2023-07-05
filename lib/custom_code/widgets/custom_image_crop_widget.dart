@@ -9,6 +9,9 @@ import 'package:flutter/material.dart';
 // Begin custom widget code
 // DO NOT REMOVE OR MODIFY THE CODE ABOVE!
 
+import 'package:firebase_storage/firebase_storage.dart';
+import 'package:xards/auth/base_auth_user_provider.dart';
+
 import 'dart:math';
 
 import 'package:custom_image_crop/custom_image_crop.dart';
@@ -22,6 +25,7 @@ class CustomImageCropWidget extends StatefulWidget {
     required this.shape,
     required this.pageName,
     required this.cropedImage,
+    required this.cropingFor,
   }) : super(key: key);
 
   final double? width;
@@ -30,6 +34,7 @@ class CustomImageCropWidget extends StatefulWidget {
   final String shape;
   final String pageName;
   final Future<dynamic> Function() cropedImage;
+  final String? cropingFor;
   @override
   _CustomImageCropWidgetState createState() => _CustomImageCropWidgetState();
 }
@@ -56,7 +61,6 @@ class _CustomImageCropWidgetState extends State<CustomImageCropWidget> {
             canScale: false,
           ),
         ),
-        (boo) ? Text("image set") : Text("no date"),
         Row(
           mainAxisAlignment: MainAxisAlignment.spaceBetween,
           children: [
@@ -92,23 +96,22 @@ class _CustomImageCropWidgetState extends State<CustomImageCropWidget> {
                   color: Color(0xFF000000),
                   onPressed: () async {
                     image = await controller.onCropImage();
+
+                    FirebaseStorage _firebaseStorage = FirebaseStorage.instance;
+                    var snapshot = await _firebaseStorage
+                        .ref("/users/${currentUser?.uid.toString()}/")
+                        .putData(image!.bytes);
+
+                    var downloadUrl = await snapshot.ref.getDownloadURL();
+
                     setState(() {
-                      if (image != null) {
-                        boo = true;
-                        FFAppState().addEmployeeImage = imageToShow;
-                        widget.cropedImage();
+                      if (widget.cropingFor == "addEmployee") {
+                        FFAppState().addEmployeeImage = downloadUrl;
+                      } else if (widget.cropingFor == "updateEmployee") {
+                        FFAppState().updateEmployee = downloadUrl;
                       }
                     });
-
-                    // final image = await controller.onCropImage();
-                    // setState(() {
-                    //   imageToShow = image.toString();
-                    //   //boo = true;
-                    //   if (image != null) {
-                    //     FFAppState().addEmployeeImage = imageToShow;
-                    //     widget.cropedImage();
-                    //   }
-                    // });
+                    Navigator.pop(context);
                   },
                 )),
           ],

@@ -414,6 +414,8 @@ class _AddEmployeeWidgetState extends State<AddEmployeeWidget> {
                                                               CropImageWidget(
                                                             imagePath: _model
                                                                 .uploadedFileUrl,
+                                                            cropingFor:
+                                                                'addEmployee',
                                                           ),
                                                         ),
                                                       );
