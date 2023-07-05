@@ -170,9 +170,21 @@ class _CropImageWidgetState extends State<CropImageWidget> {
                           ),
                         ],
                       ),
-                      Divider(
-                        thickness: 1.0,
-                        color: FlutterFlowTheme.of(context).accent4,
+                      InkWell(
+                        splashColor: Colors.transparent,
+                        focusColor: Colors.transparent,
+                        hoverColor: Colors.transparent,
+                        highlightColor: Colors.transparent,
+                        onTap: () async {
+                          setState(() {
+                            FFAppState().addEmployeeImage =
+                                _model.uploadedFileUrl;
+                          });
+                        },
+                        child: Divider(
+                          thickness: 1.0,
+                          color: FlutterFlowTheme.of(context).accent4,
+                        ),
                       ),
                       if (FFAppState().addEmployeeImage != null &&
                           FFAppState().addEmployeeImage != '')
