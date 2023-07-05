@@ -69,7 +69,7 @@ class _AddNewFirmWidgetState extends State<AddNewFirmWidget> {
                 borderRadius: BorderRadius.circular(15.0),
               ),
               child: Container(
-                width: MediaQuery.of(context).size.width * 0.5,
+                width: MediaQuery.sizeOf(context).width * 0.5,
                 decoration: BoxDecoration(
                   color: FlutterFlowTheme.of(context).secondaryBackground,
                   borderRadius: BorderRadius.circular(15.0),
@@ -209,6 +209,7 @@ class _AddNewFirmWidgetState extends State<AddNewFirmWidget> {
                                         () => _model.isDataUploading = true);
                                     var selectedUploadedFiles =
                                         <FFUploadedFile>[];
+
                                     var downloadUrls = <String>[];
                                     try {
                                       selectedUploadedFiles = selectedMedia
@@ -310,14 +311,13 @@ class _AddNewFirmWidgetState extends State<AddNewFirmWidget> {
                                     return;
                                   }
 
-                                  final firmCreateData = createFirmRecordData(
-                                    firmName: _model.textController.text,
-                                    firmLogo: _model.uploadedFileUrl,
-                                    uId: currentUserReference,
-                                  );
                                   await FirmRecord.collection
                                       .doc()
-                                      .set(firmCreateData);
+                                      .set(createFirmRecordData(
+                                        firmName: _model.textController.text,
+                                        firmLogo: _model.uploadedFileUrl,
+                                        uId: currentUserReference,
+                                      ));
                                   Navigator.pop(context);
                                 },
                                 text: FFLocalizations.of(context).getText(

@@ -99,7 +99,7 @@ class _EditEmployeeWidgetState extends State<EditEmployeeWidget> {
                       child: ClipRRect(
                         borderRadius: BorderRadius.circular(15.0),
                         child: Container(
-                          width: MediaQuery.of(context).size.width * 0.5,
+                          width: MediaQuery.sizeOf(context).width * 0.5,
                           decoration: BoxDecoration(
                             color: FlutterFlowTheme.of(context)
                                 .secondaryBackground,
@@ -739,6 +739,7 @@ class _EditEmployeeWidgetState extends State<EditEmployeeWidget> {
                                                           true);
                                                       var selectedUploadedFiles =
                                                           <FFUploadedFile>[];
+
                                                       var downloadUrls =
                                                           <String>[];
                                                       try {
@@ -3031,7 +3032,7 @@ class _EditEmployeeWidgetState extends State<EditEmployeeWidget> {
                                                   10.0, 0.0, 0.0, 0.0),
                                           child: FFButtonWidget(
                                             onPressed: () async {
-                                              final employeeUpdateData =
+                                              await widget.employeeRef!.update(
                                                   createEmployeeRecordData(
                                                 name:
                                                     _model.nameController1.text,
@@ -3084,9 +3085,7 @@ class _EditEmployeeWidgetState extends State<EditEmployeeWidget> {
                                                 isCircle: FFAppState().isCircle,
                                                 shapeIndex:
                                                     FFAppState().shapeIndex,
-                                              );
-                                              await widget.employeeRef!
-                                                  .update(employeeUpdateData);
+                                              ));
                                               Navigator.pop(context);
                                             },
                                             text: FFLocalizations.of(context)

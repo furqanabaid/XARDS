@@ -127,20 +127,24 @@ class _SelectFirmWidgetState extends State<SelectFirmWidget> {
                                             return;
                                           }
 
-                                          final firmCreateData =
-                                              createFirmRecordData(
+                                          var firmRecordReference =
+                                              FirmRecord.collection.doc();
+                                          await firmRecordReference
+                                              .set(createFirmRecordData(
                                             firmName:
                                                 _model.textController.text,
                                             firmLogo: _model.uploadedFileUrl,
                                             uId: currentUserReference,
-                                          );
-                                          var firmRecordReference =
-                                              FirmRecord.collection.doc();
-                                          await firmRecordReference
-                                              .set(firmCreateData);
+                                          ));
                                           _model.firmCreated =
                                               FirmRecord.getDocumentFromData(
-                                                  firmCreateData,
+                                                  createFirmRecordData(
+                                                    firmName: _model
+                                                        .textController.text,
+                                                    firmLogo:
+                                                        _model.uploadedFileUrl,
+                                                    uId: currentUserReference,
+                                                  ),
                                                   firmRecordReference);
 
                                           context.pushNamed('HomePage');
@@ -294,6 +298,7 @@ class _SelectFirmWidgetState extends State<SelectFirmWidget> {
                                                 _model.isDataUploading = true);
                                             var selectedUploadedFiles =
                                                 <FFUploadedFile>[];
+
                                             var downloadUrls = <String>[];
                                             try {
                                               selectedUploadedFiles =

@@ -132,7 +132,7 @@ class _RegistrationWidgetState extends State<RegistrationWidget>
                               borderRadius: BorderRadius.circular(0.0),
                             ),
                             child: Container(
-                              width: MediaQuery.of(context).size.width * 0.4,
+                              width: MediaQuery.sizeOf(context).width * 0.4,
                               decoration: BoxDecoration(
                                 color: FlutterFlowTheme.of(context)
                                     .secondaryBackground,
@@ -181,7 +181,7 @@ class _RegistrationWidgetState extends State<RegistrationWidget>
                                   ClipRRect(
                                     child: Container(
                                       height:
-                                          MediaQuery.of(context).size.height *
+                                          MediaQuery.sizeOf(context).height *
                                               0.7,
                                       decoration: BoxDecoration(),
                                       child: Padding(
@@ -1306,18 +1306,15 @@ class _RegistrationWidgetState extends State<RegistrationWidget>
                                                                         return;
                                                                       }
 
-                                                                      final usersCreateData =
-                                                                          createUsersRecordData(
-                                                                        displayName: _model
-                                                                            .fullNameController
-                                                                            .text,
-                                                                      );
                                                                       await UsersRecord
                                                                           .collection
                                                                           .doc(user
                                                                               .uid)
                                                                           .update(
-                                                                              usersCreateData);
+                                                                              createUsersRecordData(
+                                                                            displayName:
+                                                                                _model.fullNameController.text,
+                                                                          ));
 
                                                                       context.pushNamedAuth(
                                                                           'selectFirm',

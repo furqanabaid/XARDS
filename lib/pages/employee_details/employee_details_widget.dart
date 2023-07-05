@@ -150,7 +150,7 @@ class _EmployeeDetailsWidgetState extends State<EmployeeDetailsWidget>
                                 child: Container(
                                   width: double.infinity,
                                   height:
-                                      MediaQuery.of(context).size.height * 1.0,
+                                      MediaQuery.sizeOf(context).height * 1.0,
                                   decoration: BoxDecoration(
                                     color: FlutterFlowTheme.of(context)
                                         .secondaryBackground,
@@ -269,7 +269,7 @@ class _EmployeeDetailsWidgetState extends State<EmployeeDetailsWidget>
                                                                                 ClipRRect(
                                                                               borderRadius: BorderRadius.circular(8.0),
                                                                               child: Container(
-                                                                                width: MediaQuery.of(context).size.width * 0.27,
+                                                                                width: MediaQuery.sizeOf(context).width * 0.27,
                                                                                 height: 60.0,
                                                                                 decoration: BoxDecoration(
                                                                                   color: FlutterFlowTheme.of(context).secondaryBackground,
@@ -295,7 +295,7 @@ class _EmployeeDetailsWidgetState extends State<EmployeeDetailsWidget>
                                                                                 ClipRRect(
                                                                               borderRadius: BorderRadius.circular(8.0),
                                                                               child: Container(
-                                                                                width: MediaQuery.of(context).size.width * 0.3,
+                                                                                width: MediaQuery.sizeOf(context).width * 0.3,
                                                                                 height: 60.0,
                                                                                 decoration: BoxDecoration(
                                                                                   color: FlutterFlowTheme.of(context).secondaryBackground,
@@ -1074,11 +1074,10 @@ class _EmployeeDetailsWidgetState extends State<EmployeeDetailsWidget>
                                                       BorderRadius.circular(
                                                           8.0),
                                                   child: Container(
-                                                    width:
-                                                        MediaQuery.of(context)
-                                                                .size
-                                                                .width *
-                                                            0.3,
+                                                    width: MediaQuery.sizeOf(
+                                                                context)
+                                                            .width *
+                                                        0.3,
                                                     height: 80.0,
                                                     decoration: BoxDecoration(
                                                       color: FlutterFlowTheme
@@ -1588,8 +1587,7 @@ class _EmployeeDetailsWidgetState extends State<EmployeeDetailsWidget>
                                               MainAxisAlignment.center,
                                           children: [
                                             Container(
-                                              width: MediaQuery.of(context)
-                                                      .size
+                                              width: MediaQuery.sizeOf(context)
                                                       .width *
                                                   0.6,
                                               decoration: BoxDecoration(
@@ -1688,7 +1686,7 @@ class _EmployeeDetailsWidgetState extends State<EmployeeDetailsWidget>
                             }
                             final webEmployeeRecord = snapshot.data!;
                             return Container(
-                              width: MediaQuery.of(context).size.width * 0.5,
+                              width: MediaQuery.sizeOf(context).width * 0.5,
                               child: Stack(
                                 children: [
                                   Padding(
@@ -1790,7 +1788,7 @@ class _EmployeeDetailsWidgetState extends State<EmployeeDetailsWidget>
                                                                               8.0),
                                                                       child:
                                                                           Container(
-                                                                        width: MediaQuery.of(context).size.width *
+                                                                        width: MediaQuery.sizeOf(context).width *
                                                                             0.27,
                                                                         height:
                                                                             30.0,
@@ -1828,7 +1826,7 @@ class _EmployeeDetailsWidgetState extends State<EmployeeDetailsWidget>
                                                                               8.0),
                                                                       child:
                                                                           Container(
-                                                                        width: MediaQuery.of(context).size.width *
+                                                                        width: MediaQuery.sizeOf(context).width *
                                                                             0.11,
                                                                         height:
                                                                             60.0,
@@ -2994,11 +2992,10 @@ class _EmployeeDetailsWidgetState extends State<EmployeeDetailsWidget>
                                                     MainAxisAlignment.center,
                                                 children: [
                                                   Container(
-                                                    width:
-                                                        MediaQuery.of(context)
-                                                                .size
-                                                                .width *
-                                                            0.2,
+                                                    width: MediaQuery.sizeOf(
+                                                                context)
+                                                            .width *
+                                                        0.2,
                                                     decoration: BoxDecoration(
                                                       color:
                                                           FlutterFlowTheme.of(
@@ -3379,8 +3376,7 @@ class _EmployeeDetailsWidgetState extends State<EmployeeDetailsWidget>
                                             borderRadius:
                                                 BorderRadius.circular(8.0),
                                             child: Container(
-                                              width: MediaQuery.of(context)
-                                                      .size
+                                              width: MediaQuery.sizeOf(context)
                                                       .width *
                                                   0.12,
                                               height: 80.0,

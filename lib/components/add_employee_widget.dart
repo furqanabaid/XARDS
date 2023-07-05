@@ -101,7 +101,7 @@ class _AddEmployeeWidgetState extends State<AddEmployeeWidget> {
                   child: ClipRRect(
                     borderRadius: BorderRadius.circular(15.0),
                     child: Container(
-                      width: MediaQuery.of(context).size.width * 0.55,
+                      width: MediaQuery.sizeOf(context).width * 0.55,
                       decoration: BoxDecoration(
                         color: FlutterFlowTheme.of(context).secondaryBackground,
                         borderRadius: BorderRadius.circular(15.0),
@@ -331,6 +331,7 @@ class _AddEmployeeWidgetState extends State<AddEmployeeWidget> {
                                                       .isDataUploading = true);
                                                   var selectedUploadedFiles =
                                                       <FFUploadedFile>[];
+
                                                   var downloadUrls = <String>[];
                                                   try {
                                                     selectedUploadedFiles =
@@ -403,9 +404,9 @@ class _AddEmployeeWidgetState extends State<AddEmployeeWidget> {
                                                     context: context,
                                                     builder: (context) {
                                                       return Padding(
-                                                        padding: MediaQuery.of(
-                                                                context)
-                                                            .viewInsets,
+                                                        padding: MediaQuery
+                                                            .viewInsetsOf(
+                                                                context),
                                                         child: Container(
                                                           height:
                                                               double.infinity,
@@ -2418,8 +2419,10 @@ class _AddEmployeeWidgetState extends State<AddEmployeeWidget> {
                                               return;
                                             }
 
-                                            final employeeCreateData =
-                                                createEmployeeRecordData(
+                                            var employeeRecordReference =
+                                                EmployeeRecord.collection.doc();
+                                            await employeeRecordReference
+                                                .set(createEmployeeRecordData(
                                               name: _model.nameController1.text,
                                               employeeOfFirm: widget.firmRef,
                                               title:
@@ -2467,16 +2470,76 @@ class _AddEmployeeWidgetState extends State<AddEmployeeWidget> {
                                               isCircle: FFAppState().isCircle,
                                               shapeIndex:
                                                   FFAppState().shapeIndex,
-                                            );
-                                            var employeeRecordReference =
-                                                EmployeeRecord.collection.doc();
-                                            await employeeRecordReference
-                                                .set(employeeCreateData);
-                                            _model.referenceToEmp =
-                                                EmployeeRecord
-                                                    .getDocumentFromData(
-                                                        employeeCreateData,
-                                                        employeeRecordReference);
+                                            ));
+                                            _model.referenceToEmp = EmployeeRecord
+                                                .getDocumentFromData(
+                                                    createEmployeeRecordData(
+                                                      name: _model
+                                                          .nameController1.text,
+                                                      employeeOfFirm:
+                                                          widget.firmRef,
+                                                      title: _model
+                                                          .textController3.text,
+                                                      description: _model
+                                                          .textController4.text,
+                                                      mobile: _model
+                                                          .textController5.text,
+                                                      phone: _model
+                                                          .textController6.text,
+                                                      fax: _model
+                                                          .textController7.text,
+                                                      street: _model
+                                                          .textController8.text,
+                                                      zip: int.tryParse(_model
+                                                          .textController9
+                                                          .text),
+                                                      city: _model
+                                                          .textController10
+                                                          .text,
+                                                      country: _model
+                                                          .textController11
+                                                          .text,
+                                                      website: _model
+                                                          .whatsappController
+                                                          .text,
+                                                      linkedin: _model
+                                                          .textController14
+                                                          .text,
+                                                      xing: _model
+                                                          .textController15
+                                                          .text,
+                                                      instagram: _model
+                                                          .textController16
+                                                          .text,
+                                                      facebook: _model
+                                                          .textController17
+                                                          .text,
+                                                      tiktok: _model
+                                                          .textController18
+                                                          .text,
+                                                      youtube: _model
+                                                          .textController19
+                                                          .text,
+                                                      whatsapp: _model
+                                                          .websiteController
+                                                          .text,
+                                                      telegram: _model
+                                                          .textController20
+                                                          .text,
+                                                      empEmail: _model
+                                                          .nameController2.text,
+                                                      backgroundColor:
+                                                          _model.colorPicked,
+                                                      logo: buttonFirmRecord
+                                                          .firmLogo,
+                                                      profileImage: _model
+                                                          .uploadedFileUrl,
+                                                      isCircle:
+                                                          FFAppState().isCircle,
+                                                      shapeIndex: FFAppState()
+                                                          .shapeIndex,
+                                                    ),
+                                                    employeeRecordReference);
                                             Navigator.pop(context);
 
                                             setState(() {});

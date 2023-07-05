@@ -1,5 +1,7 @@
 import 'dart:async';
 
+import 'package:collection/collection.dart';
+
 import '/backend/schema/util/firestore_util.dart';
 import '/backend/schema/util/schema_util.dart';
 
@@ -82,4 +84,22 @@ Map<String, dynamic> createFirmRecordData({
   );
 
   return firestoreData;
+}
+
+class FirmRecordDocumentEquality implements Equality<FirmRecord> {
+  const FirmRecordDocumentEquality();
+
+  @override
+  bool equals(FirmRecord? e1, FirmRecord? e2) {
+    return e1?.firmName == e2?.firmName &&
+        e1?.firmLogo == e2?.firmLogo &&
+        e1?.uId == e2?.uId;
+  }
+
+  @override
+  int hash(FirmRecord? e) =>
+      const ListEquality().hash([e?.firmName, e?.firmLogo, e?.uId]);
+
+  @override
+  bool isValidKey(Object? o) => o is FirmRecord;
 }

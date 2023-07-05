@@ -1,5 +1,7 @@
 import 'dart:async';
 
+import 'package:collection/collection.dart';
+
 import '/backend/schema/util/firestore_util.dart';
 import '/backend/schema/util/schema_util.dart';
 
@@ -158,7 +160,7 @@ class EmployeeRecord extends FirestoreRecord {
     _phone = snapshotData['phone'] as String?;
     _fax = snapshotData['fax'] as String?;
     _street = snapshotData['street'] as String?;
-    _zip = snapshotData['zip'] as int?;
+    _zip = castToType<int>(snapshotData['zip']);
     _city = snapshotData['city'] as String?;
     _country = snapshotData['country'] as String?;
     _website = snapshotData['website'] as String?;
@@ -176,7 +178,7 @@ class EmployeeRecord extends FirestoreRecord {
     _logo = snapshotData['logo'] as String?;
     _pageLink = snapshotData['pageLink'] as String?;
     _isCircle = snapshotData['isCircle'] as bool?;
-    _shapeIndex = snapshotData['shapeIndex'] as int?;
+    _shapeIndex = castToType<int>(snapshotData['shapeIndex']);
   }
 
   static CollectionReference get collection =>
@@ -275,4 +277,73 @@ Map<String, dynamic> createEmployeeRecordData({
   );
 
   return firestoreData;
+}
+
+class EmployeeRecordDocumentEquality implements Equality<EmployeeRecord> {
+  const EmployeeRecordDocumentEquality();
+
+  @override
+  bool equals(EmployeeRecord? e1, EmployeeRecord? e2) {
+    return e1?.name == e2?.name &&
+        e1?.employeeOfFirm == e2?.employeeOfFirm &&
+        e1?.title == e2?.title &&
+        e1?.description == e2?.description &&
+        e1?.mobile == e2?.mobile &&
+        e1?.phone == e2?.phone &&
+        e1?.fax == e2?.fax &&
+        e1?.street == e2?.street &&
+        e1?.zip == e2?.zip &&
+        e1?.city == e2?.city &&
+        e1?.country == e2?.country &&
+        e1?.website == e2?.website &&
+        e1?.linkedin == e2?.linkedin &&
+        e1?.xing == e2?.xing &&
+        e1?.instagram == e2?.instagram &&
+        e1?.facebook == e2?.facebook &&
+        e1?.tiktok == e2?.tiktok &&
+        e1?.youtube == e2?.youtube &&
+        e1?.whatsapp == e2?.whatsapp &&
+        e1?.telegram == e2?.telegram &&
+        e1?.profileImage == e2?.profileImage &&
+        e1?.empEmail == e2?.empEmail &&
+        e1?.backgroundColor == e2?.backgroundColor &&
+        e1?.logo == e2?.logo &&
+        e1?.pageLink == e2?.pageLink &&
+        e1?.isCircle == e2?.isCircle &&
+        e1?.shapeIndex == e2?.shapeIndex;
+  }
+
+  @override
+  int hash(EmployeeRecord? e) => const ListEquality().hash([
+        e?.name,
+        e?.employeeOfFirm,
+        e?.title,
+        e?.description,
+        e?.mobile,
+        e?.phone,
+        e?.fax,
+        e?.street,
+        e?.zip,
+        e?.city,
+        e?.country,
+        e?.website,
+        e?.linkedin,
+        e?.xing,
+        e?.instagram,
+        e?.facebook,
+        e?.tiktok,
+        e?.youtube,
+        e?.whatsapp,
+        e?.telegram,
+        e?.profileImage,
+        e?.empEmail,
+        e?.backgroundColor,
+        e?.logo,
+        e?.pageLink,
+        e?.isCircle,
+        e?.shapeIndex
+      ]);
+
+  @override
+  bool isValidKey(Object? o) => o is EmployeeRecord;
 }

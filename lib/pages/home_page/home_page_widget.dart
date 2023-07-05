@@ -209,11 +209,10 @@ class _HomePageWidgetState extends State<HomePageWidget>
                                     onTap: () => FocusScope.of(context)
                                         .requestFocus(_model.unfocusNode),
                                     child: Padding(
-                                      padding:
-                                          MediaQuery.of(context).viewInsets,
+                                      padding: MediaQuery.viewInsetsOf(context),
                                       child: Container(
                                         height:
-                                            MediaQuery.of(context).size.height *
+                                            MediaQuery.sizeOf(context).height *
                                                 1.0,
                                         child: ManageProfileWidget(),
                                       ),
@@ -673,15 +672,15 @@ class _HomePageWidgetState extends State<HomePageWidget>
                                                         .requestFocus(
                                                             _model.unfocusNode),
                                                     child: Padding(
-                                                      padding:
-                                                          MediaQuery.of(context)
-                                                              .viewInsets,
+                                                      padding: MediaQuery
+                                                          .viewInsetsOf(
+                                                              context),
                                                       child: Container(
-                                                        height: MediaQuery.of(
-                                                                    context)
-                                                                .size
-                                                                .height *
-                                                            1.0,
+                                                        height:
+                                                            MediaQuery.sizeOf(
+                                                                        context)
+                                                                    .height *
+                                                                1.0,
                                                         child:
                                                             AddNewFirmWidget(),
                                                       ),
@@ -1177,10 +1176,9 @@ class _HomePageWidgetState extends State<HomePageWidget>
                                     children: [
                                       Expanded(
                                         child: Container(
-                                          width: MediaQuery.of(context)
-                                                  .size
-                                                  .width *
-                                              0.2,
+                                          width:
+                                              MediaQuery.sizeOf(context).width *
+                                                  0.2,
                                           decoration: BoxDecoration(),
                                           child: TextFormField(
                                             controller: _model.textController2,
@@ -1450,15 +1448,15 @@ class _HomePageWidgetState extends State<HomePageWidget>
                                                         .requestFocus(
                                                             _model.unfocusNode),
                                                     child: Padding(
-                                                      padding:
-                                                          MediaQuery.of(context)
-                                                              .viewInsets,
+                                                      padding: MediaQuery
+                                                          .viewInsetsOf(
+                                                              context),
                                                       child: Container(
-                                                        height: MediaQuery.of(
-                                                                    context)
-                                                                .size
-                                                                .height *
-                                                            1.0,
+                                                        height:
+                                                            MediaQuery.sizeOf(
+                                                                        context)
+                                                                    .height *
+                                                                1.0,
                                                         child:
                                                             AddEmployeeWidget(
                                                           firmRef: FFAppState()
@@ -1935,7 +1933,7 @@ class _HomePageWidgetState extends State<HomePageWidget>
                                                                                     return GestureDetector(
                                                                                       onTap: () => FocusScope.of(context).requestFocus(_model.unfocusNode),
                                                                                       child: Padding(
-                                                                                        padding: MediaQuery.of(context).viewInsets,
+                                                                                        padding: MediaQuery.viewInsetsOf(context),
                                                                                         child: EditEmployeeWidget(
                                                                                           employeeRef: columnEmployeeRecord.reference,
                                                                                         ),
@@ -2279,7 +2277,7 @@ class _HomePageWidgetState extends State<HomePageWidget>
                                                                                   return GestureDetector(
                                                                                     onTap: () => FocusScope.of(context).requestFocus(_model.unfocusNode),
                                                                                     child: Padding(
-                                                                                      padding: MediaQuery.of(context).viewInsets,
+                                                                                      padding: MediaQuery.viewInsetsOf(context),
                                                                                       child: EditEmployeeWidget(
                                                                                         employeeRef: employeeSearchedItem.reference,
                                                                                       ),

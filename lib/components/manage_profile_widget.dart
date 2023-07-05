@@ -254,6 +254,7 @@ class _ManageProfileWidgetState extends State<ManageProfileWidget> {
                                                 _model.isDataUploading1 = true);
                                             var selectedUploadedFiles =
                                                 <FFUploadedFile>[];
+
                                             var downloadUrls = <String>[];
                                             try {
                                               selectedUploadedFiles =
@@ -304,12 +305,10 @@ class _ManageProfileWidgetState extends State<ManageProfileWidget> {
                                             }
                                           }
 
-                                          final usersUpdateData =
-                                              createUsersRecordData(
-                                            photoUrl: _model.uploadedFileUrl1,
-                                          );
                                           await containerUsersRecord.reference
-                                              .update(usersUpdateData);
+                                              .update(createUsersRecordData(
+                                            photoUrl: _model.uploadedFileUrl1,
+                                          ));
                                         },
                                         child: Material(
                                           color: Colors.transparent,
@@ -387,6 +386,7 @@ class _ManageProfileWidgetState extends State<ManageProfileWidget> {
                                             _model.isDataUploading2 = true);
                                         var selectedUploadedFiles =
                                             <FFUploadedFile>[];
+
                                         var downloadUrls = <String>[];
                                         try {
                                           selectedUploadedFiles = selectedMedia
@@ -430,12 +430,10 @@ class _ManageProfileWidgetState extends State<ManageProfileWidget> {
                                         }
                                       }
 
-                                      final usersUpdateData =
-                                          createUsersRecordData(
-                                        photoUrl: _model.uploadedFileUrl2,
-                                      );
                                       await containerUsersRecord.reference
-                                          .update(usersUpdateData);
+                                          .update(createUsersRecordData(
+                                        photoUrl: _model.uploadedFileUrl2,
+                                      ));
                                       setState(() {
                                         _model.editProfile = true;
                                       });
@@ -594,14 +592,13 @@ class _ManageProfileWidgetState extends State<ManageProfileWidget> {
                                                 size: 15.0,
                                               ),
                                               onPressed: () async {
-                                                final usersUpdateData =
-                                                    createUsersRecordData(
-                                                  displayName: _model
-                                                      .textController1.text,
-                                                );
                                                 await containerUsersRecord
                                                     .reference
-                                                    .update(usersUpdateData);
+                                                    .update(
+                                                        createUsersRecordData(
+                                                  displayName: _model
+                                                      .textController1.text,
+                                                ));
                                               },
                                             ),
                                           ],
@@ -714,13 +711,11 @@ class _ManageProfileWidgetState extends State<ManageProfileWidget> {
                                           size: 15.0,
                                         ),
                                         onPressed: () async {
-                                          final usersUpdateData =
-                                              createUsersRecordData(
+                                          await containerUsersRecord.reference
+                                              .update(createUsersRecordData(
                                             displayName:
                                                 _model.textController2.text,
-                                          );
-                                          await containerUsersRecord.reference
-                                              .update(usersUpdateData);
+                                          ));
                                           setState(() {
                                             _model.editProfile = true;
                                           });
