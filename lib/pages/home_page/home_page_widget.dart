@@ -2465,7 +2465,7 @@ class _HomePageWidgetState extends State<HomePageWidget>
                                                               .profileImage,
                                                           width: 50.0,
                                                           height: 50.0,
-                                                          fit: BoxFit.cover,
+                                                          fit: BoxFit.fitHeight,
                                                         ),
                                                       ),
                                                       Expanded(
