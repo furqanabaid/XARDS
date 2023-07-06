@@ -1289,6 +1289,8 @@ class _RegistrationWidgetState extends State<RegistrationWidget>
                                                                               createUsersRecordData(
                                                                             displayName:
                                                                                 _model.fullNameController.text,
+                                                                            emloyeeCount:
+                                                                                0,
                                                                           ));
 
                                                                       context.pushNamedAuth(

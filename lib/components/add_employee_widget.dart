@@ -2401,67 +2401,26 @@ class _AddEmployeeWidgetState extends State<AddEmployeeWidget> {
                                         final buttonFirmRecord = snapshot.data!;
                                         return FFButtonWidget(
                                           onPressed: () async {
-                                            if (_model.formKey.currentState ==
-                                                    null ||
-                                                !_model.formKey.currentState!
-                                                    .validate()) {
-                                              return;
-                                            }
-
-                                            var employeeRecordReference =
-                                                EmployeeRecord.collection.doc();
-                                            await employeeRecordReference
-                                                .set(createEmployeeRecordData(
-                                              name: _model.nameController1.text,
-                                              employeeOfFirm: widget.firmRef,
-                                              title:
-                                                  _model.textController3.text,
-                                              description:
-                                                  _model.textController4.text,
-                                              mobile:
-                                                  _model.textController5.text,
-                                              phone:
-                                                  _model.textController6.text,
-                                              fax: _model.textController7.text,
-                                              street:
-                                                  _model.textController8.text,
-                                              zip: int.tryParse(
-                                                  _model.textController9.text),
-                                              city:
-                                                  _model.textController10.text,
-                                              country:
-                                                  _model.textController11.text,
-                                              website: _model
-                                                  .whatsappController.text,
-                                              linkedin:
-                                                  _model.textController14.text,
-                                              xing:
-                                                  _model.textController15.text,
-                                              instagram:
-                                                  _model.textController16.text,
-                                              facebook:
-                                                  _model.textController17.text,
-                                              tiktok:
-                                                  _model.textController18.text,
-                                              youtube:
-                                                  _model.textController19.text,
-                                              whatsapp:
-                                                  _model.websiteController.text,
-                                              telegram:
-                                                  _model.textController20.text,
-                                              empEmail:
-                                                  _model.nameController2.text,
-                                              backgroundColor:
-                                                  _model.colorPicked,
-                                              logo: buttonFirmRecord.firmLogo,
-                                              profileImage:
-                                                  _model.uploadedFileUrl,
-                                              isCircle: FFAppState().isCircle,
-                                              shapeIndex:
-                                                  FFAppState().shapeIndex,
-                                            ));
-                                            _model.referenceToEmp = EmployeeRecord
-                                                .getDocumentFromData(
+                                            final firestoreBatch =
+                                                FirebaseFirestore.instance
+                                                    .batch();
+                                            try {
+                                              if (_model.formKey.currentState ==
+                                                      null ||
+                                                  !_model.formKey.currentState!
+                                                      .validate()) {
+                                                return;
+                                              }
+                                              if (valueOrDefault(
+                                                      currentUserDocument
+                                                          ?.emloyeeCount,
+                                                      0) <
+                                                  21) {
+                                                var employeeRecordReference =
+                                                    EmployeeRecord.collection
+                                                        .doc();
+                                                firestoreBatch.set(
+                                                    employeeRecordReference,
                                                     createEmployeeRecordData(
                                                       name: _model
                                                           .nameController1.text,
@@ -2527,9 +2486,97 @@ class _AddEmployeeWidgetState extends State<AddEmployeeWidget> {
                                                           FFAppState().isCircle,
                                                       shapeIndex: FFAppState()
                                                           .shapeIndex,
-                                                    ),
-                                                    employeeRecordReference);
-                                            Navigator.pop(context);
+                                                    ));
+                                                _model.referenceToEmp = EmployeeRecord
+                                                    .getDocumentFromData(
+                                                        createEmployeeRecordData(
+                                                          name: _model
+                                                              .nameController1
+                                                              .text,
+                                                          employeeOfFirm:
+                                                              widget.firmRef,
+                                                          title: _model
+                                                              .textController3
+                                                              .text,
+                                                          description: _model
+                                                              .textController4
+                                                              .text,
+                                                          mobile: _model
+                                                              .textController5
+                                                              .text,
+                                                          phone: _model
+                                                              .textController6
+                                                              .text,
+                                                          fax: _model
+                                                              .textController7
+                                                              .text,
+                                                          street: _model
+                                                              .textController8
+                                                              .text,
+                                                          zip: int.tryParse(_model
+                                                              .textController9
+                                                              .text),
+                                                          city: _model
+                                                              .textController10
+                                                              .text,
+                                                          country: _model
+                                                              .textController11
+                                                              .text,
+                                                          website: _model
+                                                              .whatsappController
+                                                              .text,
+                                                          linkedin: _model
+                                                              .textController14
+                                                              .text,
+                                                          xing: _model
+                                                              .textController15
+                                                              .text,
+                                                          instagram: _model
+                                                              .textController16
+                                                              .text,
+                                                          facebook: _model
+                                                              .textController17
+                                                              .text,
+                                                          tiktok: _model
+                                                              .textController18
+                                                              .text,
+                                                          youtube: _model
+                                                              .textController19
+                                                              .text,
+                                                          whatsapp: _model
+                                                              .websiteController
+                                                              .text,
+                                                          telegram: _model
+                                                              .textController20
+                                                              .text,
+                                                          empEmail: _model
+                                                              .nameController2
+                                                              .text,
+                                                          backgroundColor:
+                                                              _model
+                                                                  .colorPicked,
+                                                          logo: buttonFirmRecord
+                                                              .firmLogo,
+                                                          profileImage: _model
+                                                              .uploadedFileUrl,
+                                                          isCircle: FFAppState()
+                                                              .isCircle,
+                                                          shapeIndex:
+                                                              FFAppState()
+                                                                  .shapeIndex,
+                                                        ),
+                                                        employeeRecordReference);
+
+                                                firestoreBatch.update(
+                                                    currentUserReference!, {
+                                                  'emloyeeCount':
+                                                      FieldValue.increment(1),
+                                                });
+                                                Navigator.pop(context);
+                                              }
+                                            } finally {
+                                              await firestoreBatch.commit();
+                                            }
 
                                             setState(() {});
                                           },

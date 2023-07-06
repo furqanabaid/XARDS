@@ -1232,7 +1232,7 @@ class _HomePageWidgetState extends State<HomePageWidget>
                                                         textEmployeeRecordList =
                                                         snapshot.data!;
                                                     return Text(
-                                                      'Total Employees : ${textEmployeeRecordList.length.toString()}',
+                                                      'Total Employees : ${textEmployeeRecordList.length.toString()}/20',
                                                       style:
                                                           FlutterFlowTheme.of(
                                                                   context)
@@ -2185,8 +2185,14 @@ class _HomePageWidgetState extends State<HomePageWidget>
                                                 size: 19.0,
                                               ),
                                               onPressed: () async {
-                                                if (FFAppState().selectedFirm !=
-                                                    null) {
+                                                if ((FFAppState()
+                                                            .selectedFirm !=
+                                                        null) &&
+                                                    (valueOrDefault(
+                                                            currentUserDocument
+                                                                ?.emloyeeCount,
+                                                            0) <
+                                                        21)) {
                                                   setState(() {
                                                     FFAppState().isCircle =
                                                         false;
@@ -2237,7 +2243,7 @@ class _HomePageWidgetState extends State<HomePageWidget>
                                                       return AlertDialog(
                                                         title: Text('Error!'),
                                                         content: Text(
-                                                            'Please Select the firm first'),
+                                                            'Firma nicht ausgewählt oder Limit erreicht.'),
                                                         actions: [
                                                           TextButton(
                                                             onPressed: () =>
