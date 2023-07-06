@@ -189,6 +189,7 @@ class _CropImageWidgetState extends State<CropImageWidget> {
                           cropedImage: () async {
                             setState(() {});
                           },
+                          bottomSheetDismiss: () async {},
                         ),
                       ),
                     ],

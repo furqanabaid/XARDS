@@ -84,7 +84,7 @@ class _DeleteDialogeWidgetState extends State<DeleteDialogeWidget> {
                           children: [
                             Text(
                               FFLocalizations.of(context).getText(
-                                'u8xd26re' /* Wirklich löschen? */,
+                                's5ledzkb' /* Wirklich löschen? */,
                               ),
                               style: FlutterFlowTheme.of(context).bodyMedium,
                             ),
@@ -99,7 +99,7 @@ class _DeleteDialogeWidgetState extends State<DeleteDialogeWidget> {
                             children: [
                               TextSpan(
                                 text: FFLocalizations.of(context).getText(
-                                  'gecy1whg' /* Achtung!  */,
+                                  'vzs9mnga' /* Achtung!  */,
                                 ),
                                 style: FlutterFlowTheme.of(context)
                                     .bodyMedium
@@ -112,7 +112,7 @@ class _DeleteDialogeWidgetState extends State<DeleteDialogeWidget> {
                               ),
                               TextSpan(
                                 text: FFLocalizations.of(context).getText(
-                                  '8dalz3ut' /* Sie wollen das Dokument */,
+                                  '5tyase5j' /* Sie wollen das Dokument */,
                                 ),
                                 style: TextStyle(),
                               )
@@ -125,7 +125,7 @@ class _DeleteDialogeWidgetState extends State<DeleteDialogeWidget> {
                               0.0, 20.0, 0.0, 0.0),
                           child: Text(
                             FFLocalizations.of(context).getText(
-                              '817rk99x' /* Bitte bestätigen Sie das Lösch... */,
+                              'vq10rxnv' /* Bitte bestätigen Sie das Lösch... */,
                             ),
                             style: FlutterFlowTheme.of(context).bodyMedium,
                           ),
@@ -197,7 +197,7 @@ class _DeleteDialogeWidgetState extends State<DeleteDialogeWidget> {
                                     }
                                   },
                                   text: FFLocalizations.of(context).getText(
-                                    '3bc8xpzf' /* Ja, unwiderruflich löschen!
+                                    't0wsn5uy' /* Ja, unwiderruflich löschen!
  */
                                     ,
                                   ),
@@ -229,7 +229,7 @@ class _DeleteDialogeWidgetState extends State<DeleteDialogeWidget> {
                                   Navigator.pop(context);
                                 },
                                 text: FFLocalizations.of(context).getText(
-                                  'ejw8c9pz' /* Nein */,
+                                  'hwzpl22m' /* Nein */,
                                 ),
                                 options: FFButtonOptions(
                                   height: 40.0,

@@ -915,27 +915,27 @@ final kTranslationsMap = <Map<String, Map<String, String>>>[
   },
   // deleteDialoge
   {
-    'u8xd26re': {
+    's5ledzkb': {
       'de': 'Wirklich löschen?',
       'en': '',
     },
-    'gecy1whg': {
+    'vzs9mnga': {
       'de': 'Achtung! ',
       'en': '',
     },
-    '8dalz3ut': {
+    '5tyase5j': {
       'de': 'Sie wollen das Dokument',
       'en': '',
     },
-    '817rk99x': {
+    'vq10rxnv': {
       'de': 'Bitte bestätigen Sie das Löschen mit: 1',
       'en': '',
     },
-    '3bc8xpzf': {
+    't0wsn5uy': {
       'de': 'Ja, unwiderruflich löschen!\n',
       'en': '',
     },
-    'ejw8c9pz': {
+    'hwzpl22m': {
       'de': 'Nein',
       'en': '',
     },

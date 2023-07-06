@@ -26,6 +26,7 @@ class CustomImageCropWidget extends StatefulWidget {
     required this.pageName,
     required this.cropedImage,
     required this.cropingFor,
+    this.bottomSheetDismiss,
   }) : super(key: key);
 
   final double? width;
@@ -35,6 +36,7 @@ class CustomImageCropWidget extends StatefulWidget {
   final String pageName;
   final Future<dynamic> Function() cropedImage;
   final String? cropingFor;
+  final Future<dynamic> Function()? bottomSheetDismiss;
   @override
   _CustomImageCropWidgetState createState() => _CustomImageCropWidgetState();
 }
@@ -113,7 +115,8 @@ class _CustomImageCropWidgetState extends State<CustomImageCropWidget> {
                         FFAppState().profileImage = downloadUrl;
                       }
                     });
-                    Navigator.of(context).pop();
+                    // Navigator.of(context).pop();
+                    widget.bottomSheetDismiss();
                   },
                 )),
           ],

@@ -2192,6 +2192,10 @@ class _HomePageWidgetState extends State<HomePageWidget>
                                                         false;
                                                     FFAppState().shapeIndex = 3;
                                                   });
+                                                  setState(() {
+                                                    FFAppState()
+                                                        .addEmployeeImage = '';
+                                                  });
                                                   await showModalBottomSheet(
                                                     isScrollControlled: true,
                                                     backgroundColor:
