@@ -116,7 +116,7 @@ class _CustomImageCropWidgetState extends State<CustomImageCropWidget> {
                       }
                     });
                     // Navigator.of(context).pop();
-                    widget.bottomSheetDismiss();
+                    widget.bottomSheetDismiss!();
                   },
                 )),
           ],

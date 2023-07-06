@@ -407,30 +407,16 @@ class _AddEmployeeWidgetState extends State<AddEmployeeWidget> {
                                                         padding: MediaQuery
                                                             .viewInsetsOf(
                                                                 context),
-                                                        child: Container(
-                                                          height:
-                                                              double.infinity,
-                                                          child:
-                                                              CropImageWidget(
-                                                            imagePath: _model
-                                                                .uploadedFileUrl,
-                                                            cropingFor:
-                                                                'addEmployee',
-                                                          ),
+                                                        child: CropImageWidget(
+                                                          imagePath: _model
+                                                              .uploadedFileUrl,
+                                                          cropingFor:
+                                                              'addEmployee',
                                                         ),
                                                       );
                                                     },
                                                   ).then((value) =>
                                                       setState(() {}));
-
-                                                  if (FFAppState()
-                                                              .addEmployeeImage !=
-                                                          null &&
-                                                      FFAppState()
-                                                              .addEmployeeImage !=
-                                                          '') {
-                                                    Navigator.pop(context);
-                                                  }
                                                 }
                                               },
                                               text: FFLocalizations.of(context)
