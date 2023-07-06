@@ -10,6 +10,7 @@ import '/flutter_flow/upload_data.dart';
 import 'package:aligned_dialog/aligned_dialog.dart';
 import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:flutter/material.dart';
+import 'package:flutter/scheduler.dart';
 import 'package:flutter_spinkit/flutter_spinkit.dart';
 import 'package:flutterflow_colorpicker/flutterflow_colorpicker.dart';
 import 'package:font_awesome_flutter/font_awesome_flutter.dart';
@@ -43,6 +44,13 @@ class _EditEmployeeWidgetState extends State<EditEmployeeWidget> {
   void initState() {
     super.initState();
     _model = createModel(context, () => EditEmployeeModel());
+
+    // On component load action.
+    SchedulerBinding.instance.addPostFrameCallback((_) async {
+      setState(() {
+        FFAppState().updateEmployeeImage = '';
+      });
+    });
 
     _model.textController15 ??= TextEditingController();
     WidgetsBinding.instance.addPostFrameCallback((_) => setState(() {}));
@@ -306,8 +314,15 @@ class _EditEmployeeWidgetState extends State<EditEmployeeWidget> {
                                                       BorderRadius.circular(
                                                           8.0),
                                                   child: Image.network(
-                                                    FFAppState()
-                                                        .updateEmployeeImage,
+                                                    FFAppState().updateEmployeeImage !=
+                                                                null &&
+                                                            FFAppState()
+                                                                    .updateEmployeeImage !=
+                                                                ''
+                                                        ? FFAppState()
+                                                            .updateEmployeeImage
+                                                        : containerEmployeeRecord
+                                                            .profileImage,
                                                     width: 150.0,
                                                     height: 150.0,
                                                     fit: BoxFit.cover,
