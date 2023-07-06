@@ -2659,6 +2659,11 @@ class _EditEmployeeWidgetState extends State<EditEmployeeWidget> {
                                                   },
                                                 ).then(
                                                     (value) => setState(() {}));
+
+                                                setState(() {
+                                                  FFAppState()
+                                                      .selectedEmployee = null;
+                                                });
                                               },
                                               text: FFLocalizations.of(context)
                                                   .getText(
