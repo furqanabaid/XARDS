@@ -303,31 +303,25 @@ class _EditEmployeeWidgetState extends State<EditEmployeeWidget> {
                                           child: Column(
                                             mainAxisSize: MainAxisSize.max,
                                             children: [
-                                              if (FFAppState()
-                                                          .updateEmployeeImage !=
-                                                      null &&
+                                              ClipRRect(
+                                                borderRadius:
+                                                    BorderRadius.circular(8.0),
+                                                child: Image.network(
                                                   FFAppState()
-                                                          .updateEmployeeImage !=
-                                                      '')
-                                                ClipRRect(
-                                                  borderRadius:
-                                                      BorderRadius.circular(
-                                                          8.0),
-                                                  child: Image.network(
-                                                    FFAppState().updateEmployeeImage !=
-                                                                null &&
-                                                            FFAppState()
-                                                                    .updateEmployeeImage !=
-                                                                ''
-                                                        ? FFAppState()
-                                                            .updateEmployeeImage
-                                                        : containerEmployeeRecord
-                                                            .profileImage,
-                                                    width: 150.0,
-                                                    height: 150.0,
-                                                    fit: BoxFit.cover,
-                                                  ),
+                                                                  .updateEmployeeImage !=
+                                                              null &&
+                                                          FFAppState()
+                                                                  .updateEmployeeImage !=
+                                                              ''
+                                                      ? FFAppState()
+                                                          .updateEmployeeImage
+                                                      : containerEmployeeRecord
+                                                          .profileImage,
+                                                  width: 150.0,
+                                                  height: 150.0,
+                                                  fit: BoxFit.cover,
                                                 ),
+                                              ),
                                               if (_model.isDataUploading)
                                                 Padding(
                                                   padding: EdgeInsetsDirectional
