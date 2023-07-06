@@ -462,6 +462,7 @@ class _AddEmployeeWidgetState extends State<AddEmployeeWidget> {
                                                 borderRadius:
                                                     BorderRadius.circular(8.0),
                                               ),
+                                              showLoadingIndicator: false,
                                             ),
                                           ),
                                         ],
@@ -2551,11 +2552,10 @@ class _AddEmployeeWidgetState extends State<AddEmployeeWidget> {
                                             'rii725xb' /* Mitarbeiter hinzufügen */,
                                           ),
                                           options: FFButtonOptions(
-                                            width: 150.0,
                                             height: 40.0,
                                             padding:
                                                 EdgeInsetsDirectional.fromSTEB(
-                                                    0.0, 0.0, 0.0, 0.0),
+                                                    15.0, 0.0, 15.0, 0.0),
                                             iconPadding:
                                                 EdgeInsetsDirectional.fromSTEB(
                                                     0.0, 0.0, 0.0, 0.0),

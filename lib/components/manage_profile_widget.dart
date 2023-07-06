@@ -1,6 +1,7 @@
 import '/auth/firebase_auth/auth_util.dart';
 import '/backend/backend.dart';
 import '/backend/firebase_storage/storage.dart';
+import '/components/crop_image_widget.dart';
 import '/flutter_flow/flutter_flow_icon_button.dart';
 import '/flutter_flow/flutter_flow_theme.dart';
 import '/flutter_flow/flutter_flow_util.dart';
@@ -229,7 +230,7 @@ class _ManageProfileWidgetState extends State<ManageProfileWidget> {
                                     children: [
                                       ClipRRect(
                                         borderRadius:
-                                            BorderRadius.circular(25.0),
+                                            BorderRadius.circular(8.0),
                                         child: Image.network(
                                           containerUsersRecord.photoUrl !=
                                                       null &&
@@ -243,145 +244,6 @@ class _ManageProfileWidgetState extends State<ManageProfileWidget> {
                                           fit: BoxFit.cover,
                                         ),
                                       ),
-                                      if (containerUsersRecord.photoUrl ==
-                                              null ||
-                                          containerUsersRecord.photoUrl == '')
-                                        InkWell(
-                                          splashColor: Colors.transparent,
-                                          focusColor: Colors.transparent,
-                                          hoverColor: Colors.transparent,
-                                          highlightColor: Colors.transparent,
-                                          onTap: () async {
-                                            final selectedMedia =
-                                                await selectMediaWithSourceBottomSheet(
-                                              context: context,
-                                              allowPhoto: true,
-                                            );
-                                            if (selectedMedia != null &&
-                                                selectedMedia.every((m) =>
-                                                    validateFileFormat(
-                                                        m.storagePath,
-                                                        context))) {
-                                              setState(() => _model
-                                                  .isDataUploading1 = true);
-                                              var selectedUploadedFiles =
-                                                  <FFUploadedFile>[];
-
-                                              var downloadUrls = <String>[];
-                                              try {
-                                                selectedUploadedFiles =
-                                                    selectedMedia
-                                                        .map((m) =>
-                                                            FFUploadedFile(
-                                                              name: m
-                                                                  .storagePath
-                                                                  .split('/')
-                                                                  .last,
-                                                              bytes: m.bytes,
-                                                              height: m
-                                                                  .dimensions
-                                                                  ?.height,
-                                                              width: m
-                                                                  .dimensions
-                                                                  ?.width,
-                                                              blurHash:
-                                                                  m.blurHash,
-                                                            ))
-                                                        .toList();
-
-                                                downloadUrls =
-                                                    (await Future.wait(
-                                                  selectedMedia.map(
-                                                    (m) async =>
-                                                        await uploadData(
-                                                            m.storagePath,
-                                                            m.bytes),
-                                                  ),
-                                                ))
-                                                        .where((u) => u != null)
-                                                        .map((u) => u!)
-                                                        .toList();
-                                              } finally {
-                                                _model.isDataUploading1 = false;
-                                              }
-                                              if (selectedUploadedFiles
-                                                          .length ==
-                                                      selectedMedia.length &&
-                                                  downloadUrls.length ==
-                                                      selectedMedia.length) {
-                                                setState(() {
-                                                  _model.uploadedLocalFile1 =
-                                                      selectedUploadedFiles
-                                                          .first;
-                                                  _model.uploadedFileUrl1 =
-                                                      downloadUrls.first;
-                                                });
-                                              } else {
-                                                setState(() {});
-                                                return;
-                                              }
-                                            }
-
-                                            await containerUsersRecord.reference
-                                                .update(createUsersRecordData(
-                                              photoUrl: _model.uploadedFileUrl1,
-                                            ));
-                                          },
-                                          child: Material(
-                                            color: Colors.transparent,
-                                            elevation: 0.0,
-                                            shape: RoundedRectangleBorder(
-                                              borderRadius: BorderRadius.only(
-                                                bottomLeft:
-                                                    Radius.circular(0.0),
-                                                bottomRight:
-                                                    Radius.circular(0.0),
-                                                topLeft: Radius.circular(25.0),
-                                                topRight: Radius.circular(25.0),
-                                              ),
-                                            ),
-                                            child: Container(
-                                              width: 100.0,
-                                              height: 20.0,
-                                              decoration: BoxDecoration(
-                                                color:
-                                                    FlutterFlowTheme.of(context)
-                                                        .secondaryBackground,
-                                                borderRadius: BorderRadius.only(
-                                                  bottomLeft:
-                                                      Radius.circular(0.0),
-                                                  bottomRight:
-                                                      Radius.circular(0.0),
-                                                  topLeft:
-                                                      Radius.circular(25.0),
-                                                  topRight:
-                                                      Radius.circular(25.0),
-                                                ),
-                                              ),
-                                              child: Align(
-                                                alignment: AlignmentDirectional(
-                                                    0.0, 0.0),
-                                                child: Text(
-                                                  FFLocalizations.of(context)
-                                                      .getText(
-                                                    '6vqusho0' /* Upload Image */,
-                                                  ),
-                                                  style: FlutterFlowTheme.of(
-                                                          context)
-                                                      .bodyMedium
-                                                      .override(
-                                                        fontFamily: 'Poppins',
-                                                        color:
-                                                            FlutterFlowTheme.of(
-                                                                    context)
-                                                                .secondaryText,
-                                                        fontSize: 8.0,
-                                                      ),
-                                                ),
-                                              ),
-                                            ),
-                                          ),
-                                        ),
                                     ],
                                   ),
                                 ),
@@ -405,7 +267,7 @@ class _ManageProfileWidgetState extends State<ManageProfileWidget> {
                                                 validateFileFormat(
                                                     m.storagePath, context))) {
                                           setState(() =>
-                                              _model.isDataUploading2 = true);
+                                              _model.isDataUploading = true);
                                           var selectedUploadedFiles =
                                               <FFUploadedFile>[];
 
@@ -436,16 +298,16 @@ class _ManageProfileWidgetState extends State<ManageProfileWidget> {
                                                 .map((u) => u!)
                                                 .toList();
                                           } finally {
-                                            _model.isDataUploading2 = false;
+                                            _model.isDataUploading = false;
                                           }
                                           if (selectedUploadedFiles.length ==
                                                   selectedMedia.length &&
                                               downloadUrls.length ==
                                                   selectedMedia.length) {
                                             setState(() {
-                                              _model.uploadedLocalFile2 =
+                                              _model.uploadedLocalFile =
                                                   selectedUploadedFiles.first;
-                                              _model.uploadedFileUrl2 =
+                                              _model.uploadedFileUrl =
                                                   downloadUrls.first;
                                             });
                                           } else {
@@ -454,9 +316,27 @@ class _ManageProfileWidgetState extends State<ManageProfileWidget> {
                                           }
                                         }
 
+                                        await showModalBottomSheet(
+                                          isScrollControlled: true,
+                                          backgroundColor: Colors.transparent,
+                                          enableDrag: false,
+                                          context: context,
+                                          builder: (context) {
+                                            return Padding(
+                                              padding: MediaQuery.viewInsetsOf(
+                                                  context),
+                                              child: CropImageWidget(
+                                                imagePath:
+                                                    _model.uploadedFileUrl,
+                                                cropingFor: 'profileImage',
+                                              ),
+                                            );
+                                          },
+                                        ).then((value) => setState(() {}));
+
                                         await containerUsersRecord.reference
                                             .update(createUsersRecordData(
-                                          photoUrl: _model.uploadedFileUrl2,
+                                          photoUrl: FFAppState().profileImage,
                                         ));
                                         setState(() {
                                           _model.editProfile = true;
@@ -474,7 +354,7 @@ class _ManageProfileWidgetState extends State<ManageProfileWidget> {
                                               EdgeInsetsDirectional.fromSTEB(
                                                   6.0, 4.0, 6.0, 4.0),
                                           child: Text(
-                                            _model.isDataUploading2
+                                            _model.isDataUploading
                                                 ? ' Hochladen...'
                                                 : ' Bild hochladen',
                                             style: FlutterFlowTheme.of(context)
@@ -766,25 +646,33 @@ class _ManageProfileWidgetState extends State<ManageProfileWidget> {
                                       ],
                                     ),
                                   ),
-                                Padding(
-                                  padding: EdgeInsetsDirectional.fromSTEB(
-                                      0.0, 10.0, 0.0, 0.0),
-                                  child: Container(
-                                    decoration: BoxDecoration(
-                                      color:
-                                          FlutterFlowTheme.of(context).accent3,
-                                      borderRadius: BorderRadius.circular(8.0),
-                                    ),
-                                    child: Padding(
+                                Row(
+                                  mainAxisSize: MainAxisSize.max,
+                                  mainAxisAlignment: MainAxisAlignment.center,
+                                  children: [
+                                    Padding(
                                       padding: EdgeInsetsDirectional.fromSTEB(
-                                          6.0, 4.0, 6.0, 4.0),
-                                      child: Text(
-                                        containerUsersRecord.email,
-                                        style: FlutterFlowTheme.of(context)
-                                            .bodyMedium,
+                                          0.0, 10.0, 0.0, 0.0),
+                                      child: Container(
+                                        decoration: BoxDecoration(
+                                          color: FlutterFlowTheme.of(context)
+                                              .accent3,
+                                          borderRadius:
+                                              BorderRadius.circular(8.0),
+                                        ),
+                                        child: Padding(
+                                          padding:
+                                              EdgeInsetsDirectional.fromSTEB(
+                                                  6.0, 4.0, 6.0, 4.0),
+                                          child: Text(
+                                            containerUsersRecord.email,
+                                            style: FlutterFlowTheme.of(context)
+                                                .bodyMedium,
+                                          ),
+                                        ),
                                       ),
                                     ),
-                                  ),
+                                  ],
                                 ),
                               ],
                             ),

@@ -140,7 +140,7 @@ class _CropImageWidgetState extends State<CropImageWidget> {
                                   Icons.crop_square,
                                   color:
                                       FlutterFlowTheme.of(context).primaryText,
-                                  size: 24.0,
+                                  size: 20.0,
                                 ),
                                 onPressed: () async {
                                   setState(() {
@@ -164,7 +164,7 @@ class _CropImageWidgetState extends State<CropImageWidget> {
                                   FontAwesomeIcons.circle,
                                   color:
                                       FlutterFlowTheme.of(context).primaryText,
-                                  size: 21.0,
+                                  size: 16.0,
                                 ),
                                 onPressed: () async {
                                   setState(() {

@@ -2155,7 +2155,7 @@ class _EmployeeDetailsWidgetState extends State<EmployeeDetailsWidget>
                                                                             .max,
                                                                     crossAxisAlignment:
                                                                         CrossAxisAlignment
-                                                                            .start,
+                                                                            .center,
                                                                     children: [
                                                                       Icon(
                                                                         Icons
@@ -2242,7 +2242,7 @@ class _EmployeeDetailsWidgetState extends State<EmployeeDetailsWidget>
                                                                             .max,
                                                                     crossAxisAlignment:
                                                                         CrossAxisAlignment
-                                                                            .start,
+                                                                            .center,
                                                                     children: [
                                                                       FaIcon(
                                                                         FontAwesomeIcons
@@ -2338,7 +2338,7 @@ class _EmployeeDetailsWidgetState extends State<EmployeeDetailsWidget>
                                                                           Padding(
                                                                         padding: EdgeInsetsDirectional.fromSTEB(
                                                                             20.0,
-                                                                            0.0,
+                                                                            4.0,
                                                                             0.0,
                                                                             0.0),
                                                                         child:
@@ -2410,7 +2410,7 @@ class _EmployeeDetailsWidgetState extends State<EmployeeDetailsWidget>
                                                                             .max,
                                                                     crossAxisAlignment:
                                                                         CrossAxisAlignment
-                                                                            .start,
+                                                                            .center,
                                                                     children: [
                                                                       FaIcon(
                                                                         FontAwesomeIcons

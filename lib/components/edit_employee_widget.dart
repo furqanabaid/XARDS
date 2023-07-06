@@ -2,10 +2,12 @@ import '/auth/firebase_auth/auth_util.dart';
 import '/backend/backend.dart';
 import '/backend/firebase_storage/storage.dart';
 import '/components/crop_image_widget.dart';
+import '/components/delete_dialoge_widget.dart';
 import '/flutter_flow/flutter_flow_theme.dart';
 import '/flutter_flow/flutter_flow_util.dart';
 import '/flutter_flow/flutter_flow_widgets.dart';
 import '/flutter_flow/upload_data.dart';
+import 'package:aligned_dialog/aligned_dialog.dart';
 import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_spinkit/flutter_spinkit.dart';
@@ -469,6 +471,7 @@ class _EditEmployeeWidgetState extends State<EditEmployeeWidget> {
                                                         BorderRadius.circular(
                                                             8.0),
                                                   ),
+                                                  showLoadingIndicator: false,
                                                 ),
                                               ),
                                             ],
@@ -2611,50 +2614,78 @@ class _EditEmployeeWidgetState extends State<EditEmployeeWidget> {
                                             ),
                                           ),
                                         ),
-                                        Padding(
-                                          padding:
-                                              EdgeInsetsDirectional.fromSTEB(
-                                                  0.0, 0.0, 10.0, 0.0),
-                                          child: FFButtonWidget(
-                                            onPressed: () async {
-                                              await containerEmployeeRecord
-                                                  .reference
-                                                  .delete();
-                                              Navigator.pop(context);
-                                            },
-                                            text: FFLocalizations.of(context)
-                                                .getText(
-                                              '0v06vvyp' /* Mitarbeiter löschen */,
-                                            ),
-                                            options: FFButtonOptions(
-                                              width: 130.0,
-                                              height: 40.0,
-                                              padding: EdgeInsetsDirectional
-                                                  .fromSTEB(0.0, 0.0, 0.0, 0.0),
-                                              iconPadding: EdgeInsetsDirectional
-                                                  .fromSTEB(0.0, 0.0, 0.0, 0.0),
-                                              color:
-                                                  FlutterFlowTheme.of(context)
-                                                      .secondaryBackground,
-                                              textStyle:
-                                                  FlutterFlowTheme.of(context)
-                                                      .titleSmall
-                                                      .override(
-                                                        fontFamily: 'Poppins',
-                                                        color:
-                                                            FlutterFlowTheme.of(
-                                                                    context)
-                                                                .primaryText,
+                                        Builder(
+                                          builder: (context) => Padding(
+                                            padding:
+                                                EdgeInsetsDirectional.fromSTEB(
+                                                    0.0, 0.0, 10.0, 0.0),
+                                            child: FFButtonWidget(
+                                              onPressed: () async {
+                                                await showAlignedDialog(
+                                                  context: context,
+                                                  isGlobal: true,
+                                                  avoidOverflow: false,
+                                                  targetAnchor:
+                                                      AlignmentDirectional(
+                                                              0.0, 0.0)
+                                                          .resolve(
+                                                              Directionality.of(
+                                                                  context)),
+                                                  followerAnchor:
+                                                      AlignmentDirectional(
+                                                              0.0, 0.0)
+                                                          .resolve(
+                                                              Directionality.of(
+                                                                  context)),
+                                                  builder: (dialogContext) {
+                                                    return Material(
+                                                      color: Colors.transparent,
+                                                      child:
+                                                          DeleteDialogeWidget(
+                                                        empRef:
+                                                            containerEmployeeRecord
+                                                                .reference,
                                                       ),
-                                              elevation: 0.0,
-                                              borderSide: BorderSide(
+                                                    );
+                                                  },
+                                                ).then(
+                                                    (value) => setState(() {}));
+                                              },
+                                              text: FFLocalizations.of(context)
+                                                  .getText(
+                                                '0v06vvyp' /* Mitarbeiter löschen */,
+                                              ),
+                                              options: FFButtonOptions(
+                                                height: 40.0,
+                                                padding: EdgeInsetsDirectional
+                                                    .fromSTEB(
+                                                        15.0, 0.0, 15.0, 0.0),
+                                                iconPadding:
+                                                    EdgeInsetsDirectional
+                                                        .fromSTEB(
+                                                            0.0, 0.0, 0.0, 0.0),
                                                 color:
                                                     FlutterFlowTheme.of(context)
-                                                        .secondaryText,
-                                                width: 1.0,
+                                                        .secondaryBackground,
+                                                textStyle:
+                                                    FlutterFlowTheme.of(context)
+                                                        .titleSmall
+                                                        .override(
+                                                          fontFamily: 'Poppins',
+                                                          color: FlutterFlowTheme
+                                                                  .of(context)
+                                                              .primaryText,
+                                                        ),
+                                                elevation: 0.0,
+                                                borderSide: BorderSide(
+                                                  color: FlutterFlowTheme.of(
+                                                          context)
+                                                      .secondaryText,
+                                                  width: 1.0,
+                                                ),
+                                                borderRadius:
+                                                    BorderRadius.circular(8.0),
                                               ),
-                                              borderRadius:
-                                                  BorderRadius.circular(8.0),
                                             ),
                                           ),
                                         ),
@@ -2725,10 +2756,10 @@ class _EditEmployeeWidgetState extends State<EditEmployeeWidget> {
                                               '0dr7y7ge' /* Mitarbeiter aktualisieren */,
                                             ),
                                             options: FFButtonOptions(
-                                              width: 160.0,
                                               height: 40.0,
                                               padding: EdgeInsetsDirectional
-                                                  .fromSTEB(0.0, 0.0, 0.0, 0.0),
+                                                  .fromSTEB(
+                                                      15.0, 0.0, 15.0, 0.0),
                                               iconPadding: EdgeInsetsDirectional
                                                   .fromSTEB(0.0, 0.0, 0.0, 0.0),
                                               color: Colors.black,

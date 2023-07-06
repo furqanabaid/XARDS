@@ -343,7 +343,7 @@ class _HomePageWidgetState extends State<HomePageWidget>
               tablet: false,
             ),
             child: Padding(
-              padding: EdgeInsetsDirectional.fromSTEB(30.0, 30.0, 30.0, 30.0),
+              padding: EdgeInsetsDirectional.fromSTEB(30.0, 30.0, 30.0, 0.0),
               child: Column(
                 mainAxisSize: MainAxisSize.max,
                 children: [
@@ -1177,97 +1177,819 @@ class _HomePageWidgetState extends State<HomePageWidget>
                           ),
                           Expanded(
                             flex: 4,
-                            child: Padding(
-                              padding: EdgeInsetsDirectional.fromSTEB(
-                                  10.0, 0.0, 10.0, 0.0),
-                              child: ListView(
-                                padding: EdgeInsets.zero,
-                                scrollDirection: Axis.vertical,
-                                children: [
-                                  Row(
-                                    mainAxisSize: MainAxisSize.max,
-                                    mainAxisAlignment:
-                                        MainAxisAlignment.spaceBetween,
+                            child: Stack(
+                              children: [
+                                Padding(
+                                  padding: EdgeInsetsDirectional.fromSTEB(
+                                      10.0, 100.0, 10.0, 0.0),
+                                  child: ListView(
+                                    padding: EdgeInsets.zero,
+                                    shrinkWrap: true,
+                                    scrollDirection: Axis.vertical,
                                     children: [
-                                      Expanded(
-                                        child: Container(
-                                          width:
-                                              MediaQuery.sizeOf(context).width *
-                                                  0.2,
-                                          decoration: BoxDecoration(),
-                                          child: TextFormField(
-                                            controller: _model.textController2,
-                                            onChanged: (_) =>
-                                                EasyDebounce.debounce(
-                                              '_model.textController2',
-                                              Duration(milliseconds: 2000),
-                                              () => setState(() {}),
-                                            ),
-                                            onFieldSubmitted: (_) async {
+                                      if ((FFAppState().selectedFirm != null) &&
+                                          (_model.textController2.text ==
+                                                  null ||
+                                              _model.textController2.text ==
+                                                  ''))
+                                        Padding(
+                                          padding:
+                                              EdgeInsetsDirectional.fromSTEB(
+                                                  0.0, 12.0, 0.0, 0.0),
+                                          child: Row(
+                                            mainAxisSize: MainAxisSize.max,
+                                            mainAxisAlignment:
+                                                MainAxisAlignment.end,
+                                            children: [
                                               if (FFAppState().selectedFirm !=
-                                                  null) {
-                                                await queryEmployeeRecordOnce()
-                                                    .then(
-                                                      (records) => _model
-                                                              .simpleSearchResults2 =
-                                                          TextSearch(
-                                                        records
-                                                            .map(
-                                                              (record) =>
-                                                                  TextSearchItem(
-                                                                      record, [
-                                                                record.name!,
-                                                                record.title!,
-                                                                record.empEmail!
-                                                              ]),
-                                                            )
-                                                            .toList(),
-                                                      )
-                                                              .search(_model
-                                                                  .textController2
-                                                                  .text)
-                                                              .map((r) =>
-                                                                  r.object)
-                                                              .toList(),
-                                                    )
-                                                    .onError((_, __) => _model
-                                                            .simpleSearchResults2 =
-                                                        [])
-                                                    .whenComplete(
-                                                        () => setState(() {}));
-                                              } else {
-                                                await showDialog(
-                                                  context: context,
-                                                  builder:
-                                                      (alertDialogContext) {
-                                                    return AlertDialog(
-                                                      title: Text(
-                                                          'No firm selected!'),
-                                                      content: Text(
-                                                          'please select the firm first.'),
-                                                      actions: [
-                                                        TextButton(
-                                                          onPressed: () =>
-                                                              Navigator.pop(
-                                                                  alertDialogContext),
-                                                          child: Text('Ok'),
+                                                  null)
+                                                StreamBuilder<
+                                                    List<EmployeeRecord>>(
+                                                  stream: queryEmployeeRecord(
+                                                    queryBuilder: (employeeRecord) =>
+                                                        employeeRecord.where(
+                                                            'employeeOfFirm',
+                                                            isEqualTo: FFAppState()
+                                                                .selectedFirm),
+                                                  ),
+                                                  builder: (context, snapshot) {
+                                                    // Customize what your widget looks like when it's loading.
+                                                    if (!snapshot.hasData) {
+                                                      return Center(
+                                                        child: SizedBox(
+                                                          width: 25.0,
+                                                          height: 25.0,
+                                                          child: SpinKitRipple(
+                                                            color: FlutterFlowTheme
+                                                                    .of(context)
+                                                                .accent2,
+                                                            size: 25.0,
+                                                          ),
                                                         ),
-                                                      ],
+                                                      );
+                                                    }
+                                                    List<EmployeeRecord>
+                                                        textEmployeeRecordList =
+                                                        snapshot.data!;
+                                                    return Text(
+                                                      'Total Employees : ${textEmployeeRecordList.length.toString()}',
+                                                      style:
+                                                          FlutterFlowTheme.of(
+                                                                  context)
+                                                              .bodyMedium,
                                                     );
                                                   },
-                                                );
-                                              }
-                                            },
-                                            autofocus: true,
-                                            obscureText: false,
-                                            decoration: InputDecoration(
-                                              hintText:
-                                                  FFLocalizations.of(context)
-                                                      .getText(
-                                                'lkdotrcf' /* Mitarbeiter suchen */,
+                                                ),
+                                            ],
+                                          ),
+                                        ),
+                                      if (_model.textController2.text == null ||
+                                          _model.textController2.text == '')
+                                        Container(
+                                          width: double.infinity,
+                                          decoration: BoxDecoration(
+                                            color: FlutterFlowTheme.of(context)
+                                                .secondaryBackground,
+                                          ),
+                                          child: Visibility(
+                                            visible:
+                                                FFAppState().selectedFirm !=
+                                                    null,
+                                            child: Padding(
+                                              padding: EdgeInsetsDirectional
+                                                  .fromSTEB(
+                                                      0.0, 12.0, 0.0, 0.0),
+                                              child: StreamBuilder<
+                                                  List<EmployeeRecord>>(
+                                                stream: _model.employees(
+                                                  requestFn: () =>
+                                                      queryEmployeeRecord(
+                                                    queryBuilder: (employeeRecord) =>
+                                                        employeeRecord.where(
+                                                            'employeeOfFirm',
+                                                            isEqualTo: FFAppState()
+                                                                .selectedFirm),
+                                                  ),
+                                                ),
+                                                builder: (context, snapshot) {
+                                                  // Customize what your widget looks like when it's loading.
+                                                  if (!snapshot.hasData) {
+                                                    return Center(
+                                                      child: SizedBox(
+                                                        width: 25.0,
+                                                        height: 25.0,
+                                                        child: SpinKitRipple(
+                                                          color: FlutterFlowTheme
+                                                                  .of(context)
+                                                              .accent2,
+                                                          size: 25.0,
+                                                        ),
+                                                      ),
+                                                    );
+                                                  }
+                                                  List<EmployeeRecord>
+                                                      columnEmployeeRecordList =
+                                                      snapshot.data!;
+                                                  return SingleChildScrollView(
+                                                    primary: false,
+                                                    child: Column(
+                                                      mainAxisSize:
+                                                          MainAxisSize.max,
+                                                      children: List.generate(
+                                                          columnEmployeeRecordList
+                                                              .length,
+                                                          (columnIndex) {
+                                                        final columnEmployeeRecord =
+                                                            columnEmployeeRecordList[
+                                                                columnIndex];
+                                                        return Visibility(
+                                                          visible: columnEmployeeRecord
+                                                                  .employeeOfFirm ==
+                                                              FFAppState()
+                                                                  .selectedFirm,
+                                                          child: Padding(
+                                                            padding:
+                                                                EdgeInsetsDirectional
+                                                                    .fromSTEB(
+                                                                        0.0,
+                                                                        10.0,
+                                                                        0.0,
+                                                                        0.0),
+                                                            child: InkWell(
+                                                              splashColor: Colors
+                                                                  .transparent,
+                                                              focusColor: Colors
+                                                                  .transparent,
+                                                              hoverColor: Colors
+                                                                  .transparent,
+                                                              highlightColor:
+                                                                  Colors
+                                                                      .transparent,
+                                                              onTap: () async {
+                                                                setState(() {
+                                                                  FFAppState()
+                                                                          .selectedEmployee =
+                                                                      columnEmployeeRecord
+                                                                          .reference;
+                                                                });
+                                                              },
+                                                              child: ClipRRect(
+                                                                borderRadius:
+                                                                    BorderRadius
+                                                                        .circular(
+                                                                            10.0),
+                                                                child:
+                                                                    AnimatedContainer(
+                                                                  duration: Duration(
+                                                                      milliseconds:
+                                                                          100),
+                                                                  curve: Curves
+                                                                      .bounceOut,
+                                                                  width: double
+                                                                      .infinity,
+                                                                  decoration:
+                                                                      BoxDecoration(
+                                                                    color: valueOrDefault<
+                                                                        Color>(
+                                                                      columnEmployeeRecord.reference ==
+                                                                              FFAppState()
+                                                                                  .selectedEmployee
+                                                                          ? FlutterFlowTheme.of(context)
+                                                                              .primaryBackground
+                                                                          : FlutterFlowTheme.of(context)
+                                                                              .secondaryBackground,
+                                                                      FlutterFlowTheme.of(
+                                                                              context)
+                                                                          .secondaryBackground,
+                                                                    ),
+                                                                    borderRadius:
+                                                                        BorderRadius.circular(
+                                                                            10.0),
+                                                                  ),
+                                                                  child:
+                                                                      SingleChildScrollView(
+                                                                    child:
+                                                                        Column(
+                                                                      mainAxisSize:
+                                                                          MainAxisSize
+                                                                              .max,
+                                                                      children: [
+                                                                        Padding(
+                                                                          padding: EdgeInsetsDirectional.fromSTEB(
+                                                                              8.0,
+                                                                              8.0,
+                                                                              8.0,
+                                                                              8.0),
+                                                                          child:
+                                                                              Row(
+                                                                            mainAxisSize:
+                                                                                MainAxisSize.max,
+                                                                            children: [
+                                                                              Container(
+                                                                                width: 55.0,
+                                                                                decoration: BoxDecoration(),
+                                                                                child: Row(
+                                                                                  mainAxisSize: MainAxisSize.max,
+                                                                                  mainAxisAlignment: MainAxisAlignment.center,
+                                                                                  children: [
+                                                                                    Padding(
+                                                                                      padding: EdgeInsetsDirectional.fromSTEB(0.0, 0.0, 6.0, 0.0),
+                                                                                      child: Container(
+                                                                                        width: 25.0,
+                                                                                        height: 25.0,
+                                                                                        child: Stack(
+                                                                                          children: [
+                                                                                            if (!FFAppState().selectedEmployeesList.contains(columnEmployeeRecord.reference))
+                                                                                              InkWell(
+                                                                                                splashColor: Colors.transparent,
+                                                                                                focusColor: Colors.transparent,
+                                                                                                hoverColor: Colors.transparent,
+                                                                                                highlightColor: Colors.transparent,
+                                                                                                onTap: () async {
+                                                                                                  setState(() {
+                                                                                                    FFAppState().addToSelectedEmployeesList(columnEmployeeRecord.reference);
+                                                                                                  });
+                                                                                                },
+                                                                                                child: Icon(
+                                                                                                  Icons.check_box_outline_blank,
+                                                                                                  color: FlutterFlowTheme.of(context).accent3,
+                                                                                                  size: 24.0,
+                                                                                                ),
+                                                                                              ),
+                                                                                            if (FFAppState().selectedEmployeesList.contains(columnEmployeeRecord.reference))
+                                                                                              InkWell(
+                                                                                                splashColor: Colors.transparent,
+                                                                                                focusColor: Colors.transparent,
+                                                                                                hoverColor: Colors.transparent,
+                                                                                                highlightColor: Colors.transparent,
+                                                                                                onTap: () async {
+                                                                                                  setState(() {
+                                                                                                    FFAppState().removeFromSelectedEmployeesList(columnEmployeeRecord.reference);
+                                                                                                  });
+                                                                                                },
+                                                                                                child: Icon(
+                                                                                                  Icons.check_box,
+                                                                                                  color: FlutterFlowTheme.of(context).accent2,
+                                                                                                  size: 24.0,
+                                                                                                ),
+                                                                                              ).animateOnPageLoad(animationsMap['iconOnPageLoadAnimation1']!),
+                                                                                          ],
+                                                                                        ),
+                                                                                      ),
+                                                                                    ),
+                                                                                  ],
+                                                                                ),
+                                                                              ),
+                                                                              SizedBox(
+                                                                                height: 30.0,
+                                                                                child: VerticalDivider(
+                                                                                  thickness: 1.0,
+                                                                                  color: FlutterFlowTheme.of(context).accent3,
+                                                                                ),
+                                                                              ),
+                                                                              Expanded(
+                                                                                flex: 5,
+                                                                                child: Column(
+                                                                                  mainAxisSize: MainAxisSize.max,
+                                                                                  crossAxisAlignment: CrossAxisAlignment.start,
+                                                                                  children: [
+                                                                                    Text(
+                                                                                      columnEmployeeRecord.name,
+                                                                                      style: FlutterFlowTheme.of(context).bodyMedium,
+                                                                                    ),
+                                                                                    if (columnEmployeeRecord.empEmail != null && columnEmployeeRecord.empEmail != '')
+                                                                                      Padding(
+                                                                                        padding: EdgeInsetsDirectional.fromSTEB(0.0, 5.0, 0.0, 0.0),
+                                                                                        child: Text(
+                                                                                          columnEmployeeRecord.empEmail,
+                                                                                          style: FlutterFlowTheme.of(context).bodyMedium.override(
+                                                                                                fontFamily: 'Poppins',
+                                                                                                fontSize: 10.0,
+                                                                                              ),
+                                                                                        ),
+                                                                                      ),
+                                                                                  ],
+                                                                                ),
+                                                                              ),
+                                                                              SizedBox(
+                                                                                height: 30.0,
+                                                                                child: VerticalDivider(
+                                                                                  thickness: 1.0,
+                                                                                  color: FlutterFlowTheme.of(context).accent3,
+                                                                                ),
+                                                                              ),
+                                                                              Expanded(
+                                                                                flex: 5,
+                                                                                child: Text(
+                                                                                  columnEmployeeRecord.title,
+                                                                                  style: FlutterFlowTheme.of(context).bodyMedium,
+                                                                                ),
+                                                                              ),
+                                                                              SizedBox(
+                                                                                height: 30.0,
+                                                                                child: VerticalDivider(
+                                                                                  thickness: 1.0,
+                                                                                  color: FlutterFlowTheme.of(context).accent3,
+                                                                                ),
+                                                                              ),
+                                                                              Container(
+                                                                                width: 30.0,
+                                                                                decoration: BoxDecoration(),
+                                                                                child: FlutterFlowIconButton(
+                                                                                  borderColor: Colors.transparent,
+                                                                                  borderRadius: 30.0,
+                                                                                  borderWidth: 1.0,
+                                                                                  buttonSize: 35.0,
+                                                                                  icon: FaIcon(
+                                                                                    FontAwesomeIcons.edit,
+                                                                                    color: FlutterFlowTheme.of(context).accent2,
+                                                                                    size: 15.0,
+                                                                                  ),
+                                                                                  onPressed: () async {
+                                                                                    setState(() {
+                                                                                      FFAppState().isCircle = columnEmployeeRecord.isCircle;
+                                                                                      FFAppState().shapeIndex = columnEmployeeRecord.shapeIndex;
+                                                                                    });
+                                                                                    await showModalBottomSheet(
+                                                                                      isScrollControlled: true,
+                                                                                      backgroundColor: Colors.transparent,
+                                                                                      enableDrag: false,
+                                                                                      context: context,
+                                                                                      builder: (context) {
+                                                                                        return GestureDetector(
+                                                                                          onTap: () => FocusScope.of(context).requestFocus(_model.unfocusNode),
+                                                                                          child: Padding(
+                                                                                            padding: MediaQuery.viewInsetsOf(context),
+                                                                                            child: EditEmployeeWidget(
+                                                                                              employeeRef: columnEmployeeRecord.reference,
+                                                                                            ),
+                                                                                          ),
+                                                                                        );
+                                                                                      },
+                                                                                    ).then((value) => setState(() {}));
+                                                                                  },
+                                                                                ),
+                                                                              ),
+                                                                              Container(
+                                                                                width: 30.0,
+                                                                                decoration: BoxDecoration(),
+                                                                                child: FlutterFlowIconButton(
+                                                                                  borderColor: Colors.transparent,
+                                                                                  borderRadius: 30.0,
+                                                                                  borderWidth: 1.0,
+                                                                                  buttonSize: 35.0,
+                                                                                  icon: FaIcon(
+                                                                                    FontAwesomeIcons.eye,
+                                                                                    color: FlutterFlowTheme.of(context).accent2,
+                                                                                    size: 15.0,
+                                                                                  ),
+                                                                                  onPressed: () async {
+                                                                                    context.pushNamed(
+                                                                                      'employeeDetails',
+                                                                                      queryParameters: {
+                                                                                        'employeeRefeence': serializeParam(
+                                                                                          columnEmployeeRecord.reference,
+                                                                                          ParamType.DocumentReference,
+                                                                                        ),
+                                                                                      }.withoutNulls,
+                                                                                    );
+                                                                                  },
+                                                                                ),
+                                                                              ),
+                                                                            ],
+                                                                          ),
+                                                                        ),
+                                                                      ],
+                                                                    ),
+                                                                  ),
+                                                                ),
+                                                              ),
+                                                            ),
+                                                          ),
+                                                        );
+                                                      }),
+                                                    ),
+                                                  );
+                                                },
                                               ),
-                                              hintStyle:
-                                                  FlutterFlowTheme.of(context)
+                                            ),
+                                          ),
+                                        ),
+                                      if (_model.textController2.text != null &&
+                                          _model.textController2.text != '')
+                                        Container(
+                                          width: double.infinity,
+                                          decoration: BoxDecoration(
+                                            color: FlutterFlowTheme.of(context)
+                                                .secondaryBackground,
+                                          ),
+                                          child: Visibility(
+                                            visible:
+                                                FFAppState().selectedFirm !=
+                                                    null,
+                                            child: Padding(
+                                              padding: EdgeInsetsDirectional
+                                                  .fromSTEB(
+                                                      0.0, 12.0, 0.0, 0.0),
+                                              child: Builder(
+                                                builder: (context) {
+                                                  final employeeSearched = _model
+                                                      .simpleSearchResults2
+                                                      .map((e) => e)
+                                                      .toList()
+                                                      .where((e) =>
+                                                          e.employeeOfFirm ==
+                                                          FFAppState()
+                                                              .selectedFirm)
+                                                      .toList();
+                                                  return SingleChildScrollView(
+                                                    primary: false,
+                                                    child: Column(
+                                                      mainAxisSize:
+                                                          MainAxisSize.max,
+                                                      children: List.generate(
+                                                          employeeSearched
+                                                              .length,
+                                                          (employeeSearchedIndex) {
+                                                        final employeeSearchedItem =
+                                                            employeeSearched[
+                                                                employeeSearchedIndex];
+                                                        return Padding(
+                                                          padding:
+                                                              EdgeInsetsDirectional
+                                                                  .fromSTEB(
+                                                                      0.0,
+                                                                      10.0,
+                                                                      0.0,
+                                                                      0.0),
+                                                          child: InkWell(
+                                                            splashColor: Colors
+                                                                .transparent,
+                                                            focusColor: Colors
+                                                                .transparent,
+                                                            hoverColor: Colors
+                                                                .transparent,
+                                                            highlightColor:
+                                                                Colors
+                                                                    .transparent,
+                                                            onTap: () async {
+                                                              setState(() {
+                                                                FFAppState()
+                                                                        .selectedEmployee =
+                                                                    employeeSearchedItem
+                                                                        .reference;
+                                                              });
+                                                            },
+                                                            child: ClipRRect(
+                                                              borderRadius:
+                                                                  BorderRadius
+                                                                      .circular(
+                                                                          10.0),
+                                                              child:
+                                                                  AnimatedContainer(
+                                                                duration: Duration(
+                                                                    milliseconds:
+                                                                        100),
+                                                                curve: Curves
+                                                                    .bounceOut,
+                                                                width: double
+                                                                    .infinity,
+                                                                decoration:
+                                                                    BoxDecoration(
+                                                                  color:
+                                                                      valueOrDefault<
+                                                                          Color>(
+                                                                    employeeSearchedItem.reference ==
+                                                                            FFAppState()
+                                                                                .selectedEmployee
+                                                                        ? FlutterFlowTheme.of(context)
+                                                                            .primaryBackground
+                                                                        : FlutterFlowTheme.of(context)
+                                                                            .secondaryBackground,
+                                                                    FlutterFlowTheme.of(
+                                                                            context)
+                                                                        .secondaryBackground,
+                                                                  ),
+                                                                  borderRadius:
+                                                                      BorderRadius
+                                                                          .circular(
+                                                                              10.0),
+                                                                ),
+                                                                child:
+                                                                    SingleChildScrollView(
+                                                                  child: Column(
+                                                                    mainAxisSize:
+                                                                        MainAxisSize
+                                                                            .max,
+                                                                    children: [
+                                                                      Padding(
+                                                                        padding: EdgeInsetsDirectional.fromSTEB(
+                                                                            8.0,
+                                                                            8.0,
+                                                                            8.0,
+                                                                            8.0),
+                                                                        child:
+                                                                            Row(
+                                                                          mainAxisSize:
+                                                                              MainAxisSize.max,
+                                                                          children: [
+                                                                            Container(
+                                                                              width: 55.0,
+                                                                              decoration: BoxDecoration(),
+                                                                              child: Row(
+                                                                                mainAxisSize: MainAxisSize.max,
+                                                                                mainAxisAlignment: MainAxisAlignment.center,
+                                                                                children: [
+                                                                                  Padding(
+                                                                                    padding: EdgeInsetsDirectional.fromSTEB(0.0, 0.0, 6.0, 0.0),
+                                                                                    child: Container(
+                                                                                      width: 25.0,
+                                                                                      height: 25.0,
+                                                                                      child: Stack(
+                                                                                        children: [
+                                                                                          if (!FFAppState().selectedEmployeesList.contains(employeeSearchedItem.reference))
+                                                                                            InkWell(
+                                                                                              splashColor: Colors.transparent,
+                                                                                              focusColor: Colors.transparent,
+                                                                                              hoverColor: Colors.transparent,
+                                                                                              highlightColor: Colors.transparent,
+                                                                                              onTap: () async {
+                                                                                                setState(() {
+                                                                                                  FFAppState().addToSelectedEmployeesList(employeeSearchedItem.reference);
+                                                                                                });
+                                                                                              },
+                                                                                              child: Icon(
+                                                                                                Icons.check_box_outline_blank,
+                                                                                                color: FlutterFlowTheme.of(context).accent3,
+                                                                                                size: 24.0,
+                                                                                              ),
+                                                                                            ),
+                                                                                          if (FFAppState().selectedEmployeesList.contains(employeeSearchedItem.reference))
+                                                                                            InkWell(
+                                                                                              splashColor: Colors.transparent,
+                                                                                              focusColor: Colors.transparent,
+                                                                                              hoverColor: Colors.transparent,
+                                                                                              highlightColor: Colors.transparent,
+                                                                                              onTap: () async {
+                                                                                                setState(() {
+                                                                                                  FFAppState().removeFromSelectedEmployeesList(employeeSearchedItem.reference);
+                                                                                                });
+                                                                                              },
+                                                                                              child: Icon(
+                                                                                                Icons.check_box,
+                                                                                                color: FlutterFlowTheme.of(context).accent2,
+                                                                                                size: 24.0,
+                                                                                              ),
+                                                                                            ).animateOnPageLoad(animationsMap['iconOnPageLoadAnimation2']!),
+                                                                                        ],
+                                                                                      ),
+                                                                                    ),
+                                                                                  ),
+                                                                                ],
+                                                                              ),
+                                                                            ),
+                                                                            SizedBox(
+                                                                              height: 30.0,
+                                                                              child: VerticalDivider(
+                                                                                thickness: 1.0,
+                                                                                color: FlutterFlowTheme.of(context).accent3,
+                                                                              ),
+                                                                            ),
+                                                                            Expanded(
+                                                                              flex: 5,
+                                                                              child: Column(
+                                                                                mainAxisSize: MainAxisSize.max,
+                                                                                crossAxisAlignment: CrossAxisAlignment.start,
+                                                                                children: [
+                                                                                  Text(
+                                                                                    employeeSearchedItem.name,
+                                                                                    style: FlutterFlowTheme.of(context).bodyMedium,
+                                                                                  ),
+                                                                                  if (employeeSearchedItem.empEmail != null && employeeSearchedItem.empEmail != '')
+                                                                                    Padding(
+                                                                                      padding: EdgeInsetsDirectional.fromSTEB(0.0, 5.0, 0.0, 0.0),
+                                                                                      child: Text(
+                                                                                        employeeSearchedItem.empEmail,
+                                                                                        style: FlutterFlowTheme.of(context).bodyMedium.override(
+                                                                                              fontFamily: 'Poppins',
+                                                                                              fontSize: 10.0,
+                                                                                            ),
+                                                                                      ),
+                                                                                    ),
+                                                                                ],
+                                                                              ),
+                                                                            ),
+                                                                            SizedBox(
+                                                                              height: 30.0,
+                                                                              child: VerticalDivider(
+                                                                                thickness: 1.0,
+                                                                                color: FlutterFlowTheme.of(context).accent3,
+                                                                              ),
+                                                                            ),
+                                                                            Expanded(
+                                                                              flex: 5,
+                                                                              child: Text(
+                                                                                employeeSearchedItem.title,
+                                                                                style: FlutterFlowTheme.of(context).bodyMedium,
+                                                                              ),
+                                                                            ),
+                                                                            SizedBox(
+                                                                              height: 30.0,
+                                                                              child: VerticalDivider(
+                                                                                thickness: 1.0,
+                                                                                color: FlutterFlowTheme.of(context).accent3,
+                                                                              ),
+                                                                            ),
+                                                                            Container(
+                                                                              width: 30.0,
+                                                                              decoration: BoxDecoration(),
+                                                                              child: FlutterFlowIconButton(
+                                                                                borderColor: Colors.transparent,
+                                                                                borderRadius: 30.0,
+                                                                                borderWidth: 1.0,
+                                                                                buttonSize: 30.0,
+                                                                                icon: FaIcon(
+                                                                                  FontAwesomeIcons.edit,
+                                                                                  color: FlutterFlowTheme.of(context).accent2,
+                                                                                  size: 10.0,
+                                                                                ),
+                                                                                onPressed: () async {
+                                                                                  setState(() {
+                                                                                    FFAppState().isCircle = employeeSearchedItem.isCircle;
+                                                                                    FFAppState().shapeIndex = employeeSearchedItem.shapeIndex;
+                                                                                  });
+                                                                                  await showModalBottomSheet(
+                                                                                    isScrollControlled: true,
+                                                                                    backgroundColor: Colors.transparent,
+                                                                                    enableDrag: false,
+                                                                                    context: context,
+                                                                                    builder: (context) {
+                                                                                      return GestureDetector(
+                                                                                        onTap: () => FocusScope.of(context).requestFocus(_model.unfocusNode),
+                                                                                        child: Padding(
+                                                                                          padding: MediaQuery.viewInsetsOf(context),
+                                                                                          child: EditEmployeeWidget(
+                                                                                            employeeRef: employeeSearchedItem.reference,
+                                                                                          ),
+                                                                                        ),
+                                                                                      );
+                                                                                    },
+                                                                                  ).then((value) => setState(() {}));
+                                                                                },
+                                                                              ),
+                                                                            ),
+                                                                            Container(
+                                                                              width: 30.0,
+                                                                              decoration: BoxDecoration(),
+                                                                              child: FlutterFlowIconButton(
+                                                                                borderColor: Colors.transparent,
+                                                                                borderRadius: 30.0,
+                                                                                borderWidth: 1.0,
+                                                                                buttonSize: 30.0,
+                                                                                icon: FaIcon(
+                                                                                  FontAwesomeIcons.eye,
+                                                                                  color: FlutterFlowTheme.of(context).accent2,
+                                                                                  size: 10.0,
+                                                                                ),
+                                                                                onPressed: () async {
+                                                                                  context.pushNamed(
+                                                                                    'employeeDetails',
+                                                                                    queryParameters: {
+                                                                                      'employeeRefeence': serializeParam(
+                                                                                        employeeSearchedItem.reference,
+                                                                                        ParamType.DocumentReference,
+                                                                                      ),
+                                                                                    }.withoutNulls,
+                                                                                  );
+                                                                                },
+                                                                              ),
+                                                                            ),
+                                                                          ],
+                                                                        ),
+                                                                      ),
+                                                                    ],
+                                                                  ),
+                                                                ),
+                                                              ),
+                                                            ),
+                                                          ),
+                                                        );
+                                                      }),
+                                                    ),
+                                                  );
+                                                },
+                                              ),
+                                            ),
+                                          ),
+                                        ),
+                                      Container(
+                                        width: 100.0,
+                                        height: 100.0,
+                                        decoration: BoxDecoration(
+                                          color: FlutterFlowTheme.of(context)
+                                              .secondaryBackground,
+                                        ),
+                                      ),
+                                    ],
+                                  ),
+                                ),
+                                Padding(
+                                  padding: EdgeInsetsDirectional.fromSTEB(
+                                      10.0, 0.0, 10.0, 0.0),
+                                  child: Column(
+                                    mainAxisSize: MainAxisSize.max,
+                                    children: [
+                                      Row(
+                                        mainAxisSize: MainAxisSize.max,
+                                        mainAxisAlignment:
+                                            MainAxisAlignment.spaceBetween,
+                                        children: [
+                                          Expanded(
+                                            child: Container(
+                                              width: MediaQuery.sizeOf(context)
+                                                      .width *
+                                                  0.2,
+                                              height: 45.0,
+                                              decoration: BoxDecoration(),
+                                              child: TextFormField(
+                                                controller:
+                                                    _model.textController2,
+                                                onChanged: (_) =>
+                                                    EasyDebounce.debounce(
+                                                  '_model.textController2',
+                                                  Duration(milliseconds: 2000),
+                                                  () => setState(() {}),
+                                                ),
+                                                onFieldSubmitted: (_) async {
+                                                  if (FFAppState()
+                                                          .selectedFirm !=
+                                                      null) {
+                                                    await queryEmployeeRecordOnce()
+                                                        .then(
+                                                          (records) => _model
+                                                                  .simpleSearchResults2 =
+                                                              TextSearch(
+                                                            records
+                                                                .map(
+                                                                  (record) =>
+                                                                      TextSearchItem(
+                                                                          record,
+                                                                          [
+                                                                        record
+                                                                            .name!,
+                                                                        record
+                                                                            .title!,
+                                                                        record
+                                                                            .empEmail!
+                                                                      ]),
+                                                                )
+                                                                .toList(),
+                                                          )
+                                                                  .search(_model
+                                                                      .textController2
+                                                                      .text)
+                                                                  .map((r) =>
+                                                                      r.object)
+                                                                  .toList(),
+                                                        )
+                                                        .onError((_, __) =>
+                                                            _model.simpleSearchResults2 =
+                                                                [])
+                                                        .whenComplete(() =>
+                                                            setState(() {}));
+                                                  } else {
+                                                    await showDialog(
+                                                      context: context,
+                                                      builder:
+                                                          (alertDialogContext) {
+                                                        return AlertDialog(
+                                                          title: Text(
+                                                              'No firm selected!'),
+                                                          content: Text(
+                                                              'please select the firm first.'),
+                                                          actions: [
+                                                            TextButton(
+                                                              onPressed: () =>
+                                                                  Navigator.pop(
+                                                                      alertDialogContext),
+                                                              child: Text('Ok'),
+                                                            ),
+                                                          ],
+                                                        );
+                                                      },
+                                                    );
+                                                  }
+                                                },
+                                                autofocus: true,
+                                                obscureText: false,
+                                                decoration: InputDecoration(
+                                                  hintText: FFLocalizations.of(
+                                                          context)
+                                                      .getText(
+                                                    'lkdotrcf' /* Mitarbeiter suchen */,
+                                                  ),
+                                                  hintStyle: FlutterFlowTheme
+                                                          .of(context)
                                                       .bodySmall
                                                       .override(
                                                         fontFamily: 'Poppins',
@@ -1276,104 +1998,178 @@ class _HomePageWidgetState extends State<HomePageWidget>
                                                                     context)
                                                                 .accent2,
                                                       ),
-                                              enabledBorder: OutlineInputBorder(
-                                                borderSide: BorderSide(
-                                                  color: FlutterFlowTheme.of(
-                                                          context)
-                                                      .accent1,
-                                                  width: 1.0,
-                                                ),
-                                                borderRadius:
-                                                    BorderRadius.circular(10.0),
-                                              ),
-                                              focusedBorder: OutlineInputBorder(
-                                                borderSide: BorderSide(
-                                                  color: Color(0x00000000),
-                                                  width: 1.0,
-                                                ),
-                                                borderRadius:
-                                                    BorderRadius.circular(10.0),
-                                              ),
-                                              errorBorder: OutlineInputBorder(
-                                                borderSide: BorderSide(
-                                                  color: Color(0x00000000),
-                                                  width: 1.0,
-                                                ),
-                                                borderRadius:
-                                                    BorderRadius.circular(10.0),
-                                              ),
-                                              focusedErrorBorder:
-                                                  OutlineInputBorder(
-                                                borderSide: BorderSide(
-                                                  color: Color(0x00000000),
-                                                  width: 1.0,
-                                                ),
-                                                borderRadius:
-                                                    BorderRadius.circular(10.0),
-                                              ),
-                                              filled: true,
-                                              fillColor:
-                                                  FlutterFlowTheme.of(context)
-                                                      .primaryBackground,
-                                              suffixIcon: _model
-                                                      .textController2!
-                                                      .text
-                                                      .isNotEmpty
-                                                  ? InkWell(
-                                                      onTap: () async {
-                                                        _model.textController2
-                                                            ?.clear();
-                                                        setState(() {});
-                                                      },
-                                                      child: Icon(
-                                                        Icons.clear,
-                                                        color:
-                                                            Color(0xFF757575),
-                                                        size: 15.0,
-                                                      ),
-                                                    )
-                                                  : null,
-                                            ),
-                                            style: FlutterFlowTheme.of(context)
-                                                .bodyMedium
-                                                .override(
-                                                  fontFamily: 'Poppins',
-                                                  color: FlutterFlowTheme.of(
-                                                          context)
-                                                      .primaryText,
-                                                ),
-                                            validator: _model
-                                                .textController2Validator
-                                                .asValidator(context),
-                                          ),
-                                        ),
-                                      ),
-                                      Padding(
-                                        padding: EdgeInsetsDirectional.fromSTEB(
-                                            10.0, 0.0, 0.0, 0.0),
-                                        child:
-                                            StreamBuilder<List<EmployeeRecord>>(
-                                          stream: queryEmployeeRecord(),
-                                          builder: (context, snapshot) {
-                                            // Customize what your widget looks like when it's loading.
-                                            if (!snapshot.hasData) {
-                                              return Center(
-                                                child: SizedBox(
-                                                  width: 30.0,
-                                                  height: 30.0,
-                                                  child: SpinKitPulse(
-                                                    color: FlutterFlowTheme.of(
-                                                            context)
-                                                        .primaryText,
-                                                    size: 30.0,
+                                                  enabledBorder:
+                                                      OutlineInputBorder(
+                                                    borderSide: BorderSide(
+                                                      color:
+                                                          FlutterFlowTheme.of(
+                                                                  context)
+                                                              .accent1,
+                                                      width: 1.0,
+                                                    ),
+                                                    borderRadius:
+                                                        BorderRadius.circular(
+                                                            10.0),
                                                   ),
+                                                  focusedBorder:
+                                                      OutlineInputBorder(
+                                                    borderSide: BorderSide(
+                                                      color: Color(0x00000000),
+                                                      width: 1.0,
+                                                    ),
+                                                    borderRadius:
+                                                        BorderRadius.circular(
+                                                            10.0),
+                                                  ),
+                                                  errorBorder:
+                                                      OutlineInputBorder(
+                                                    borderSide: BorderSide(
+                                                      color: Color(0x00000000),
+                                                      width: 1.0,
+                                                    ),
+                                                    borderRadius:
+                                                        BorderRadius.circular(
+                                                            10.0),
+                                                  ),
+                                                  focusedErrorBorder:
+                                                      OutlineInputBorder(
+                                                    borderSide: BorderSide(
+                                                      color: Color(0x00000000),
+                                                      width: 1.0,
+                                                    ),
+                                                    borderRadius:
+                                                        BorderRadius.circular(
+                                                            10.0),
+                                                  ),
+                                                  filled: true,
+                                                  fillColor:
+                                                      FlutterFlowTheme.of(
+                                                              context)
+                                                          .primaryBackground,
+                                                  suffixIcon: _model
+                                                          .textController2!
+                                                          .text
+                                                          .isNotEmpty
+                                                      ? InkWell(
+                                                          onTap: () async {
+                                                            _model
+                                                                .textController2
+                                                                ?.clear();
+                                                            setState(() {});
+                                                          },
+                                                          child: Icon(
+                                                            Icons.clear,
+                                                            color: Color(
+                                                                0xFF757575),
+                                                            size: 15.0,
+                                                          ),
+                                                        )
+                                                      : null,
                                                 ),
-                                              );
-                                            }
-                                            List<EmployeeRecord>
-                                                iconButtonEmployeeRecordList =
-                                                snapshot.data!;
-                                            return FlutterFlowIconButton(
+                                                style:
+                                                    FlutterFlowTheme.of(context)
+                                                        .bodyMedium
+                                                        .override(
+                                                          fontFamily: 'Poppins',
+                                                          color: FlutterFlowTheme
+                                                                  .of(context)
+                                                              .primaryText,
+                                                        ),
+                                                validator: _model
+                                                    .textController2Validator
+                                                    .asValidator(context),
+                                              ),
+                                            ),
+                                          ),
+                                          if (false)
+                                            Padding(
+                                              padding: EdgeInsetsDirectional
+                                                  .fromSTEB(
+                                                      10.0, 0.0, 0.0, 0.0),
+                                              child: StreamBuilder<
+                                                  List<EmployeeRecord>>(
+                                                stream: queryEmployeeRecord(),
+                                                builder: (context, snapshot) {
+                                                  // Customize what your widget looks like when it's loading.
+                                                  if (!snapshot.hasData) {
+                                                    return Center(
+                                                      child: SizedBox(
+                                                        width: 30.0,
+                                                        height: 30.0,
+                                                        child: SpinKitPulse(
+                                                          color: FlutterFlowTheme
+                                                                  .of(context)
+                                                              .primaryText,
+                                                          size: 30.0,
+                                                        ),
+                                                      ),
+                                                    );
+                                                  }
+                                                  List<EmployeeRecord>
+                                                      iconButtonEmployeeRecordList =
+                                                      snapshot.data!;
+                                                  return FlutterFlowIconButton(
+                                                    borderColor:
+                                                        Colors.transparent,
+                                                    borderRadius: 30.0,
+                                                    borderWidth: 1.0,
+                                                    buttonSize: 50.0,
+                                                    fillColor:
+                                                        FlutterFlowTheme.of(
+                                                                context)
+                                                            .primaryBackground,
+                                                    icon: FaIcon(
+                                                      FontAwesomeIcons.fileCsv,
+                                                      color:
+                                                          FlutterFlowTheme.of(
+                                                                  context)
+                                                              .accent2,
+                                                      size: 20.0,
+                                                    ),
+                                                    onPressed: () async {
+                                                      if (FFAppState()
+                                                              .selectedEmployeesList
+                                                              .length >
+                                                          0) {
+                                                        await actions
+                                                            .downloadCollectionAsCSV(
+                                                          FFAppState()
+                                                              .selectedEmployeesList
+                                                              .toList(),
+                                                        );
+                                                      } else {
+                                                        await showDialog(
+                                                          context: context,
+                                                          builder:
+                                                              (alertDialogContext) {
+                                                            return AlertDialog(
+                                                              title: Text(
+                                                                  'No Employee!'),
+                                                              content: Text(
+                                                                  'please select the employee first.'),
+                                                              actions: [
+                                                                TextButton(
+                                                                  onPressed: () =>
+                                                                      Navigator.pop(
+                                                                          alertDialogContext),
+                                                                  child: Text(
+                                                                      'Ok'),
+                                                                ),
+                                                              ],
+                                                            );
+                                                          },
+                                                        );
+                                                      }
+                                                    },
+                                                  );
+                                                },
+                                              ),
+                                            ),
+                                          Padding(
+                                            padding:
+                                                EdgeInsetsDirectional.fromSTEB(
+                                                    10.0, 0.0, 0.0, 0.0),
+                                            child: FlutterFlowIconButton(
                                               borderColor: Colors.transparent,
                                               borderRadius: 30.0,
                                               borderWidth: 1.0,
@@ -1381,34 +2177,63 @@ class _HomePageWidgetState extends State<HomePageWidget>
                                               fillColor:
                                                   FlutterFlowTheme.of(context)
                                                       .primaryBackground,
-                                              icon: FaIcon(
-                                                FontAwesomeIcons.fileCsv,
+                                              icon: Icon(
+                                                Icons.add,
                                                 color:
                                                     FlutterFlowTheme.of(context)
                                                         .accent2,
-                                                size: 20.0,
+                                                size: 19.0,
                                               ),
                                               onPressed: () async {
-                                                if (FFAppState()
-                                                        .selectedEmployeesList
-                                                        .length >
-                                                    0) {
-                                                  await actions
-                                                      .downloadCollectionAsCSV(
-                                                    FFAppState()
-                                                        .selectedEmployeesList
-                                                        .toList(),
-                                                  );
+                                                if (FFAppState().selectedFirm !=
+                                                    null) {
+                                                  setState(() {
+                                                    FFAppState().isCircle =
+                                                        false;
+                                                    FFAppState().shapeIndex = 3;
+                                                  });
+                                                  await showModalBottomSheet(
+                                                    isScrollControlled: true,
+                                                    backgroundColor:
+                                                        Colors.transparent,
+                                                    enableDrag: false,
+                                                    context: context,
+                                                    builder: (context) {
+                                                      return GestureDetector(
+                                                        onTap: () => FocusScope
+                                                                .of(context)
+                                                            .requestFocus(_model
+                                                                .unfocusNode),
+                                                        child: Padding(
+                                                          padding: MediaQuery
+                                                              .viewInsetsOf(
+                                                                  context),
+                                                          child: Container(
+                                                            height: MediaQuery
+                                                                        .sizeOf(
+                                                                            context)
+                                                                    .height *
+                                                                1.0,
+                                                            child:
+                                                                AddEmployeeWidget(
+                                                              firmRef: FFAppState()
+                                                                  .selectedFirm,
+                                                            ),
+                                                          ),
+                                                        ),
+                                                      );
+                                                    },
+                                                  ).then((value) =>
+                                                      setState(() {}));
                                                 } else {
                                                   await showDialog(
                                                     context: context,
                                                     builder:
                                                         (alertDialogContext) {
                                                       return AlertDialog(
-                                                        title: Text(
-                                                            'No Employee!'),
+                                                        title: Text('Error!'),
                                                         content: Text(
-                                                            'please select the employee first.'),
+                                                            'Please Select the firm first'),
                                                         actions: [
                                                           TextButton(
                                                             onPressed: () =>
@@ -1422,963 +2247,135 @@ class _HomePageWidgetState extends State<HomePageWidget>
                                                   );
                                                 }
                                               },
-                                            );
-                                          },
-                                        ),
+                                            ),
+                                          ),
+                                        ],
                                       ),
                                       Padding(
                                         padding: EdgeInsetsDirectional.fromSTEB(
-                                            10.0, 0.0, 0.0, 0.0),
-                                        child: FlutterFlowIconButton(
-                                          borderColor: Colors.transparent,
-                                          borderRadius: 30.0,
-                                          borderWidth: 1.0,
-                                          buttonSize: 50.0,
-                                          fillColor:
-                                              FlutterFlowTheme.of(context)
-                                                  .primaryBackground,
-                                          icon: Icon(
-                                            Icons.add,
+                                            0.0, 10.0, 0.0, 0.0),
+                                        child: Container(
+                                          width: double.infinity,
+                                          height: 45.0,
+                                          decoration: BoxDecoration(
                                             color: FlutterFlowTheme.of(context)
-                                                .accent2,
-                                            size: 22.0,
+                                                .primaryBackground,
+                                            borderRadius:
+                                                BorderRadius.circular(10.0),
                                           ),
-                                          onPressed: () async {
-                                            if (FFAppState().selectedFirm !=
-                                                null) {
-                                              setState(() {
-                                                FFAppState().isCircle = false;
-                                                FFAppState().shapeIndex = 3;
-                                              });
-                                              await showModalBottomSheet(
-                                                isScrollControlled: true,
-                                                backgroundColor:
-                                                    Colors.transparent,
-                                                enableDrag: false,
-                                                context: context,
-                                                builder: (context) {
-                                                  return GestureDetector(
-                                                    onTap: () => FocusScope.of(
-                                                            context)
-                                                        .requestFocus(
-                                                            _model.unfocusNode),
-                                                    child: Padding(
-                                                      padding: MediaQuery
-                                                          .viewInsetsOf(
-                                                              context),
-                                                      child: Container(
-                                                        height:
-                                                            MediaQuery.sizeOf(
-                                                                        context)
-                                                                    .height *
-                                                                1.0,
-                                                        child:
-                                                            AddEmployeeWidget(
-                                                          firmRef: FFAppState()
-                                                              .selectedFirm,
-                                                        ),
+                                          child: Padding(
+                                            padding:
+                                                EdgeInsetsDirectional.fromSTEB(
+                                                    8.0, 8.0, 8.0, 8.0),
+                                            child: Row(
+                                              mainAxisSize: MainAxisSize.max,
+                                              children: [
+                                                Container(
+                                                  width: 55.0,
+                                                  decoration: BoxDecoration(),
+                                                  child: Align(
+                                                    alignment:
+                                                        AlignmentDirectional(
+                                                            0.0, 0.0),
+                                                    child: Text(
+                                                      FFLocalizations.of(
+                                                              context)
+                                                          .getText(
+                                                        '2ntzvceu' /*   */,
                                                       ),
-                                                    ),
-                                                  );
-                                                },
-                                              ).then(
-                                                  (value) => setState(() {}));
-                                            } else {
-                                              await showDialog(
-                                                context: context,
-                                                builder: (alertDialogContext) {
-                                                  return AlertDialog(
-                                                    title: Text('Error!'),
-                                                    content: Text(
-                                                        'Please Select the firm first'),
-                                                    actions: [
-                                                      TextButton(
-                                                        onPressed: () =>
-                                                            Navigator.pop(
-                                                                alertDialogContext),
-                                                        child: Text('Ok'),
-                                                      ),
-                                                    ],
-                                                  );
-                                                },
-                                              );
-                                            }
-                                          },
-                                        ),
-                                      ),
-                                    ],
-                                  ),
-                                  Padding(
-                                    padding: EdgeInsetsDirectional.fromSTEB(
-                                        0.0, 10.0, 0.0, 0.0),
-                                    child: Container(
-                                      width: double.infinity,
-                                      decoration: BoxDecoration(
-                                        color: FlutterFlowTheme.of(context)
-                                            .primaryBackground,
-                                        borderRadius:
-                                            BorderRadius.circular(10.0),
-                                      ),
-                                      child: Padding(
-                                        padding: EdgeInsetsDirectional.fromSTEB(
-                                            8.0, 8.0, 8.0, 8.0),
-                                        child: Row(
-                                          mainAxisSize: MainAxisSize.max,
-                                          children: [
-                                            Container(
-                                              width: 55.0,
-                                              decoration: BoxDecoration(),
-                                              child: Align(
-                                                alignment: AlignmentDirectional(
-                                                    0.0, 0.0),
-                                                child: Text(
-                                                  FFLocalizations.of(context)
-                                                      .getText(
-                                                    '2ntzvceu' /*   */,
-                                                  ),
-                                                  style: FlutterFlowTheme.of(
-                                                          context)
-                                                      .bodyMedium,
-                                                ),
-                                              ),
-                                            ),
-                                            SizedBox(
-                                              height: 30.0,
-                                              child: VerticalDivider(
-                                                thickness: 1.0,
-                                                color:
-                                                    FlutterFlowTheme.of(context)
-                                                        .accent3,
-                                              ),
-                                            ),
-                                            Expanded(
-                                              flex: 5,
-                                              child: Text(
-                                                FFLocalizations.of(context)
-                                                    .getText(
-                                                  'd1nfgrpm' /* Name */,
-                                                ),
-                                                style:
-                                                    FlutterFlowTheme.of(context)
-                                                        .bodyMedium,
-                                              ),
-                                            ),
-                                            SizedBox(
-                                              height: 30.0,
-                                              child: VerticalDivider(
-                                                thickness: 1.0,
-                                                color:
-                                                    FlutterFlowTheme.of(context)
-                                                        .accent3,
-                                              ),
-                                            ),
-                                            Expanded(
-                                              flex: 5,
-                                              child: Text(
-                                                FFLocalizations.of(context)
-                                                    .getText(
-                                                  'v562u4bb' /* Berufsbezeichnung */,
-                                                ),
-                                                style:
-                                                    FlutterFlowTheme.of(context)
-                                                        .bodyMedium,
-                                              ),
-                                            ),
-                                            SizedBox(
-                                              height: 30.0,
-                                              child: VerticalDivider(
-                                                thickness: 1.0,
-                                                color:
-                                                    FlutterFlowTheme.of(context)
-                                                        .accent3,
-                                              ),
-                                            ),
-                                            Container(
-                                              width: 60.0,
-                                              decoration: BoxDecoration(),
-                                            ),
-                                          ],
-                                        ),
-                                      ),
-                                    ),
-                                  ),
-                                  if ((FFAppState().selectedFirm != null) &&
-                                      (_model.textController2.text == null ||
-                                          _model.textController2.text == ''))
-                                    Padding(
-                                      padding: EdgeInsetsDirectional.fromSTEB(
-                                          0.0, 12.0, 0.0, 0.0),
-                                      child: Row(
-                                        mainAxisSize: MainAxisSize.max,
-                                        mainAxisAlignment:
-                                            MainAxisAlignment.end,
-                                        children: [
-                                          if (FFAppState().selectedFirm != null)
-                                            StreamBuilder<List<EmployeeRecord>>(
-                                              stream: queryEmployeeRecord(
-                                                queryBuilder: (employeeRecord) =>
-                                                    employeeRecord.where(
-                                                        'employeeOfFirm',
-                                                        isEqualTo: FFAppState()
-                                                            .selectedFirm),
-                                              ),
-                                              builder: (context, snapshot) {
-                                                // Customize what your widget looks like when it's loading.
-                                                if (!snapshot.hasData) {
-                                                  return Center(
-                                                    child: SizedBox(
-                                                      width: 25.0,
-                                                      height: 25.0,
-                                                      child: SpinKitRipple(
-                                                        color:
-                                                            FlutterFlowTheme.of(
-                                                                    context)
-                                                                .accent2,
-                                                        size: 25.0,
-                                                      ),
-                                                    ),
-                                                  );
-                                                }
-                                                List<EmployeeRecord>
-                                                    textEmployeeRecordList =
-                                                    snapshot.data!;
-                                                return Text(
-                                                  'Total Employees : ${textEmployeeRecordList.length.toString()}',
-                                                  style: FlutterFlowTheme.of(
-                                                          context)
-                                                      .bodyMedium,
-                                                );
-                                              },
-                                            ),
-                                        ],
-                                      ),
-                                    ),
-                                  if (_model.textController2.text == null ||
-                                      _model.textController2.text == '')
-                                    Container(
-                                      width: double.infinity,
-                                      decoration: BoxDecoration(
-                                        color: FlutterFlowTheme.of(context)
-                                            .secondaryBackground,
-                                      ),
-                                      child: Visibility(
-                                        visible:
-                                            FFAppState().selectedFirm != null,
-                                        child: Padding(
-                                          padding:
-                                              EdgeInsetsDirectional.fromSTEB(
-                                                  0.0, 12.0, 0.0, 0.0),
-                                          child: StreamBuilder<
-                                              List<EmployeeRecord>>(
-                                            stream: _model.employees(
-                                              requestFn: () =>
-                                                  queryEmployeeRecord(
-                                                queryBuilder: (employeeRecord) =>
-                                                    employeeRecord.where(
-                                                        'employeeOfFirm',
-                                                        isEqualTo: FFAppState()
-                                                            .selectedFirm),
-                                              ),
-                                            ),
-                                            builder: (context, snapshot) {
-                                              // Customize what your widget looks like when it's loading.
-                                              if (!snapshot.hasData) {
-                                                return Center(
-                                                  child: SizedBox(
-                                                    width: 25.0,
-                                                    height: 25.0,
-                                                    child: SpinKitRipple(
-                                                      color:
+                                                      style:
                                                           FlutterFlowTheme.of(
                                                                   context)
-                                                              .accent2,
-                                                      size: 25.0,
+                                                              .bodyMedium,
                                                     ),
                                                   ),
-                                                );
-                                              }
-                                              List<EmployeeRecord>
-                                                  columnEmployeeRecordList =
-                                                  snapshot.data!;
-                                              return SingleChildScrollView(
-                                                primary: false,
-                                                child: Column(
-                                                  mainAxisSize:
-                                                      MainAxisSize.max,
-                                                  children: List.generate(
-                                                      columnEmployeeRecordList
-                                                          .length,
-                                                      (columnIndex) {
-                                                    final columnEmployeeRecord =
-                                                        columnEmployeeRecordList[
-                                                            columnIndex];
-                                                    return Visibility(
-                                                      visible: columnEmployeeRecord
-                                                              .employeeOfFirm ==
-                                                          FFAppState()
-                                                              .selectedFirm,
-                                                      child: Padding(
-                                                        padding:
-                                                            EdgeInsetsDirectional
-                                                                .fromSTEB(
-                                                                    0.0,
-                                                                    10.0,
-                                                                    0.0,
-                                                                    0.0),
-                                                        child: InkWell(
-                                                          splashColor: Colors
-                                                              .transparent,
-                                                          focusColor: Colors
-                                                              .transparent,
-                                                          hoverColor: Colors
-                                                              .transparent,
-                                                          highlightColor: Colors
-                                                              .transparent,
-                                                          onTap: () async {
-                                                            setState(() {
-                                                              FFAppState()
-                                                                      .selectedEmployee =
-                                                                  columnEmployeeRecord
-                                                                      .reference;
-                                                            });
-                                                          },
-                                                          child: ClipRRect(
-                                                            borderRadius:
-                                                                BorderRadius
-                                                                    .circular(
-                                                                        10.0),
-                                                            child:
-                                                                AnimatedContainer(
-                                                              duration: Duration(
-                                                                  milliseconds:
-                                                                      100),
-                                                              curve: Curves
-                                                                  .bounceOut,
-                                                              width: double
-                                                                  .infinity,
-                                                              decoration:
-                                                                  BoxDecoration(
-                                                                color:
-                                                                    valueOrDefault<
-                                                                        Color>(
-                                                                  columnEmployeeRecord
-                                                                              .reference ==
-                                                                          FFAppState()
-                                                                              .selectedEmployee
-                                                                      ? FlutterFlowTheme.of(
-                                                                              context)
-                                                                          .primaryBackground
-                                                                      : FlutterFlowTheme.of(
-                                                                              context)
-                                                                          .secondaryBackground,
-                                                                  FlutterFlowTheme.of(
-                                                                          context)
-                                                                      .secondaryBackground,
-                                                                ),
-                                                                borderRadius:
-                                                                    BorderRadius
-                                                                        .circular(
-                                                                            10.0),
-                                                              ),
-                                                              child:
-                                                                  SingleChildScrollView(
-                                                                child: Column(
-                                                                  mainAxisSize:
-                                                                      MainAxisSize
-                                                                          .max,
-                                                                  children: [
-                                                                    Padding(
-                                                                      padding: EdgeInsetsDirectional.fromSTEB(
-                                                                          8.0,
-                                                                          8.0,
-                                                                          8.0,
-                                                                          8.0),
-                                                                      child:
-                                                                          Row(
-                                                                        mainAxisSize:
-                                                                            MainAxisSize.max,
-                                                                        children: [
-                                                                          Container(
-                                                                            width:
-                                                                                55.0,
-                                                                            decoration:
-                                                                                BoxDecoration(),
-                                                                            child:
-                                                                                Row(
-                                                                              mainAxisSize: MainAxisSize.max,
-                                                                              mainAxisAlignment: MainAxisAlignment.center,
-                                                                              children: [
-                                                                                Padding(
-                                                                                  padding: EdgeInsetsDirectional.fromSTEB(0.0, 0.0, 6.0, 0.0),
-                                                                                  child: Container(
-                                                                                    width: 25.0,
-                                                                                    height: 25.0,
-                                                                                    child: Stack(
-                                                                                      children: [
-                                                                                        if (!FFAppState().selectedEmployeesList.contains(columnEmployeeRecord.reference))
-                                                                                          InkWell(
-                                                                                            splashColor: Colors.transparent,
-                                                                                            focusColor: Colors.transparent,
-                                                                                            hoverColor: Colors.transparent,
-                                                                                            highlightColor: Colors.transparent,
-                                                                                            onTap: () async {
-                                                                                              setState(() {
-                                                                                                FFAppState().addToSelectedEmployeesList(columnEmployeeRecord.reference);
-                                                                                              });
-                                                                                            },
-                                                                                            child: Icon(
-                                                                                              Icons.check_box_outline_blank,
-                                                                                              color: FlutterFlowTheme.of(context).accent3,
-                                                                                              size: 24.0,
-                                                                                            ),
-                                                                                          ),
-                                                                                        if (FFAppState().selectedEmployeesList.contains(columnEmployeeRecord.reference))
-                                                                                          InkWell(
-                                                                                            splashColor: Colors.transparent,
-                                                                                            focusColor: Colors.transparent,
-                                                                                            hoverColor: Colors.transparent,
-                                                                                            highlightColor: Colors.transparent,
-                                                                                            onTap: () async {
-                                                                                              setState(() {
-                                                                                                FFAppState().removeFromSelectedEmployeesList(columnEmployeeRecord.reference);
-                                                                                              });
-                                                                                            },
-                                                                                            child: Icon(
-                                                                                              Icons.check_box,
-                                                                                              color: FlutterFlowTheme.of(context).accent2,
-                                                                                              size: 24.0,
-                                                                                            ),
-                                                                                          ).animateOnPageLoad(animationsMap['iconOnPageLoadAnimation1']!),
-                                                                                      ],
-                                                                                    ),
-                                                                                  ),
-                                                                                ),
-                                                                              ],
-                                                                            ),
-                                                                          ),
-                                                                          SizedBox(
-                                                                            height:
-                                                                                30.0,
-                                                                            child:
-                                                                                VerticalDivider(
-                                                                              thickness: 1.0,
-                                                                              color: FlutterFlowTheme.of(context).accent3,
-                                                                            ),
-                                                                          ),
-                                                                          Expanded(
-                                                                            flex:
-                                                                                5,
-                                                                            child:
-                                                                                Column(
-                                                                              mainAxisSize: MainAxisSize.max,
-                                                                              crossAxisAlignment: CrossAxisAlignment.start,
-                                                                              children: [
-                                                                                Text(
-                                                                                  columnEmployeeRecord.name,
-                                                                                  style: FlutterFlowTheme.of(context).bodyMedium,
-                                                                                ),
-                                                                                if (columnEmployeeRecord.empEmail != null && columnEmployeeRecord.empEmail != '')
-                                                                                  Padding(
-                                                                                    padding: EdgeInsetsDirectional.fromSTEB(0.0, 5.0, 0.0, 0.0),
-                                                                                    child: Text(
-                                                                                      columnEmployeeRecord.empEmail,
-                                                                                      style: FlutterFlowTheme.of(context).bodyMedium.override(
-                                                                                            fontFamily: 'Poppins',
-                                                                                            fontSize: 10.0,
-                                                                                          ),
-                                                                                    ),
-                                                                                  ),
-                                                                              ],
-                                                                            ),
-                                                                          ),
-                                                                          SizedBox(
-                                                                            height:
-                                                                                30.0,
-                                                                            child:
-                                                                                VerticalDivider(
-                                                                              thickness: 1.0,
-                                                                              color: FlutterFlowTheme.of(context).accent3,
-                                                                            ),
-                                                                          ),
-                                                                          Expanded(
-                                                                            flex:
-                                                                                5,
-                                                                            child:
-                                                                                Text(
-                                                                              columnEmployeeRecord.title,
-                                                                              style: FlutterFlowTheme.of(context).bodyMedium,
-                                                                            ),
-                                                                          ),
-                                                                          SizedBox(
-                                                                            height:
-                                                                                30.0,
-                                                                            child:
-                                                                                VerticalDivider(
-                                                                              thickness: 1.0,
-                                                                              color: FlutterFlowTheme.of(context).accent3,
-                                                                            ),
-                                                                          ),
-                                                                          Container(
-                                                                            width:
-                                                                                30.0,
-                                                                            decoration:
-                                                                                BoxDecoration(),
-                                                                            child:
-                                                                                FlutterFlowIconButton(
-                                                                              borderColor: Colors.transparent,
-                                                                              borderRadius: 30.0,
-                                                                              borderWidth: 1.0,
-                                                                              buttonSize: 35.0,
-                                                                              icon: FaIcon(
-                                                                                FontAwesomeIcons.edit,
-                                                                                color: FlutterFlowTheme.of(context).accent2,
-                                                                                size: 15.0,
-                                                                              ),
-                                                                              onPressed: () async {
-                                                                                setState(() {
-                                                                                  FFAppState().isCircle = columnEmployeeRecord.isCircle;
-                                                                                  FFAppState().shapeIndex = columnEmployeeRecord.shapeIndex;
-                                                                                });
-                                                                                await showModalBottomSheet(
-                                                                                  isScrollControlled: true,
-                                                                                  backgroundColor: Colors.transparent,
-                                                                                  enableDrag: false,
-                                                                                  context: context,
-                                                                                  builder: (context) {
-                                                                                    return GestureDetector(
-                                                                                      onTap: () => FocusScope.of(context).requestFocus(_model.unfocusNode),
-                                                                                      child: Padding(
-                                                                                        padding: MediaQuery.viewInsetsOf(context),
-                                                                                        child: EditEmployeeWidget(
-                                                                                          employeeRef: columnEmployeeRecord.reference,
-                                                                                        ),
-                                                                                      ),
-                                                                                    );
-                                                                                  },
-                                                                                ).then((value) => setState(() {}));
-                                                                              },
-                                                                            ),
-                                                                          ),
-                                                                          Container(
-                                                                            width:
-                                                                                30.0,
-                                                                            decoration:
-                                                                                BoxDecoration(),
-                                                                            child:
-                                                                                FlutterFlowIconButton(
-                                                                              borderColor: Colors.transparent,
-                                                                              borderRadius: 30.0,
-                                                                              borderWidth: 1.0,
-                                                                              buttonSize: 35.0,
-                                                                              icon: FaIcon(
-                                                                                FontAwesomeIcons.eye,
-                                                                                color: FlutterFlowTheme.of(context).accent2,
-                                                                                size: 15.0,
-                                                                              ),
-                                                                              onPressed: () async {
-                                                                                context.pushNamed(
-                                                                                  'employeeDetails',
-                                                                                  queryParameters: {
-                                                                                    'employeeRefeence': serializeParam(
-                                                                                      columnEmployeeRecord.reference,
-                                                                                      ParamType.DocumentReference,
-                                                                                    ),
-                                                                                  }.withoutNulls,
-                                                                                );
-                                                                              },
-                                                                            ),
-                                                                          ),
-                                                                        ],
-                                                                      ),
-                                                                    ),
-                                                                  ],
-                                                                ),
-                                                              ),
-                                                            ),
-                                                          ),
-                                                        ),
-                                                      ),
-                                                    );
-                                                  }),
                                                 ),
-                                              );
-                                            },
+                                                SizedBox(
+                                                  height: 30.0,
+                                                  child: VerticalDivider(
+                                                    thickness: 1.0,
+                                                    color: FlutterFlowTheme.of(
+                                                            context)
+                                                        .accent3,
+                                                  ),
+                                                ),
+                                                Expanded(
+                                                  flex: 5,
+                                                  child: Text(
+                                                    FFLocalizations.of(context)
+                                                        .getText(
+                                                      'd1nfgrpm' /* Name */,
+                                                    ),
+                                                    style: FlutterFlowTheme.of(
+                                                            context)
+                                                        .bodyMedium,
+                                                  ),
+                                                ),
+                                                SizedBox(
+                                                  height: 30.0,
+                                                  child: VerticalDivider(
+                                                    thickness: 1.0,
+                                                    color: FlutterFlowTheme.of(
+                                                            context)
+                                                        .accent3,
+                                                  ),
+                                                ),
+                                                Expanded(
+                                                  flex: 5,
+                                                  child: Text(
+                                                    FFLocalizations.of(context)
+                                                        .getText(
+                                                      'v562u4bb' /* Berufsbezeichnung */,
+                                                    ),
+                                                    style: FlutterFlowTheme.of(
+                                                            context)
+                                                        .bodyMedium,
+                                                  ),
+                                                ),
+                                                SizedBox(
+                                                  height: 30.0,
+                                                  child: VerticalDivider(
+                                                    thickness: 1.0,
+                                                    color: FlutterFlowTheme.of(
+                                                            context)
+                                                        .accent3,
+                                                  ),
+                                                ),
+                                                Container(
+                                                  width: 60.0,
+                                                  decoration: BoxDecoration(),
+                                                ),
+                                              ],
+                                            ),
                                           ),
                                         ),
                                       ),
-                                    ),
-                                  if (_model.textController2.text != null &&
-                                      _model.textController2.text != '')
-                                    Container(
-                                      width: double.infinity,
-                                      decoration: BoxDecoration(
-                                        color: FlutterFlowTheme.of(context)
-                                            .secondaryBackground,
-                                      ),
-                                      child: Visibility(
-                                        visible:
-                                            FFAppState().selectedFirm != null,
-                                        child: Padding(
+                                      if (FFAppState().selectedFirm == null)
+                                        Padding(
                                           padding:
                                               EdgeInsetsDirectional.fromSTEB(
-                                                  0.0, 12.0, 0.0, 0.0),
-                                          child: Builder(
-                                            builder: (context) {
-                                              final employeeSearched = _model
-                                                  .simpleSearchResults2
-                                                  .map((e) => e)
-                                                  .toList()
-                                                  .where((e) =>
-                                                      e.employeeOfFirm ==
-                                                      FFAppState().selectedFirm)
-                                                  .toList();
-                                              return SingleChildScrollView(
-                                                primary: false,
-                                                child: Column(
-                                                  mainAxisSize:
-                                                      MainAxisSize.max,
-                                                  children: List.generate(
-                                                      employeeSearched.length,
-                                                      (employeeSearchedIndex) {
-                                                    final employeeSearchedItem =
-                                                        employeeSearched[
-                                                            employeeSearchedIndex];
-                                                    return Padding(
-                                                      padding:
-                                                          EdgeInsetsDirectional
-                                                              .fromSTEB(
-                                                                  0.0,
-                                                                  10.0,
-                                                                  0.0,
-                                                                  0.0),
-                                                      child: InkWell(
-                                                        splashColor:
-                                                            Colors.transparent,
-                                                        focusColor:
-                                                            Colors.transparent,
-                                                        hoverColor:
-                                                            Colors.transparent,
-                                                        highlightColor:
-                                                            Colors.transparent,
-                                                        onTap: () async {
-                                                          setState(() {
-                                                            FFAppState()
-                                                                    .selectedEmployee =
-                                                                employeeSearchedItem
-                                                                    .reference;
-                                                          });
-                                                        },
-                                                        child: ClipRRect(
-                                                          borderRadius:
-                                                              BorderRadius
-                                                                  .circular(
-                                                                      10.0),
-                                                          child:
-                                                              AnimatedContainer(
-                                                            duration: Duration(
-                                                                milliseconds:
-                                                                    100),
-                                                            curve: Curves
-                                                                .bounceOut,
-                                                            width:
-                                                                double.infinity,
-                                                            decoration:
-                                                                BoxDecoration(
-                                                              color:
-                                                                  valueOrDefault<
-                                                                      Color>(
-                                                                employeeSearchedItem
-                                                                            .reference ==
-                                                                        FFAppState()
-                                                                            .selectedEmployee
-                                                                    ? FlutterFlowTheme.of(
-                                                                            context)
-                                                                        .primaryBackground
-                                                                    : FlutterFlowTheme.of(
-                                                                            context)
-                                                                        .secondaryBackground,
-                                                                FlutterFlowTheme.of(
-                                                                        context)
-                                                                    .secondaryBackground,
-                                                              ),
-                                                              borderRadius:
-                                                                  BorderRadius
-                                                                      .circular(
-                                                                          10.0),
-                                                            ),
-                                                            child:
-                                                                SingleChildScrollView(
-                                                              child: Column(
-                                                                mainAxisSize:
-                                                                    MainAxisSize
-                                                                        .max,
-                                                                children: [
-                                                                  Padding(
-                                                                    padding: EdgeInsetsDirectional
-                                                                        .fromSTEB(
-                                                                            8.0,
-                                                                            8.0,
-                                                                            8.0,
-                                                                            8.0),
-                                                                    child: Row(
-                                                                      mainAxisSize:
-                                                                          MainAxisSize
-                                                                              .max,
-                                                                      children: [
-                                                                        Container(
-                                                                          width:
-                                                                              55.0,
-                                                                          decoration:
-                                                                              BoxDecoration(),
-                                                                          child:
-                                                                              Row(
-                                                                            mainAxisSize:
-                                                                                MainAxisSize.max,
-                                                                            mainAxisAlignment:
-                                                                                MainAxisAlignment.center,
-                                                                            children: [
-                                                                              Padding(
-                                                                                padding: EdgeInsetsDirectional.fromSTEB(0.0, 0.0, 6.0, 0.0),
-                                                                                child: Container(
-                                                                                  width: 25.0,
-                                                                                  height: 25.0,
-                                                                                  child: Stack(
-                                                                                    children: [
-                                                                                      if (!FFAppState().selectedEmployeesList.contains(employeeSearchedItem.reference))
-                                                                                        InkWell(
-                                                                                          splashColor: Colors.transparent,
-                                                                                          focusColor: Colors.transparent,
-                                                                                          hoverColor: Colors.transparent,
-                                                                                          highlightColor: Colors.transparent,
-                                                                                          onTap: () async {
-                                                                                            setState(() {
-                                                                                              FFAppState().addToSelectedEmployeesList(employeeSearchedItem.reference);
-                                                                                            });
-                                                                                          },
-                                                                                          child: Icon(
-                                                                                            Icons.check_box_outline_blank,
-                                                                                            color: FlutterFlowTheme.of(context).accent3,
-                                                                                            size: 24.0,
-                                                                                          ),
-                                                                                        ),
-                                                                                      if (FFAppState().selectedEmployeesList.contains(employeeSearchedItem.reference))
-                                                                                        InkWell(
-                                                                                          splashColor: Colors.transparent,
-                                                                                          focusColor: Colors.transparent,
-                                                                                          hoverColor: Colors.transparent,
-                                                                                          highlightColor: Colors.transparent,
-                                                                                          onTap: () async {
-                                                                                            setState(() {
-                                                                                              FFAppState().removeFromSelectedEmployeesList(employeeSearchedItem.reference);
-                                                                                            });
-                                                                                          },
-                                                                                          child: Icon(
-                                                                                            Icons.check_box,
-                                                                                            color: FlutterFlowTheme.of(context).accent2,
-                                                                                            size: 24.0,
-                                                                                          ),
-                                                                                        ).animateOnPageLoad(animationsMap['iconOnPageLoadAnimation2']!),
-                                                                                    ],
-                                                                                  ),
-                                                                                ),
-                                                                              ),
-                                                                            ],
-                                                                          ),
-                                                                        ),
-                                                                        SizedBox(
-                                                                          height:
-                                                                              30.0,
-                                                                          child:
-                                                                              VerticalDivider(
-                                                                            thickness:
-                                                                                1.0,
-                                                                            color:
-                                                                                FlutterFlowTheme.of(context).accent3,
-                                                                          ),
-                                                                        ),
-                                                                        Expanded(
-                                                                          flex:
-                                                                              5,
-                                                                          child:
-                                                                              Column(
-                                                                            mainAxisSize:
-                                                                                MainAxisSize.max,
-                                                                            crossAxisAlignment:
-                                                                                CrossAxisAlignment.start,
-                                                                            children: [
-                                                                              Text(
-                                                                                employeeSearchedItem.name,
-                                                                                style: FlutterFlowTheme.of(context).bodyMedium,
-                                                                              ),
-                                                                              if (employeeSearchedItem.empEmail != null && employeeSearchedItem.empEmail != '')
-                                                                                Padding(
-                                                                                  padding: EdgeInsetsDirectional.fromSTEB(0.0, 5.0, 0.0, 0.0),
-                                                                                  child: Text(
-                                                                                    employeeSearchedItem.empEmail,
-                                                                                    style: FlutterFlowTheme.of(context).bodyMedium.override(
-                                                                                          fontFamily: 'Poppins',
-                                                                                          fontSize: 10.0,
-                                                                                        ),
-                                                                                  ),
-                                                                                ),
-                                                                            ],
-                                                                          ),
-                                                                        ),
-                                                                        SizedBox(
-                                                                          height:
-                                                                              30.0,
-                                                                          child:
-                                                                              VerticalDivider(
-                                                                            thickness:
-                                                                                1.0,
-                                                                            color:
-                                                                                FlutterFlowTheme.of(context).accent3,
-                                                                          ),
-                                                                        ),
-                                                                        Expanded(
-                                                                          flex:
-                                                                              5,
-                                                                          child:
-                                                                              Text(
-                                                                            employeeSearchedItem.title,
-                                                                            style:
-                                                                                FlutterFlowTheme.of(context).bodyMedium,
-                                                                          ),
-                                                                        ),
-                                                                        SizedBox(
-                                                                          height:
-                                                                              30.0,
-                                                                          child:
-                                                                              VerticalDivider(
-                                                                            thickness:
-                                                                                1.0,
-                                                                            color:
-                                                                                FlutterFlowTheme.of(context).accent3,
-                                                                          ),
-                                                                        ),
-                                                                        Container(
-                                                                          width:
-                                                                              30.0,
-                                                                          decoration:
-                                                                              BoxDecoration(),
-                                                                          child:
-                                                                              FlutterFlowIconButton(
-                                                                            borderColor:
-                                                                                Colors.transparent,
-                                                                            borderRadius:
-                                                                                30.0,
-                                                                            borderWidth:
-                                                                                1.0,
-                                                                            buttonSize:
-                                                                                30.0,
-                                                                            icon:
-                                                                                FaIcon(
-                                                                              FontAwesomeIcons.edit,
-                                                                              color: FlutterFlowTheme.of(context).accent2,
-                                                                              size: 10.0,
-                                                                            ),
-                                                                            onPressed:
-                                                                                () async {
-                                                                              setState(() {
-                                                                                FFAppState().isCircle = employeeSearchedItem.isCircle;
-                                                                                FFAppState().shapeIndex = employeeSearchedItem.shapeIndex;
-                                                                              });
-                                                                              await showModalBottomSheet(
-                                                                                isScrollControlled: true,
-                                                                                backgroundColor: Colors.transparent,
-                                                                                enableDrag: false,
-                                                                                context: context,
-                                                                                builder: (context) {
-                                                                                  return GestureDetector(
-                                                                                    onTap: () => FocusScope.of(context).requestFocus(_model.unfocusNode),
-                                                                                    child: Padding(
-                                                                                      padding: MediaQuery.viewInsetsOf(context),
-                                                                                      child: EditEmployeeWidget(
-                                                                                        employeeRef: employeeSearchedItem.reference,
-                                                                                      ),
-                                                                                    ),
-                                                                                  );
-                                                                                },
-                                                                              ).then((value) => setState(() {}));
-                                                                            },
-                                                                          ),
-                                                                        ),
-                                                                        Container(
-                                                                          width:
-                                                                              30.0,
-                                                                          decoration:
-                                                                              BoxDecoration(),
-                                                                          child:
-                                                                              FlutterFlowIconButton(
-                                                                            borderColor:
-                                                                                Colors.transparent,
-                                                                            borderRadius:
-                                                                                30.0,
-                                                                            borderWidth:
-                                                                                1.0,
-                                                                            buttonSize:
-                                                                                30.0,
-                                                                            icon:
-                                                                                FaIcon(
-                                                                              FontAwesomeIcons.eye,
-                                                                              color: FlutterFlowTheme.of(context).accent2,
-                                                                              size: 10.0,
-                                                                            ),
-                                                                            onPressed:
-                                                                                () async {
-                                                                              context.pushNamed(
-                                                                                'employeeDetails',
-                                                                                queryParameters: {
-                                                                                  'employeeRefeence': serializeParam(
-                                                                                    employeeSearchedItem.reference,
-                                                                                    ParamType.DocumentReference,
-                                                                                  ),
-                                                                                }.withoutNulls,
-                                                                              );
-                                                                            },
-                                                                          ),
-                                                                        ),
-                                                                      ],
-                                                                    ),
-                                                                  ),
-                                                                ],
-                                                              ),
-                                                            ),
-                                                          ),
-                                                        ),
-                                                      ),
-                                                    );
-                                                  }),
+                                                  0.0, 15.0, 0.0, 0.0),
+                                          child: Text(
+                                            FFLocalizations.of(context).getText(
+                                              'xosoyg9h' /* Firma am linken Rand auswählen... */,
+                                            ),
+                                            textAlign: TextAlign.center,
+                                            style: FlutterFlowTheme.of(context)
+                                                .bodyMedium
+                                                .override(
+                                                  fontFamily: 'Poppins',
+                                                  color: FlutterFlowTheme.of(
+                                                          context)
+                                                      .secondaryText,
+                                                  fontSize: 15.0,
+                                                  fontWeight: FontWeight.w300,
                                                 ),
-                                              );
-                                            },
                                           ),
                                         ),
-                                      ),
-                                    ),
-                                  if (FFAppState().selectedFirm == null)
-                                    Padding(
-                                      padding: EdgeInsetsDirectional.fromSTEB(
-                                          0.0, 15.0, 0.0, 0.0),
-                                      child: Text(
-                                        FFLocalizations.of(context).getText(
-                                          'xosoyg9h' /* Select firm */,
-                                        ),
-                                        textAlign: TextAlign.center,
-                                        style: FlutterFlowTheme.of(context)
-                                            .bodyMedium
-                                            .override(
-                                              fontFamily: 'Poppins',
-                                              color:
-                                                  FlutterFlowTheme.of(context)
-                                                      .secondaryText,
-                                              fontSize: 15.0,
-                                              fontWeight: FontWeight.w300,
-                                            ),
-                                      ),
-                                    ),
-                                ],
-                              ),
+                                    ],
+                                  ),
+                                ),
+                              ],
                             ),
                           ),
                           if (FFAppState().selectedEmployee != null)
@@ -2431,7 +2428,7 @@ class _HomePageWidgetState extends State<HomePageWidget>
                                                 Text(
                                                   FFLocalizations.of(context)
                                                       .getText(
-                                                    'jpoypa6b' /* Selected Employee */,
+                                                    'jpoypa6b' /* Ausgewählte Person */,
                                                   ),
                                                   style: FlutterFlowTheme.of(
                                                           context)

@@ -154,27 +154,6 @@ class _RegistrationWidgetState extends State<RegistrationWidget>
                                           width: 150.0,
                                           fit: BoxFit.fitWidth,
                                         ),
-                                        Padding(
-                                          padding:
-                                              EdgeInsetsDirectional.fromSTEB(
-                                                  0.0, 10.0, 0.0, 10.0),
-                                          child: Text(
-                                            FFLocalizations.of(context).getText(
-                                              '7y5yghp1' /* Willkommen zu XARDS */,
-                                            ),
-                                            style: FlutterFlowTheme.of(context)
-                                                .bodyMedium
-                                                .override(
-                                                  fontFamily: 'Poppins',
-                                                  color: FlutterFlowTheme.of(
-                                                          context)
-                                                      .primaryText,
-                                                  fontSize: 8.0,
-                                                  letterSpacing: 5.0,
-                                                  fontWeight: FontWeight.w500,
-                                                ),
-                                          ),
-                                        ),
                                       ],
                                     ),
                                   ),
@@ -222,7 +201,7 @@ class _RegistrationWidgetState extends State<RegistrationWidget>
                                                       text: FFLocalizations.of(
                                                               context)
                                                           .getText(
-                                                        '1w5v89p0' /* Anmeldung */,
+                                                        '1w5v89p0' /* Account erstellen */,
                                                       ),
                                                     ),
                                                   ],
@@ -378,7 +357,7 @@ class _RegistrationWidgetState extends State<RegistrationWidget>
                                                                             Text(
                                                                           FFLocalizations.of(context)
                                                                               .getText(
-                                                                            '7sr2f4f1' /* stornieren */,
+                                                                            '7sr2f4f1' /* abbrechen */,
                                                                           ),
                                                                           style: FlutterFlowTheme.of(context)
                                                                               .bodyMedium
@@ -420,14 +399,12 @@ class _RegistrationWidgetState extends State<RegistrationWidget>
                                                                         ),
                                                                         options:
                                                                             FFButtonOptions(
-                                                                          width:
-                                                                              150.0,
                                                                           height:
                                                                               40.0,
                                                                           padding: EdgeInsetsDirectional.fromSTEB(
+                                                                              20.0,
                                                                               0.0,
-                                                                              0.0,
-                                                                              0.0,
+                                                                              20.0,
                                                                               0.0),
                                                                           iconPadding: EdgeInsetsDirectional.fromSTEB(
                                                                               0.0,
@@ -754,14 +731,12 @@ class _RegistrationWidgetState extends State<RegistrationWidget>
                                                                         ),
                                                                         options:
                                                                             FFButtonOptions(
-                                                                          width:
-                                                                              130.0,
                                                                           height:
                                                                               40.0,
                                                                           padding: EdgeInsetsDirectional.fromSTEB(
+                                                                              20.0,
                                                                               0.0,
-                                                                              0.0,
-                                                                              0.0,
+                                                                              20.0,
                                                                               0.0),
                                                                           iconPadding: EdgeInsetsDirectional.fromSTEB(
                                                                               0.0,
@@ -834,7 +809,7 @@ class _RegistrationWidgetState extends State<RegistrationWidget>
                                                                   hintText: FFLocalizations.of(
                                                                           context)
                                                                       .getText(
-                                                                    '7ha93xis' /* Ihren Namen */,
+                                                                    '7ha93xis' /* Firmenname */,
                                                                   ),
                                                                   hintStyle: FlutterFlowTheme.of(
                                                                           context)
@@ -929,7 +904,7 @@ class _RegistrationWidgetState extends State<RegistrationWidget>
                                                                   hintText: FFLocalizations.of(
                                                                           context)
                                                                       .getText(
-                                                                    'xncqg9wb' /* Email */,
+                                                                    'xncqg9wb' /* E-Mail */,
                                                                   ),
                                                                   hintStyle: FlutterFlowTheme.of(
                                                                           context)
@@ -1143,7 +1118,7 @@ class _RegistrationWidgetState extends State<RegistrationWidget>
                                                                   hintText: FFLocalizations.of(
                                                                           context)
                                                                       .getText(
-                                                                    'vf0usngs' /* Bestätige das Passwort */,
+                                                                    'vf0usngs' /* Passwort bestätigen */,
                                                                   ),
                                                                   hintStyle: FlutterFlowTheme.of(
                                                                           context)
@@ -1328,14 +1303,12 @@ class _RegistrationWidgetState extends State<RegistrationWidget>
                                                                     ),
                                                                     options:
                                                                         FFButtonOptions(
-                                                                      width:
-                                                                          180.0,
                                                                       height:
                                                                           40.0,
                                                                       padding: EdgeInsetsDirectional.fromSTEB(
+                                                                          20.0,
                                                                           0.0,
-                                                                          0.0,
-                                                                          0.0,
+                                                                          20.0,
                                                                           0.0),
                                                                       iconPadding: EdgeInsetsDirectional.fromSTEB(
                                                                           0.0,

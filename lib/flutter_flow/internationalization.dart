@@ -136,11 +136,12 @@ final kTranslationsMap = <Map<String, Map<String, String>>>[
       'en': 'job title',
     },
     'xosoyg9h': {
-      'de': 'Select firm',
+      'de':
+          'Firma am linken Rand auswählen, um zugehörige Visitenkarten anzeigen zu lassen',
       'en': 'Select firm',
     },
     'jpoypa6b': {
-      'de': 'Selected Employee',
+      'de': 'Ausgewählte Person',
       'en': 'Selected Employee',
     },
     '7yonocs8': {
@@ -162,10 +163,6 @@ final kTranslationsMap = <Map<String, Map<String, String>>>[
   },
   // Registration
   {
-    '7y5yghp1': {
-      'de': 'Willkommen zu XARDS',
-      'en': 'Welcome to XARDS',
-    },
     'qgxnapo4': {
       'de': 'Anmelden',
       'en': 'Register',
@@ -175,7 +172,7 @@ final kTranslationsMap = <Map<String, Map<String, String>>>[
       'en': 'Enter your email address to reset',
     },
     '7sr2f4f1': {
-      'de': 'stornieren',
+      'de': 'abbrechen',
       'en': 'cancel',
     },
     '818kqw86': {
@@ -199,15 +196,15 @@ final kTranslationsMap = <Map<String, Map<String, String>>>[
       'en': 'Register',
     },
     '1w5v89p0': {
-      'de': 'Anmeldung',
+      'de': 'Account erstellen',
       'en': 'Registration',
     },
     '7ha93xis': {
-      'de': 'Ihren Namen',
+      'de': 'Firmenname',
       'en': 'your name',
     },
     'xncqg9wb': {
-      'de': 'Email',
+      'de': 'E-Mail',
       'en': 'E-mail',
     },
     'nafli97r': {
@@ -215,7 +212,7 @@ final kTranslationsMap = <Map<String, Map<String, String>>>[
       'en': 'password',
     },
     'vf0usngs': {
-      'de': 'Bestätige das Passwort',
+      'de': 'Passwort bestätigen',
       'en': 'Confirm the password',
     },
     'fyn22dga': {
@@ -358,6 +355,10 @@ final kTranslationsMap = <Map<String, Map<String, String>>>[
     '5ksjuy60': {
       'de': 'fest hinzufügen',
       'en': 'add firmly',
+    },
+    'ukvettia': {
+      'de': 'Cancel',
+      'en': '',
     },
     '0kicrtea': {
       'de': 'Field is required',
@@ -632,10 +633,6 @@ final kTranslationsMap = <Map<String, Map<String, String>>>[
     'mwnd6cmw': {
       'de': 'Profil verwalten',
       'en': 'manage profile',
-    },
-    '6vqusho0': {
-      'de': 'Upload Image',
-      'en': 'Upload Image',
     },
     'yur6jj3s': {
       'de': 'Display Name Missing!',
@@ -914,6 +911,33 @@ final kTranslationsMap = <Map<String, Map<String, String>>>[
     '6z4diifi': {
       'de': 'Bild bearbeiten',
       'en': 'Edit image',
+    },
+  },
+  // deleteDialoge
+  {
+    'u8xd26re': {
+      'de': 'Wirklich löschen?',
+      'en': '',
+    },
+    'gecy1whg': {
+      'de': 'Achtung! ',
+      'en': '',
+    },
+    '8dalz3ut': {
+      'de': 'Sie wollen das Dokument',
+      'en': '',
+    },
+    '817rk99x': {
+      'de': 'Bitte bestätigen Sie das Löschen mit: 1',
+      'en': '',
+    },
+    '3bc8xpzf': {
+      'de': 'Ja, unwiderruflich löschen!\n',
+      'en': '',
+    },
+    'ejw8c9pz': {
+      'de': 'Nein',
+      'en': '',
     },
   },
   // Miscellaneous
