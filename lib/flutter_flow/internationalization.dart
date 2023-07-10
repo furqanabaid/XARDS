@@ -148,6 +148,10 @@ final kTranslationsMap = <Map<String, Map<String, String>>>[
       'de': 'Vorschau',
       'en': 'preview',
     },
+    'm2uz2v3r': {
+      'de': 'Download',
+      'en': '',
+    },
     '5ankyhh4': {
       'de': 'Manage Profile',
       'en': 'Manage profiles',
