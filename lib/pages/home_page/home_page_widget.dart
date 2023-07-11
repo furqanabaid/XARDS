@@ -10,6 +10,7 @@ import '/flutter_flow/flutter_flow_theme.dart';
 import '/flutter_flow/flutter_flow_util.dart';
 import '/flutter_flow/flutter_flow_widgets.dart';
 import '/custom_code/actions/index.dart' as actions;
+import '/custom_code/widgets/index.dart' as custom_widgets;
 import 'package:barcode_widget/barcode_widget.dart';
 import 'package:easy_debounce/easy_debounce.dart';
 import 'package:flutter/material.dart';
@@ -2731,34 +2732,102 @@ class _HomePageWidgetState extends State<HomePageWidget>
                                                         ],
                                                       ),
                                                     ),
-                                                    Column(
-                                                      mainAxisSize:
-                                                          MainAxisSize.max,
-                                                      children: [
-                                                        Material(
-                                                          color: Colors
-                                                              .transparent,
-                                                          elevation: 0.0,
-                                                          shape:
-                                                              RoundedRectangleBorder(
-                                                            borderRadius:
-                                                                BorderRadius
-                                                                    .circular(
-                                                                        8.0),
-                                                          ),
-                                                          child: ClipRRect(
-                                                            borderRadius:
-                                                                BorderRadius
-                                                                    .circular(
-                                                                        8.0),
+                                                    if (false)
+                                                      Column(
+                                                        mainAxisSize:
+                                                            MainAxisSize.max,
+                                                        children: [
+                                                          Material(
+                                                            color: Colors
+                                                                .transparent,
+                                                            elevation: 0.0,
+                                                            shape:
+                                                                RoundedRectangleBorder(
+                                                              borderRadius:
+                                                                  BorderRadius
+                                                                      .circular(
+                                                                          8.0),
+                                                            ),
+                                                            child: ClipRRect(
+                                                              borderRadius:
+                                                                  BorderRadius
+                                                                      .circular(
+                                                                          8.0),
+                                                              child: Container(
+                                                                width: 100.0,
+                                                                height: 100.0,
+                                                                decoration:
+                                                                    BoxDecoration(
+                                                                  color: FlutterFlowTheme.of(
+                                                                          context)
+                                                                      .secondaryBackground,
+                                                                  borderRadius:
+                                                                      BorderRadius
+                                                                          .circular(
+                                                                              8.0),
+                                                                  border: Border
+                                                                      .all(
+                                                                    color: FlutterFlowTheme.of(
+                                                                            context)
+                                                                        .accent3,
+                                                                  ),
+                                                                ),
+                                                                child: Padding(
+                                                                  padding: EdgeInsetsDirectional
+                                                                      .fromSTEB(
+                                                                          8.0,
+                                                                          8.0,
+                                                                          8.0,
+                                                                          8.0),
+                                                                  child:
+                                                                      BarcodeWidget(
+                                                                    data:
+                                                                        'https://xards.flutterflow.app/employeeDetails?employeeRefeence=${FFAppState().selectedEmployee?.id}',
+                                                                    barcode: Barcode
+                                                                        .qrCode(),
+                                                                    width:
+                                                                        100.0,
+                                                                    height:
+                                                                        50.0,
+                                                                    color: Colors
+                                                                        .black,
+                                                                    backgroundColor:
+                                                                        Colors
+                                                                            .transparent,
+                                                                    errorBuilder:
+                                                                        (_context,
+                                                                                _error) =>
+                                                                            SizedBox(
+                                                                      width:
+                                                                          100.0,
+                                                                      height:
+                                                                          50.0,
+                                                                    ),
+                                                                    drawText:
+                                                                        false,
+                                                                  ),
+                                                                ),
+                                                              ),
+                                                            ),
+                                                          ).animateOnPageLoad(
+                                                              animationsMap[
+                                                                  'containerOnPageLoadAnimation5']!),
+                                                          Padding(
+                                                            padding:
+                                                                EdgeInsetsDirectional
+                                                                    .fromSTEB(
+                                                                        0.0,
+                                                                        5.0,
+                                                                        0.0,
+                                                                        0.0),
                                                             child: Container(
                                                               width: 100.0,
-                                                              height: 100.0,
+                                                              height: 30.0,
                                                               decoration:
                                                                   BoxDecoration(
                                                                 color: FlutterFlowTheme.of(
                                                                         context)
-                                                                    .secondaryBackground,
+                                                                    .primaryBackground,
                                                                 borderRadius:
                                                                     BorderRadius
                                                                         .circular(
@@ -2770,90 +2839,36 @@ class _HomePageWidgetState extends State<HomePageWidget>
                                                                       .accent3,
                                                                 ),
                                                               ),
-                                                              child: Padding(
-                                                                padding:
-                                                                    EdgeInsetsDirectional
-                                                                        .fromSTEB(
-                                                                            8.0,
-                                                                            8.0,
-                                                                            8.0,
-                                                                            8.0),
-                                                                child:
-                                                                    BarcodeWidget(
-                                                                  data:
-                                                                      'https://xards.flutterflow.app/employeeDetails?employeeRefeence=${FFAppState().selectedEmployee?.id}',
-                                                                  barcode: Barcode
-                                                                      .qrCode(),
-                                                                  width: 100.0,
-                                                                  height: 50.0,
-                                                                  color: Colors
-                                                                      .black,
-                                                                  backgroundColor:
-                                                                      Colors
-                                                                          .transparent,
-                                                                  errorBuilder:
-                                                                      (_context,
-                                                                              _error) =>
-                                                                          SizedBox(
-                                                                    width:
-                                                                        100.0,
-                                                                    height:
-                                                                        50.0,
+                                                              child: Align(
+                                                                alignment:
+                                                                    AlignmentDirectional(
+                                                                        0.0,
+                                                                        0.0),
+                                                                child: Text(
+                                                                  FFLocalizations.of(
+                                                                          context)
+                                                                      .getText(
+                                                                    'm2uz2v3r' /* Download */,
                                                                   ),
-                                                                  drawText:
-                                                                      false,
+                                                                  style: FlutterFlowTheme.of(
+                                                                          context)
+                                                                      .bodyMedium,
                                                                 ),
                                                               ),
                                                             ),
                                                           ),
-                                                        ).animateOnPageLoad(
-                                                            animationsMap[
-                                                                'containerOnPageLoadAnimation5']!),
-                                                        Padding(
-                                                          padding:
-                                                              EdgeInsetsDirectional
-                                                                  .fromSTEB(
-                                                                      0.0,
-                                                                      5.0,
-                                                                      0.0,
-                                                                      0.0),
-                                                          child: Container(
-                                                            width: 100.0,
-                                                            height: 30.0,
-                                                            decoration:
-                                                                BoxDecoration(
-                                                              color: FlutterFlowTheme
-                                                                      .of(context)
-                                                                  .primaryBackground,
-                                                              borderRadius:
-                                                                  BorderRadius
-                                                                      .circular(
-                                                                          8.0),
-                                                              border:
-                                                                  Border.all(
-                                                                color: FlutterFlowTheme.of(
-                                                                        context)
-                                                                    .accent3,
-                                                              ),
-                                                            ),
-                                                            child: Align(
-                                                              alignment:
-                                                                  AlignmentDirectional(
-                                                                      0.0, 0.0),
-                                                              child: Text(
-                                                                FFLocalizations.of(
-                                                                        context)
-                                                                    .getText(
-                                                                  'm2uz2v3r' /* Download */,
-                                                                ),
-                                                                style: FlutterFlowTheme.of(
-                                                                        context)
-                                                                    .bodyMedium,
-                                                              ),
-                                                            ),
-                                                          ),
-                                                        ),
-                                                      ],
+                                                        ],
+                                                      ),
+                                                    Container(
+                                                      width: 100.0,
+                                                      height: 135.0,
+                                                      child:
+                                                          custom_widgets.QRCode(
+                                                        width: 100.0,
+                                                        height: 135.0,
+                                                        employeeLink:
+                                                            'xards.flutterflow.app/${columnEmployeeRecord.reference.id}',
+                                                      ),
                                                     ),
                                                   ],
                                                 ),
