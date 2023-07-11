@@ -146,6 +146,12 @@ class _SelectFirmWidgetState extends State<SelectFirmWidget> {
                                                     uId: currentUserReference,
                                                   ),
                                                   firmRecordReference);
+                                          setState(() {
+                                            FFAppState().selectedFirm =
+                                                _model.firmCreated!.reference;
+                                            FFAppState().selectedEmployee =
+                                                null;
+                                          });
 
                                           context.pushNamed('HomePage');
 
@@ -379,7 +385,7 @@ class _SelectFirmWidgetState extends State<SelectFirmWidget> {
                                               BorderRadius.circular(8.0),
                                         ),
                                       ),
-                                    ],
+                                    ].divide(SizedBox(width: 10.0)),
                                   ),
                                 ),
                               ],

@@ -1,3 +1,5 @@
+import '/auth/firebase_auth/auth_util.dart';
+import '/backend/backend.dart';
 import '/flutter_flow/flutter_flow_theme.dart';
 import '/flutter_flow/flutter_flow_util.dart';
 import '/flutter_flow/flutter_flow_widgets.dart';
@@ -190,10 +192,22 @@ class _DeleteDialogeWidgetState extends State<DeleteDialogeWidget> {
                                     0.0, 0.0, 5.0, 0.0),
                                 child: FFButtonWidget(
                                   onPressed: () async {
-                                    if (_model.textController.text == '1') {
-                                      await widget.empRef!.delete();
-                                      Navigator.pop(context);
-                                      Navigator.pop(context);
+                                    final firestoreBatch =
+                                        FirebaseFirestore.instance.batch();
+                                    try {
+                                      if (_model.textController.text == '1') {
+                                        firestoreBatch.delete(widget.empRef!);
+
+                                        firestoreBatch
+                                            .update(currentUserReference!, {
+                                          'emloyeeCount':
+                                              FieldValue.increment(-(1)),
+                                        });
+                                        Navigator.pop(context);
+                                        Navigator.pop(context);
+                                      }
+                                    } finally {
+                                      await firestoreBatch.commit();
                                     }
                                   },
                                   text: FFLocalizations.of(context).getText(

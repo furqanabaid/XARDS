@@ -130,7 +130,7 @@ class _HomePageWidgetState extends State<HomePageWidget>
 
     // On page load action.
     SchedulerBinding.instance.addPostFrameCallback((_) async {
-      setAppLanguage(context, 'de');
+      setState(() {});
     });
 
     _model.textController1 ??= TextEditingController();
@@ -1097,11 +1097,18 @@ class _HomePageWidgetState extends State<HomePageWidget>
                                                 highlightColor:
                                                     Colors.transparent,
                                                 onTap: () async {
-                                                  setState(() {
-                                                    FFAppState().selectedFirm =
-                                                        containerFirmRecord!
-                                                            .reference;
-                                                  });
+                                                  if (containerFirmRecord !=
+                                                      null) {
+                                                    setState(() {
+                                                      FFAppState()
+                                                              .selectedFirm =
+                                                          containerFirmRecord!
+                                                              .reference;
+                                                    });
+                                                  } else {
+                                                    context.pushNamed(
+                                                        'selectFirm');
+                                                  }
                                                 },
                                                 child: Container(
                                                   width: double.infinity,
@@ -2471,7 +2478,7 @@ class _HomePageWidgetState extends State<HomePageWidget>
                                                               .profileImage,
                                                           width: 50.0,
                                                           height: 50.0,
-                                                          fit: BoxFit.fitHeight,
+                                                          fit: BoxFit.cover,
                                                         ),
                                                       ),
                                                       Expanded(
