@@ -2480,8 +2480,16 @@ class _AddEmployeeWidgetState extends State<AddEmployeeWidget> {
                                                           _model.colorPicked,
                                                       logo: buttonFirmRecord
                                                           .firmLogo,
-                                                      profileImage: _model
-                                                          .uploadedFileUrl,
+                                                      profileImage: FFAppState()
+                                                                      .addEmployeeImage !=
+                                                                  null &&
+                                                              FFAppState()
+                                                                      .addEmployeeImage !=
+                                                                  ''
+                                                          ? FFAppState()
+                                                              .addEmployeeImage
+                                                          : _model
+                                                              .uploadedFileUrl,
                                                       isCircle:
                                                           FFAppState().isCircle,
                                                       shapeIndex: FFAppState()
@@ -2557,8 +2565,16 @@ class _AddEmployeeWidgetState extends State<AddEmployeeWidget> {
                                                                   .colorPicked,
                                                           logo: buttonFirmRecord
                                                               .firmLogo,
-                                                          profileImage: _model
-                                                              .uploadedFileUrl,
+                                                          profileImage: FFAppState()
+                                                                          .addEmployeeImage !=
+                                                                      null &&
+                                                                  FFAppState()
+                                                                          .addEmployeeImage !=
+                                                                      ''
+                                                              ? FFAppState()
+                                                                  .addEmployeeImage
+                                                              : _model
+                                                                  .uploadedFileUrl,
                                                           isCircle: FFAppState()
                                                               .isCircle,
                                                           shapeIndex:

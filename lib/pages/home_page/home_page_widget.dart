@@ -1240,7 +1240,7 @@ class _HomePageWidgetState extends State<HomePageWidget>
                                                         textEmployeeRecordList =
                                                         snapshot.data!;
                                                     return Text(
-                                                      'Total Employees : ${textEmployeeRecordList.length.toString()}/20',
+                                                      'Visitenkarten-Anzahl: ${textEmployeeRecordList.length.toString()}/20',
                                                       style:
                                                           FlutterFlowTheme.of(
                                                                   context)

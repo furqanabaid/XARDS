@@ -111,7 +111,7 @@ class _EmployeeDetailsWidgetState extends State<EmployeeDetailsWidget>
               decoration: BoxDecoration(
                 color: valueOrDefault<Color>(
                   employeeDetailsEmployeeRecord.backgroundColor,
-                  FlutterFlowTheme.of(context).primaryText,
+                  Color(0xFFFF0000),
                 ),
               ),
               child: Stack(
@@ -146,7 +146,7 @@ class _EmployeeDetailsWidgetState extends State<EmployeeDetailsWidget>
                             children: [
                               Padding(
                                 padding: EdgeInsetsDirectional.fromSTEB(
-                                    0.0, 100.0, 0.0, 0.0),
+                                    0.0, 500.0, 0.0, 0.0),
                                 child: Container(
                                   width: double.infinity,
                                   height:
@@ -589,39 +589,179 @@ class _EmployeeDetailsWidgetState extends State<EmployeeDetailsWidget>
                                                                         ),
                                                                       ],
                                                                     ),
-                                                                    Padding(
-                                                                      padding: EdgeInsetsDirectional.fromSTEB(
-                                                                          0.0,
-                                                                          10.0,
-                                                                          0.0,
-                                                                          10.0),
-                                                                      child:
-                                                                          InkWell(
-                                                                        splashColor:
-                                                                            Colors.transparent,
-                                                                        focusColor:
-                                                                            Colors.transparent,
-                                                                        hoverColor:
-                                                                            Colors.transparent,
-                                                                        highlightColor:
-                                                                            Colors.transparent,
-                                                                        onTap:
-                                                                            () async {
-                                                                          await launchUrl(
-                                                                              Uri(
-                                                                            scheme:
-                                                                                'tel',
-                                                                            path:
-                                                                                mobileEmployeeRecord.mobile,
-                                                                          ));
-                                                                        },
+                                                                    if (mobileEmployeeRecord.mobile !=
+                                                                            null &&
+                                                                        mobileEmployeeRecord.mobile !=
+                                                                            '')
+                                                                      Padding(
+                                                                        padding: EdgeInsetsDirectional.fromSTEB(
+                                                                            0.0,
+                                                                            10.0,
+                                                                            0.0,
+                                                                            10.0),
+                                                                        child:
+                                                                            InkWell(
+                                                                          splashColor:
+                                                                              Colors.transparent,
+                                                                          focusColor:
+                                                                              Colors.transparent,
+                                                                          hoverColor:
+                                                                              Colors.transparent,
+                                                                          highlightColor:
+                                                                              Colors.transparent,
+                                                                          onTap:
+                                                                              () async {
+                                                                            await launchUrl(Uri(
+                                                                              scheme: 'tel',
+                                                                              path: mobileEmployeeRecord.mobile,
+                                                                            ));
+                                                                          },
+                                                                          child:
+                                                                              Row(
+                                                                            mainAxisSize:
+                                                                                MainAxisSize.max,
+                                                                            children: [
+                                                                              Icon(
+                                                                                Icons.phone_android_outlined,
+                                                                                color: Colors.black,
+                                                                                size: 25.0,
+                                                                              ),
+                                                                              Expanded(
+                                                                                child: Padding(
+                                                                                  padding: EdgeInsetsDirectional.fromSTEB(20.0, 0.0, 0.0, 0.0),
+                                                                                  child: Text(
+                                                                                    mobileEmployeeRecord.mobile,
+                                                                                    style: FlutterFlowTheme.of(context).bodyMedium.override(
+                                                                                          fontFamily: 'Poppins',
+                                                                                          fontSize: 16.0,
+                                                                                        ),
+                                                                                  ),
+                                                                                ),
+                                                                              ),
+                                                                              InkWell(
+                                                                                splashColor: Colors.transparent,
+                                                                                focusColor: Colors.transparent,
+                                                                                hoverColor: Colors.transparent,
+                                                                                highlightColor: Colors.transparent,
+                                                                                onTap: () async {
+                                                                                  await Clipboard.setData(ClipboardData(text: mobileEmployeeRecord.mobile));
+                                                                                },
+                                                                                child: Icon(
+                                                                                  Icons.content_copy,
+                                                                                  color: FlutterFlowTheme.of(context).accent2,
+                                                                                  size: 15.0,
+                                                                                ),
+                                                                              ),
+                                                                            ],
+                                                                          ),
+                                                                        ),
+                                                                      ),
+                                                                    if (mobileEmployeeRecord.mobile !=
+                                                                            null &&
+                                                                        mobileEmployeeRecord.mobile !=
+                                                                            '')
+                                                                      Divider(
+                                                                        thickness:
+                                                                            1.0,
+                                                                        color: FlutterFlowTheme.of(context)
+                                                                            .accent4,
+                                                                      ),
+                                                                    if (mobileEmployeeRecord.phone !=
+                                                                            null &&
+                                                                        mobileEmployeeRecord.phone !=
+                                                                            '')
+                                                                      Padding(
+                                                                        padding: EdgeInsetsDirectional.fromSTEB(
+                                                                            0.0,
+                                                                            10.0,
+                                                                            0.0,
+                                                                            10.0),
+                                                                        child:
+                                                                            InkWell(
+                                                                          splashColor:
+                                                                              Colors.transparent,
+                                                                          focusColor:
+                                                                              Colors.transparent,
+                                                                          hoverColor:
+                                                                              Colors.transparent,
+                                                                          highlightColor:
+                                                                              Colors.transparent,
+                                                                          onTap:
+                                                                              () async {
+                                                                            await launchUrl(Uri(
+                                                                              scheme: 'tel',
+                                                                              path: mobileEmployeeRecord.phone,
+                                                                            ));
+                                                                          },
+                                                                          child:
+                                                                              Row(
+                                                                            mainAxisSize:
+                                                                                MainAxisSize.max,
+                                                                            children: [
+                                                                              Icon(
+                                                                                Icons.phone_enabled,
+                                                                                color: Colors.black,
+                                                                                size: 25.0,
+                                                                              ),
+                                                                              Expanded(
+                                                                                child: Padding(
+                                                                                  padding: EdgeInsetsDirectional.fromSTEB(20.0, 0.0, 0.0, 0.0),
+                                                                                  child: Text(
+                                                                                    mobileEmployeeRecord.phone,
+                                                                                    style: FlutterFlowTheme.of(context).bodyMedium.override(
+                                                                                          fontFamily: 'Poppins',
+                                                                                          fontSize: 16.0,
+                                                                                        ),
+                                                                                  ),
+                                                                                ),
+                                                                              ),
+                                                                              InkWell(
+                                                                                splashColor: Colors.transparent,
+                                                                                focusColor: Colors.transparent,
+                                                                                hoverColor: Colors.transparent,
+                                                                                highlightColor: Colors.transparent,
+                                                                                onTap: () async {
+                                                                                  await Clipboard.setData(ClipboardData(text: mobileEmployeeRecord.phone));
+                                                                                },
+                                                                                child: Icon(
+                                                                                  Icons.content_copy,
+                                                                                  color: FlutterFlowTheme.of(context).accent2,
+                                                                                  size: 15.0,
+                                                                                ),
+                                                                              ),
+                                                                            ],
+                                                                          ),
+                                                                        ),
+                                                                      ),
+                                                                    if (mobileEmployeeRecord.phone !=
+                                                                            null &&
+                                                                        mobileEmployeeRecord.phone !=
+                                                                            '')
+                                                                      Divider(
+                                                                        thickness:
+                                                                            1.0,
+                                                                        color: FlutterFlowTheme.of(context)
+                                                                            .accent4,
+                                                                      ),
+                                                                    if (mobileEmployeeRecord.empEmail !=
+                                                                            null &&
+                                                                        mobileEmployeeRecord.empEmail !=
+                                                                            '')
+                                                                      Padding(
+                                                                        padding: EdgeInsetsDirectional.fromSTEB(
+                                                                            0.0,
+                                                                            10.0,
+                                                                            0.0,
+                                                                            10.0),
                                                                         child:
                                                                             Row(
                                                                           mainAxisSize:
                                                                               MainAxisSize.max,
+                                                                          crossAxisAlignment:
+                                                                              CrossAxisAlignment.center,
                                                                           children: [
                                                                             Icon(
-                                                                              Icons.phone_android_outlined,
+                                                                              Icons.email,
                                                                               color: Colors.black,
                                                                               size: 25.0,
                                                                             ),
@@ -629,7 +769,7 @@ class _EmployeeDetailsWidgetState extends State<EmployeeDetailsWidget>
                                                                               child: Padding(
                                                                                 padding: EdgeInsetsDirectional.fromSTEB(20.0, 0.0, 0.0, 0.0),
                                                                                 child: Text(
-                                                                                  mobileEmployeeRecord.mobile,
+                                                                                  mobileEmployeeRecord.empEmail,
                                                                                   style: FlutterFlowTheme.of(context).bodyMedium.override(
                                                                                         fontFamily: 'Poppins',
                                                                                         fontSize: 16.0,
@@ -643,7 +783,7 @@ class _EmployeeDetailsWidgetState extends State<EmployeeDetailsWidget>
                                                                               hoverColor: Colors.transparent,
                                                                               highlightColor: Colors.transparent,
                                                                               onTap: () async {
-                                                                                await Clipboard.setData(ClipboardData(text: mobileEmployeeRecord.mobile));
+                                                                                await Clipboard.setData(ClipboardData(text: mobileEmployeeRecord.empEmail));
                                                                               },
                                                                               child: Icon(
                                                                                 Icons.content_copy,
@@ -654,47 +794,35 @@ class _EmployeeDetailsWidgetState extends State<EmployeeDetailsWidget>
                                                                           ],
                                                                         ),
                                                                       ),
-                                                                    ),
-                                                                    Divider(
-                                                                      thickness:
-                                                                          1.0,
-                                                                      color: FlutterFlowTheme.of(
-                                                                              context)
-                                                                          .accent4,
-                                                                    ),
-                                                                    Padding(
-                                                                      padding: EdgeInsetsDirectional.fromSTEB(
-                                                                          0.0,
-                                                                          10.0,
-                                                                          0.0,
-                                                                          10.0),
-                                                                      child:
-                                                                          InkWell(
-                                                                        splashColor:
-                                                                            Colors.transparent,
-                                                                        focusColor:
-                                                                            Colors.transparent,
-                                                                        hoverColor:
-                                                                            Colors.transparent,
-                                                                        highlightColor:
-                                                                            Colors.transparent,
-                                                                        onTap:
-                                                                            () async {
-                                                                          await launchUrl(
-                                                                              Uri(
-                                                                            scheme:
-                                                                                'tel',
-                                                                            path:
-                                                                                mobileEmployeeRecord.phone,
-                                                                          ));
-                                                                        },
+                                                                    if (mobileEmployeeRecord.empEmail !=
+                                                                            null &&
+                                                                        mobileEmployeeRecord.empEmail !=
+                                                                            '')
+                                                                      Divider(
+                                                                        thickness:
+                                                                            1.0,
+                                                                        color: FlutterFlowTheme.of(context)
+                                                                            .accent4,
+                                                                      ),
+                                                                    if (mobileEmployeeRecord.fax !=
+                                                                            null &&
+                                                                        mobileEmployeeRecord.fax !=
+                                                                            '')
+                                                                      Padding(
+                                                                        padding: EdgeInsetsDirectional.fromSTEB(
+                                                                            0.0,
+                                                                            10.0,
+                                                                            0.0,
+                                                                            10.0),
                                                                         child:
                                                                             Row(
                                                                           mainAxisSize:
                                                                               MainAxisSize.max,
+                                                                          crossAxisAlignment:
+                                                                              CrossAxisAlignment.center,
                                                                           children: [
-                                                                            Icon(
-                                                                              Icons.phone_enabled,
+                                                                            FaIcon(
+                                                                              FontAwesomeIcons.fax,
                                                                               color: Colors.black,
                                                                               size: 25.0,
                                                                             ),
@@ -702,7 +830,7 @@ class _EmployeeDetailsWidgetState extends State<EmployeeDetailsWidget>
                                                                               child: Padding(
                                                                                 padding: EdgeInsetsDirectional.fromSTEB(20.0, 0.0, 0.0, 0.0),
                                                                                 child: Text(
-                                                                                  mobileEmployeeRecord.phone,
+                                                                                  mobileEmployeeRecord.fax,
                                                                                   style: FlutterFlowTheme.of(context).bodyMedium.override(
                                                                                         fontFamily: 'Poppins',
                                                                                         fontSize: 16.0,
@@ -716,7 +844,7 @@ class _EmployeeDetailsWidgetState extends State<EmployeeDetailsWidget>
                                                                               hoverColor: Colors.transparent,
                                                                               highlightColor: Colors.transparent,
                                                                               onTap: () async {
-                                                                                await Clipboard.setData(ClipboardData(text: mobileEmployeeRecord.phone));
+                                                                                await Clipboard.setData(ClipboardData(text: mobileEmployeeRecord.fax));
                                                                               },
                                                                               child: Icon(
                                                                                 Icons.content_copy,
@@ -727,140 +855,16 @@ class _EmployeeDetailsWidgetState extends State<EmployeeDetailsWidget>
                                                                           ],
                                                                         ),
                                                                       ),
-                                                                    ),
-                                                                    Divider(
-                                                                      thickness:
-                                                                          1.0,
-                                                                      color: FlutterFlowTheme.of(
-                                                                              context)
-                                                                          .accent4,
-                                                                    ),
-                                                                    Padding(
-                                                                      padding: EdgeInsetsDirectional.fromSTEB(
-                                                                          0.0,
-                                                                          10.0,
-                                                                          0.0,
-                                                                          10.0),
-                                                                      child:
-                                                                          Row(
-                                                                        mainAxisSize:
-                                                                            MainAxisSize.max,
-                                                                        crossAxisAlignment:
-                                                                            CrossAxisAlignment.start,
-                                                                        children: [
-                                                                          Icon(
-                                                                            Icons.email,
-                                                                            color:
-                                                                                Colors.black,
-                                                                            size:
-                                                                                25.0,
-                                                                          ),
-                                                                          Expanded(
-                                                                            child:
-                                                                                Padding(
-                                                                              padding: EdgeInsetsDirectional.fromSTEB(20.0, 0.0, 0.0, 0.0),
-                                                                              child: Text(
-                                                                                mobileEmployeeRecord.empEmail,
-                                                                                style: FlutterFlowTheme.of(context).bodyMedium.override(
-                                                                                      fontFamily: 'Poppins',
-                                                                                      fontSize: 16.0,
-                                                                                    ),
-                                                                              ),
-                                                                            ),
-                                                                          ),
-                                                                          InkWell(
-                                                                            splashColor:
-                                                                                Colors.transparent,
-                                                                            focusColor:
-                                                                                Colors.transparent,
-                                                                            hoverColor:
-                                                                                Colors.transparent,
-                                                                            highlightColor:
-                                                                                Colors.transparent,
-                                                                            onTap:
-                                                                                () async {
-                                                                              await Clipboard.setData(ClipboardData(text: mobileEmployeeRecord.empEmail));
-                                                                            },
-                                                                            child:
-                                                                                Icon(
-                                                                              Icons.content_copy,
-                                                                              color: FlutterFlowTheme.of(context).accent2,
-                                                                              size: 15.0,
-                                                                            ),
-                                                                          ),
-                                                                        ],
+                                                                    if (mobileEmployeeRecord.empEmail !=
+                                                                            null &&
+                                                                        mobileEmployeeRecord.empEmail !=
+                                                                            '')
+                                                                      Divider(
+                                                                        thickness:
+                                                                            1.0,
+                                                                        color: FlutterFlowTheme.of(context)
+                                                                            .accent4,
                                                                       ),
-                                                                    ),
-                                                                    Divider(
-                                                                      thickness:
-                                                                          1.0,
-                                                                      color: FlutterFlowTheme.of(
-                                                                              context)
-                                                                          .accent4,
-                                                                    ),
-                                                                    Padding(
-                                                                      padding: EdgeInsetsDirectional.fromSTEB(
-                                                                          0.0,
-                                                                          10.0,
-                                                                          0.0,
-                                                                          10.0),
-                                                                      child:
-                                                                          Row(
-                                                                        mainAxisSize:
-                                                                            MainAxisSize.max,
-                                                                        crossAxisAlignment:
-                                                                            CrossAxisAlignment.start,
-                                                                        children: [
-                                                                          FaIcon(
-                                                                            FontAwesomeIcons.fax,
-                                                                            color:
-                                                                                Colors.black,
-                                                                            size:
-                                                                                25.0,
-                                                                          ),
-                                                                          Expanded(
-                                                                            child:
-                                                                                Padding(
-                                                                              padding: EdgeInsetsDirectional.fromSTEB(20.0, 0.0, 0.0, 0.0),
-                                                                              child: Text(
-                                                                                mobileEmployeeRecord.fax,
-                                                                                style: FlutterFlowTheme.of(context).bodyMedium.override(
-                                                                                      fontFamily: 'Poppins',
-                                                                                      fontSize: 16.0,
-                                                                                    ),
-                                                                              ),
-                                                                            ),
-                                                                          ),
-                                                                          InkWell(
-                                                                            splashColor:
-                                                                                Colors.transparent,
-                                                                            focusColor:
-                                                                                Colors.transparent,
-                                                                            hoverColor:
-                                                                                Colors.transparent,
-                                                                            highlightColor:
-                                                                                Colors.transparent,
-                                                                            onTap:
-                                                                                () async {
-                                                                              await Clipboard.setData(ClipboardData(text: mobileEmployeeRecord.fax));
-                                                                            },
-                                                                            child:
-                                                                                Icon(
-                                                                              Icons.content_copy,
-                                                                              color: FlutterFlowTheme.of(context).accent2,
-                                                                              size: 15.0,
-                                                                            ),
-                                                                          ),
-                                                                        ],
-                                                                      ),
-                                                                    ),
-                                                                    Divider(
-                                                                      thickness:
-                                                                          1.0,
-                                                                      color: FlutterFlowTheme.of(
-                                                                              context)
-                                                                          .accent4,
-                                                                    ),
                                                                     Row(
                                                                       mainAxisSize:
                                                                           MainAxisSize
@@ -901,7 +905,7 @@ class _EmployeeDetailsWidgetState extends State<EmployeeDetailsWidget>
                                                                         mainAxisSize:
                                                                             MainAxisSize.max,
                                                                         crossAxisAlignment:
-                                                                            CrossAxisAlignment.start,
+                                                                            CrossAxisAlignment.center,
                                                                         children: [
                                                                           Icon(
                                                                             Icons.location_pin,
@@ -953,69 +957,72 @@ class _EmployeeDetailsWidgetState extends State<EmployeeDetailsWidget>
                                                                               context)
                                                                           .accent4,
                                                                     ),
-                                                                    Padding(
-                                                                      padding: EdgeInsetsDirectional.fromSTEB(
-                                                                          0.0,
-                                                                          10.0,
-                                                                          0.0,
-                                                                          10.0),
-                                                                      child:
-                                                                          InkWell(
-                                                                        splashColor:
-                                                                            Colors.transparent,
-                                                                        focusColor:
-                                                                            Colors.transparent,
-                                                                        hoverColor:
-                                                                            Colors.transparent,
-                                                                        highlightColor:
-                                                                            Colors.transparent,
-                                                                        onTap:
-                                                                            () async {
-                                                                          await launchURL(
-                                                                              mobileEmployeeRecord.website);
-                                                                        },
+                                                                    if (mobileEmployeeRecord.website !=
+                                                                            null &&
+                                                                        mobileEmployeeRecord.website !=
+                                                                            '')
+                                                                      Padding(
+                                                                        padding: EdgeInsetsDirectional.fromSTEB(
+                                                                            0.0,
+                                                                            10.0,
+                                                                            0.0,
+                                                                            10.0),
                                                                         child:
-                                                                            Row(
-                                                                          mainAxisSize:
-                                                                              MainAxisSize.max,
-                                                                          crossAxisAlignment:
-                                                                              CrossAxisAlignment.center,
-                                                                          children: [
-                                                                            FaIcon(
-                                                                              FontAwesomeIcons.globe,
-                                                                              color: Colors.black,
-                                                                              size: 25.0,
-                                                                            ),
-                                                                            Expanded(
-                                                                              child: Padding(
-                                                                                padding: EdgeInsetsDirectional.fromSTEB(20.0, 0.0, 0.0, 0.0),
-                                                                                child: Text(
-                                                                                  mobileEmployeeRecord.website,
-                                                                                  style: FlutterFlowTheme.of(context).bodyMedium.override(
-                                                                                        fontFamily: 'Poppins',
-                                                                                        fontSize: 16.0,
-                                                                                      ),
+                                                                            InkWell(
+                                                                          splashColor:
+                                                                              Colors.transparent,
+                                                                          focusColor:
+                                                                              Colors.transparent,
+                                                                          hoverColor:
+                                                                              Colors.transparent,
+                                                                          highlightColor:
+                                                                              Colors.transparent,
+                                                                          onTap:
+                                                                              () async {
+                                                                            await launchURL(mobileEmployeeRecord.website);
+                                                                          },
+                                                                          child:
+                                                                              Row(
+                                                                            mainAxisSize:
+                                                                                MainAxisSize.max,
+                                                                            crossAxisAlignment:
+                                                                                CrossAxisAlignment.center,
+                                                                            children: [
+                                                                              FaIcon(
+                                                                                FontAwesomeIcons.globe,
+                                                                                color: Colors.black,
+                                                                                size: 25.0,
+                                                                              ),
+                                                                              Expanded(
+                                                                                child: Padding(
+                                                                                  padding: EdgeInsetsDirectional.fromSTEB(20.0, 0.0, 0.0, 0.0),
+                                                                                  child: Text(
+                                                                                    mobileEmployeeRecord.website,
+                                                                                    style: FlutterFlowTheme.of(context).bodyMedium.override(
+                                                                                          fontFamily: 'Poppins',
+                                                                                          fontSize: 16.0,
+                                                                                        ),
+                                                                                  ),
                                                                                 ),
                                                                               ),
-                                                                            ),
-                                                                            InkWell(
-                                                                              splashColor: Colors.transparent,
-                                                                              focusColor: Colors.transparent,
-                                                                              hoverColor: Colors.transparent,
-                                                                              highlightColor: Colors.transparent,
-                                                                              onTap: () async {
-                                                                                await Clipboard.setData(ClipboardData(text: mobileEmployeeRecord.website));
-                                                                              },
-                                                                              child: Icon(
-                                                                                Icons.content_copy,
-                                                                                color: FlutterFlowTheme.of(context).accent2,
-                                                                                size: 15.0,
+                                                                              InkWell(
+                                                                                splashColor: Colors.transparent,
+                                                                                focusColor: Colors.transparent,
+                                                                                hoverColor: Colors.transparent,
+                                                                                highlightColor: Colors.transparent,
+                                                                                onTap: () async {
+                                                                                  await Clipboard.setData(ClipboardData(text: mobileEmployeeRecord.website));
+                                                                                },
+                                                                                child: Icon(
+                                                                                  Icons.content_copy,
+                                                                                  color: FlutterFlowTheme.of(context).accent2,
+                                                                                  size: 15.0,
+                                                                                ),
                                                                               ),
-                                                                            ),
-                                                                          ],
+                                                                            ],
+                                                                          ),
                                                                         ),
                                                                       ),
-                                                                    ),
                                                                   ],
                                                                 ),
                                                               ),
@@ -1045,7 +1052,8 @@ class _EmployeeDetailsWidgetState extends State<EmployeeDetailsWidget>
                                                 borderRadius:
                                                     BorderRadius.circular(8.0),
                                                 child: Image.network(
-                                                  'https://picsum.photos/seed/475/600',
+                                                  mobileEmployeeRecord
+                                                      .profileImage,
                                                   width: 120.0,
                                                   height: 120.0,
                                                   fit: BoxFit.cover,
@@ -1215,7 +1223,7 @@ class _EmployeeDetailsWidgetState extends State<EmployeeDetailsWidget>
                                   elevation: 10.0,
                                   child: Container(
                                     width: double.infinity,
-                                    height: 145.0,
+                                    height: 120.0,
                                     decoration: BoxDecoration(
                                       color: FlutterFlowTheme.of(context)
                                           .secondaryBackground,
@@ -1223,37 +1231,6 @@ class _EmployeeDetailsWidgetState extends State<EmployeeDetailsWidget>
                                     child: Column(
                                       mainAxisSize: MainAxisSize.max,
                                       children: [
-                                        Row(
-                                          mainAxisSize: MainAxisSize.max,
-                                          mainAxisAlignment:
-                                              MainAxisAlignment.center,
-                                          children: [
-                                            Expanded(
-                                              child: Padding(
-                                                padding: EdgeInsetsDirectional
-                                                    .fromSTEB(
-                                                        0.0, 10.0, 0.0, 5.0),
-                                                child: Text(
-                                                  FFLocalizations.of(context)
-                                                      .getText(
-                                                    't7lwh1km' /* Social Media */,
-                                                  ),
-                                                  textAlign: TextAlign.center,
-                                                  style: FlutterFlowTheme.of(
-                                                          context)
-                                                      .bodyMedium
-                                                      .override(
-                                                        fontFamily: 'Roboto',
-                                                        color: Colors.black,
-                                                        fontSize: 15.0,
-                                                        fontWeight:
-                                                            FontWeight.w500,
-                                                      ),
-                                                ),
-                                              ),
-                                            ),
-                                          ],
-                                        ),
                                         Padding(
                                           padding:
                                               EdgeInsetsDirectional.fromSTEB(
@@ -1822,8 +1799,6 @@ class _EmployeeDetailsWidgetState extends State<EmployeeDetailsWidget>
                                                                               8.0),
                                                                       child:
                                                                           Container(
-                                                                        width: MediaQuery.sizeOf(context).width *
-                                                                            0.11,
                                                                         height:
                                                                             60.0,
                                                                         decoration:

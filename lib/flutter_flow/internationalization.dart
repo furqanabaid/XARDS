@@ -286,10 +286,6 @@ final kTranslationsMap = <Map<String, Map<String, String>>>[
       'de': 'Adresse',
       'en': 'address',
     },
-    't7lwh1km': {
-      'de': 'Social Media',
-      'en': 'social media',
-    },
     'pa51zhni': {
       'de': 'Als Kontakt speichern',
       'en': 'Save as contact',

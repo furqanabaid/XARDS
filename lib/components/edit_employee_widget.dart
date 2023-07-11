@@ -2536,6 +2536,14 @@ class _EditEmployeeWidgetState extends State<EditEmployeeWidget> {
                                                       _model.colorPicked =
                                                           _colorPickedColor);
                                                 }
+
+                                                await containerEmployeeRecord
+                                                    .reference
+                                                    .update(
+                                                        createEmployeeRecordData(
+                                                  backgroundColor:
+                                                      _model.colorPicked,
+                                                ));
                                               },
                                               child: Container(
                                                 decoration: BoxDecoration(
@@ -2749,12 +2757,14 @@ class _EditEmployeeWidgetState extends State<EditEmployeeWidget> {
                                                     .websiteController.text,
                                                 telegram: _model
                                                     .textController20.text,
-                                                profileImage: _model
-                                                                .uploadedFileUrl !=
+                                                profileImage: FFAppState()
+                                                                .updateEmployeeImage !=
                                                             null &&
-                                                        _model.uploadedFileUrl !=
+                                                        FFAppState()
+                                                                .updateEmployeeImage !=
                                                             ''
-                                                    ? _model.uploadedFileUrl
+                                                    ? FFAppState()
+                                                        .updateEmployeeImage
                                                     : containerEmployeeRecord
                                                         .profileImage,
                                                 empEmail:
