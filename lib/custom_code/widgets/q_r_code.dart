@@ -9,6 +9,9 @@ import 'package:flutter/material.dart';
 // Begin custom widget code
 // DO NOT REMOVE OR MODIFY THE CODE ABOVE!
 
+import 'package:screenshot/screenshot.dart';
+import 'package:image_downloader_web/image_downloader_web.dart';
+
 class QRCode extends StatefulWidget {
   const QRCode({
     Key? key,
