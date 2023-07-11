@@ -77,61 +77,123 @@ class _QRCodeState extends State<QRCode> {
               ),
             ),
           ),
-          Padding(
-            padding: EdgeInsets.fromLTRB(0, 5, 0, 0),
-            child: InkWell(
-              onTap: () {
-                var container = ClipRRect(
-                  borderRadius: BorderRadius.circular(8.0),
-                  child: Container(
-                    width: 1000.0,
-                    height: 1000.0,
-                    decoration: BoxDecoration(
-                      color: FlutterFlowTheme.of(context).secondaryBackground,
+          Row(
+            children: [
+              Padding(
+                padding: EdgeInsets.fromLTRB(0, 5, 0, 0),
+                child: InkWell(
+                  onTap: () {
+                    var container = ClipRRect(
                       borderRadius: BorderRadius.circular(8.0),
-                      border: Border.all(
-                        color: FlutterFlowTheme.of(context).accent3,
-                      ),
-                    ),
-                    child: Padding(
-                      padding:
-                          EdgeInsetsDirectional.fromSTEB(8.0, 8.0, 8.0, 8.0),
-                      child: BarcodeWidget(
-                        data:
-                            'https://xards.flutterflow.app/employeeDetails?employeeRefeence=${FFAppState().selectedEmployee?.id}',
-                        barcode: Barcode.qrCode(),
-                        width: 100.0,
-                        height: 50.0,
-                        color: Colors.black,
-                        backgroundColor: Colors.transparent,
-                        errorBuilder: (_context, _error) => SizedBox(
-                          width: 100.0,
-                          height: 50.0,
+                      child: Container(
+                        width: 1000.0,
+                        height: 1000.0,
+                        decoration: BoxDecoration(
+                          color:
+                              FlutterFlowTheme.of(context).secondaryBackground,
+                          borderRadius: BorderRadius.circular(8.0),
+                          border: Border.all(
+                            color: FlutterFlowTheme.of(context).accent3,
+                          ),
                         ),
-                        drawText: false,
+                        child: Padding(
+                          padding: EdgeInsetsDirectional.fromSTEB(
+                              8.0, 8.0, 8.0, 8.0),
+                          child: BarcodeWidget(
+                            data:
+                                'https://xards.flutterflow.app/employeeDetails?employeeRefeence=${FFAppState().selectedEmployee?.id}',
+                            barcode: Barcode.qrCode(),
+                            width: 100.0,
+                            height: 50.0,
+                            color: Colors.black,
+                            backgroundColor: Colors.transparent,
+                            errorBuilder: (_context, _error) => SizedBox(
+                              width: 100.0,
+                              height: 50.0,
+                            ),
+                            drawText: false,
+                          ),
+                        ),
                       ),
+                    );
+                    screenShotController
+                        .captureFromWidget(
+                            InheritedTheme.captureAll(
+                                context, Material(child: container)),
+                            delay: Duration(seconds: 1))
+                        .then((capturedImage) {
+                      ShowCapturedWidget(context, capturedImage);
+                    });
+                  },
+                  child: Container(
+                    width: 45,
+                    height: 30,
+                    color: FlutterFlowTheme.of(context).secondaryBackground,
+                    child: Align(
+                      alignment: AlignmentDirectional.center,
+                      child: Text("Download"),
                     ),
                   ),
-                );
-                screenShotController
-                    .captureFromWidget(
-                        InheritedTheme.captureAll(
-                            context, Material(child: container)),
-                        delay: Duration(seconds: 1))
-                    .then((capturedImage) {
-                  ShowCapturedWidget(context, capturedImage);
-                });
-              },
-              child: Container(
-                width: 100,
-                height: 30,
-                color: FlutterFlowTheme.of(context).secondaryBackground,
-                child: Align(
-                  alignment: AlignmentDirectional.center,
-                  child: Text("Download"),
                 ),
               ),
-            ),
+              Padding(
+                padding: EdgeInsets.fromLTRB(0, 5, 0, 0),
+                child: InkWell(
+                  onTap: () {
+                    var container = ClipRRect(
+                      borderRadius: BorderRadius.circular(8.0),
+                      child: Container(
+                        width: 1000.0,
+                        height: 1000.0,
+                        decoration: BoxDecoration(
+                          color:
+                              FlutterFlowTheme.of(context).secondaryBackground,
+                          borderRadius: BorderRadius.circular(8.0),
+                          border: Border.all(
+                            color: FlutterFlowTheme.of(context).accent3,
+                          ),
+                        ),
+                        child: Padding(
+                          padding: EdgeInsetsDirectional.fromSTEB(
+                              8.0, 8.0, 8.0, 8.0),
+                          child: BarcodeWidget(
+                            data:
+                                'https://xards.flutterflow.app/employeeDetails?employeeRefeence=${FFAppState().selectedEmployee?.id}',
+                            barcode: Barcode.qrCode(),
+                            width: 100.0,
+                            height: 50.0,
+                            color: Colors.black,
+                            backgroundColor: Colors.transparent,
+                            errorBuilder: (_context, _error) => SizedBox(
+                              width: 100.0,
+                              height: 50.0,
+                            ),
+                            drawText: false,
+                          ),
+                        ),
+                      ),
+                    );
+                    screenShotController
+                        .captureFromWidget(
+                            InheritedTheme.captureAll(
+                                context, Material(child: container)),
+                            delay: Duration(seconds: 1))
+                        .then((capturedImage) {
+                      ShowCapturedWidget(context, capturedImage);
+                    });
+                  },
+                  child: Container(
+                    width: 45,
+                    height: 30,
+                    color: FlutterFlowTheme.of(context).secondaryBackground,
+                    child: Align(
+                      alignment: AlignmentDirectional.center,
+                      child: Text("Download"),
+                    ),
+                  ),
+                ),
+              ),
+            ],
           )
         ]),
       ),
