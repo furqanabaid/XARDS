@@ -2411,10 +2411,8 @@ class _AddEmployeeWidgetState extends State<AddEmployeeWidget> {
                                                       .validate()) {
                                                 return;
                                               }
-                                              if (valueOrDefault(
-                                                      currentUserDocument
-                                                          ?.emloyeeCount,
-                                                      0) <
+                                              if (buttonFirmRecord
+                                                      .noOfEmployees <
                                                   21) {
                                                 var employeeRecordReference =
                                                     EmployeeRecord.collection
@@ -2584,10 +2582,12 @@ class _AddEmployeeWidgetState extends State<AddEmployeeWidget> {
                                                         employeeRecordReference);
 
                                                 firestoreBatch.update(
-                                                    currentUserReference!, {
-                                                  'emloyeeCount':
-                                                      FieldValue.increment(1),
-                                                });
+                                                    buttonFirmRecord.reference,
+                                                    {
+                                                      'noOfEmployees':
+                                                          FieldValue.increment(
+                                                              1),
+                                                    });
                                                 Navigator.pop(context);
                                               }
                                             } finally {

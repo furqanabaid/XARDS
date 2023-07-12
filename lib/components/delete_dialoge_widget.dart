@@ -190,52 +190,79 @@ class _DeleteDialogeWidgetState extends State<DeleteDialogeWidget> {
                               Padding(
                                 padding: EdgeInsetsDirectional.fromSTEB(
                                     0.0, 0.0, 5.0, 0.0),
-                                child: FFButtonWidget(
-                                  onPressed: () async {
-                                    final firestoreBatch =
-                                        FirebaseFirestore.instance.batch();
-                                    try {
-                                      if (_model.textController.text == '1') {
-                                        firestoreBatch.delete(widget.empRef!);
-
-                                        firestoreBatch
-                                            .update(currentUserReference!, {
-                                          'emloyeeCount':
-                                              FieldValue.increment(-(1)),
-                                        });
-                                        Navigator.pop(context);
-                                        Navigator.pop(context);
-                                      }
-                                    } finally {
-                                      await firestoreBatch.commit();
-                                    }
-                                  },
-                                  text: FFLocalizations.of(context).getText(
-                                    't0wsn5uy' /* Ja, unwiderruflich löschen!
- */
-                                    ,
-                                  ),
-                                  options: FFButtonOptions(
-                                    height: 40.0,
-                                    padding: EdgeInsetsDirectional.fromSTEB(
-                                        24.0, 0.0, 24.0, 0.0),
-                                    iconPadding: EdgeInsetsDirectional.fromSTEB(
-                                        0.0, 0.0, 0.0, 0.0),
-                                    color: FlutterFlowTheme.of(context).accent3,
-                                    textStyle: FlutterFlowTheme.of(context)
-                                        .titleSmall
-                                        .override(
-                                          fontFamily: 'Poppins',
-                                          color: FlutterFlowTheme.of(context)
-                                              .primaryText,
+                                child: StreamBuilder<FirmRecord>(
+                                  stream: FirmRecord.getDocument(
+                                      FFAppState().selectedFirm!),
+                                  builder: (context, snapshot) {
+                                    // Customize what your widget looks like when it's loading.
+                                    if (!snapshot.hasData) {
+                                      return Center(
+                                        child: SizedBox(
+                                          width: 25.0,
+                                          height: 25.0,
+                                          child: SpinKitRipple(
+                                            color: FlutterFlowTheme.of(context)
+                                                .accent2,
+                                            size: 25.0,
+                                          ),
                                         ),
-                                    elevation: 0.0,
-                                    borderSide: BorderSide(
-                                      color: Colors.transparent,
-                                      width: 1.0,
-                                    ),
-                                    borderRadius: BorderRadius.circular(8.0),
-                                  ),
+                                      );
+                                    }
+                                    final buttonFirmRecord = snapshot.data!;
+                                    return FFButtonWidget(
+                                      onPressed: () async {
+                                        final firestoreBatch =
+                                            FirebaseFirestore.instance.batch();
+                                        try {
+                                          if (_model.textController.text ==
+                                              '1') {
+                                            firestoreBatch
+                                                .delete(widget.empRef!);
+
+                                            firestoreBatch.update(
+                                                buttonFirmRecord.reference, {
+                                              'noOfEmployees':
+                                                  FieldValue.increment(-(1)),
+                                            });
+                                            Navigator.pop(context);
+                                            Navigator.pop(context);
+                                          }
+                                        } finally {
+                                          await firestoreBatch.commit();
+                                        }
+                                      },
+                                      text: FFLocalizations.of(context).getText(
+                                        't0wsn5uy' /* Ja, unwiderruflich löschen!
+ */
+                                        ,
+                                      ),
+                                      options: FFButtonOptions(
+                                        height: 40.0,
+                                        padding: EdgeInsetsDirectional.fromSTEB(
+                                            24.0, 0.0, 24.0, 0.0),
+                                        iconPadding:
+                                            EdgeInsetsDirectional.fromSTEB(
+                                                0.0, 0.0, 0.0, 0.0),
+                                        color: FlutterFlowTheme.of(context)
+                                            .accent3,
+                                        textStyle: FlutterFlowTheme.of(context)
+                                            .titleSmall
+                                            .override(
+                                              fontFamily: 'Poppins',
+                                              color:
+                                                  FlutterFlowTheme.of(context)
+                                                      .primaryText,
+                                            ),
+                                        elevation: 0.0,
+                                        borderSide: BorderSide(
+                                          color: Colors.transparent,
+                                          width: 1.0,
+                                        ),
+                                        borderRadius:
+                                            BorderRadius.circular(8.0),
+                                      ),
+                                    );
+                                  },
                                 ),
                               ),
                               FFButtonWidget(

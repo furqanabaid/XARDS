@@ -31,10 +31,16 @@ class FirmRecord extends FirestoreRecord {
   DocumentReference? get uId => _uId;
   bool hasUId() => _uId != null;
 
+  // "noOfEmployees" field.
+  int? _noOfEmployees;
+  int get noOfEmployees => _noOfEmployees ?? 0;
+  bool hasNoOfEmployees() => _noOfEmployees != null;
+
   void _initializeFields() {
     _firmName = snapshotData['firmName'] as String?;
     _firmLogo = snapshotData['firmLogo'] as String?;
     _uId = snapshotData['uId'] as DocumentReference?;
+    _noOfEmployees = castToType<int>(snapshotData['noOfEmployees']);
   }
 
   static CollectionReference get collection =>
@@ -74,12 +80,14 @@ Map<String, dynamic> createFirmRecordData({
   String? firmName,
   String? firmLogo,
   DocumentReference? uId,
+  int? noOfEmployees,
 }) {
   final firestoreData = mapToFirestore(
     <String, dynamic>{
       'firmName': firmName,
       'firmLogo': firmLogo,
       'uId': uId,
+      'noOfEmployees': noOfEmployees,
     }.withoutNulls,
   );
 
@@ -93,12 +101,13 @@ class FirmRecordDocumentEquality implements Equality<FirmRecord> {
   bool equals(FirmRecord? e1, FirmRecord? e2) {
     return e1?.firmName == e2?.firmName &&
         e1?.firmLogo == e2?.firmLogo &&
-        e1?.uId == e2?.uId;
+        e1?.uId == e2?.uId &&
+        e1?.noOfEmployees == e2?.noOfEmployees;
   }
 
   @override
-  int hash(FirmRecord? e) =>
-      const ListEquality().hash([e?.firmName, e?.firmLogo, e?.uId]);
+  int hash(FirmRecord? e) => const ListEquality()
+      .hash([e?.firmName, e?.firmLogo, e?.uId, e?.noOfEmployees]);
 
   @override
   bool isValidKey(Object? o) => o is FirmRecord;

@@ -129,11 +129,6 @@ class _HomePageWidgetState extends State<HomePageWidget>
     super.initState();
     _model = createModel(context, () => HomePageModel());
 
-    // On page load action.
-    SchedulerBinding.instance.addPostFrameCallback((_) async {
-      setState(() {});
-    });
-
     _model.textController1 ??= TextEditingController();
     _model.textController2 ??= TextEditingController();
 
@@ -1209,45 +1204,35 @@ class _HomePageWidgetState extends State<HomePageWidget>
                                             mainAxisAlignment:
                                                 MainAxisAlignment.end,
                                             children: [
-                                              if (FFAppState().selectedFirm !=
-                                                  null)
-                                                StreamBuilder<
-                                                    List<EmployeeRecord>>(
-                                                  stream: queryEmployeeRecord(
-                                                    queryBuilder: (employeeRecord) =>
-                                                        employeeRecord.where(
-                                                            'employeeOfFirm',
-                                                            isEqualTo: FFAppState()
-                                                                .selectedFirm),
-                                                  ),
-                                                  builder: (context, snapshot) {
-                                                    // Customize what your widget looks like when it's loading.
-                                                    if (!snapshot.hasData) {
-                                                      return Center(
-                                                        child: SizedBox(
-                                                          width: 25.0,
-                                                          height: 25.0,
-                                                          child: SpinKitRipple(
-                                                            color: FlutterFlowTheme
-                                                                    .of(context)
-                                                                .accent2,
-                                                            size: 25.0,
-                                                          ),
+                                              StreamBuilder<FirmRecord>(
+                                                stream: FirmRecord.getDocument(
+                                                    FFAppState().selectedFirm!),
+                                                builder: (context, snapshot) {
+                                                  // Customize what your widget looks like when it's loading.
+                                                  if (!snapshot.hasData) {
+                                                    return Center(
+                                                      child: SizedBox(
+                                                        width: 25.0,
+                                                        height: 25.0,
+                                                        child: SpinKitRipple(
+                                                          color: FlutterFlowTheme
+                                                                  .of(context)
+                                                              .accent2,
+                                                          size: 25.0,
                                                         ),
-                                                      );
-                                                    }
-                                                    List<EmployeeRecord>
-                                                        textEmployeeRecordList =
-                                                        snapshot.data!;
-                                                    return Text(
-                                                      'Visitenkarten-Anzahl: ${textEmployeeRecordList.length.toString()}/20',
-                                                      style:
-                                                          FlutterFlowTheme.of(
-                                                                  context)
-                                                              .bodyMedium,
+                                                      ),
                                                     );
-                                                  },
-                                                ),
+                                                  }
+                                                  final textFirmRecord =
+                                                      snapshot.data!;
+                                                  return Text(
+                                                    'Visitenkarten-Anzahl: ${textFirmRecord.noOfEmployees.toString()}/20',
+                                                    style: FlutterFlowTheme.of(
+                                                            context)
+                                                        .bodyMedium,
+                                                  );
+                                                },
+                                              ),
                                             ],
                                           ),
                                         ),
@@ -2177,93 +2162,121 @@ class _HomePageWidgetState extends State<HomePageWidget>
                                             padding:
                                                 EdgeInsetsDirectional.fromSTEB(
                                                     10.0, 0.0, 0.0, 0.0),
-                                            child: FlutterFlowIconButton(
-                                              borderColor: Colors.transparent,
-                                              borderRadius: 30.0,
-                                              borderWidth: 1.0,
-                                              buttonSize: 50.0,
-                                              fillColor:
-                                                  FlutterFlowTheme.of(context)
-                                                      .primaryBackground,
-                                              icon: Icon(
-                                                Icons.add,
-                                                color:
-                                                    FlutterFlowTheme.of(context)
-                                                        .accent2,
-                                                size: 19.0,
-                                              ),
-                                              onPressed: () async {
-                                                if ((FFAppState()
-                                                            .selectedFirm !=
-                                                        null) &&
-                                                    (valueOrDefault(
-                                                            currentUserDocument
-                                                                ?.emloyeeCount,
-                                                            0) <
-                                                        21)) {
-                                                  setState(() {
-                                                    FFAppState().isCircle =
-                                                        false;
-                                                    FFAppState().shapeIndex = 3;
-                                                  });
-                                                  setState(() {
-                                                    FFAppState()
-                                                        .addEmployeeImage = '';
-                                                  });
-                                                  await showModalBottomSheet(
-                                                    isScrollControlled: true,
-                                                    backgroundColor:
-                                                        Colors.transparent,
-                                                    enableDrag: false,
-                                                    context: context,
-                                                    builder: (context) {
-                                                      return GestureDetector(
-                                                        onTap: () => FocusScope
-                                                                .of(context)
-                                                            .requestFocus(_model
-                                                                .unfocusNode),
-                                                        child: Padding(
-                                                          padding: MediaQuery
-                                                              .viewInsetsOf(
-                                                                  context),
-                                                          child: Container(
-                                                            height: MediaQuery
-                                                                        .sizeOf(
-                                                                            context)
-                                                                    .height *
-                                                                1.0,
-                                                            child:
-                                                                AddEmployeeWidget(
-                                                              firmRef: FFAppState()
-                                                                  .selectedFirm,
-                                                            ),
-                                                          ),
-                                                        ),
-                                                      );
-                                                    },
-                                                  ).then((value) =>
-                                                      setState(() {}));
-                                                } else {
-                                                  await showDialog(
-                                                    context: context,
-                                                    builder:
-                                                        (alertDialogContext) {
-                                                      return AlertDialog(
-                                                        title: Text('Error!'),
-                                                        content: Text(
-                                                            'Firma nicht ausgewählt oder Limit erreicht.'),
-                                                        actions: [
-                                                          TextButton(
-                                                            onPressed: () =>
-                                                                Navigator.pop(
-                                                                    alertDialogContext),
-                                                            child: Text('Ok'),
-                                                          ),
-                                                        ],
-                                                      );
-                                                    },
+                                            child: StreamBuilder<FirmRecord>(
+                                              stream: FirmRecord.getDocument(
+                                                  FFAppState().selectedFirm!),
+                                              builder: (context, snapshot) {
+                                                // Customize what your widget looks like when it's loading.
+                                                if (!snapshot.hasData) {
+                                                  return Center(
+                                                    child: SizedBox(
+                                                      width: 25.0,
+                                                      height: 25.0,
+                                                      child: SpinKitRipple(
+                                                        color:
+                                                            FlutterFlowTheme.of(
+                                                                    context)
+                                                                .accent2,
+                                                        size: 25.0,
+                                                      ),
+                                                    ),
                                                   );
                                                 }
+                                                final iconButtonFirmRecord =
+                                                    snapshot.data!;
+                                                return FlutterFlowIconButton(
+                                                  borderColor:
+                                                      Colors.transparent,
+                                                  borderRadius: 30.0,
+                                                  borderWidth: 1.0,
+                                                  buttonSize: 50.0,
+                                                  fillColor:
+                                                      FlutterFlowTheme.of(
+                                                              context)
+                                                          .primaryBackground,
+                                                  icon: Icon(
+                                                    Icons.add,
+                                                    color: FlutterFlowTheme.of(
+                                                            context)
+                                                        .accent2,
+                                                    size: 19.0,
+                                                  ),
+                                                  onPressed: () async {
+                                                    if ((FFAppState()
+                                                                .selectedFirm !=
+                                                            null) &&
+                                                        (iconButtonFirmRecord
+                                                                .noOfEmployees <
+                                                            21)) {
+                                                      setState(() {
+                                                        FFAppState().isCircle =
+                                                            false;
+                                                        FFAppState()
+                                                            .shapeIndex = 3;
+                                                      });
+                                                      setState(() {
+                                                        FFAppState()
+                                                            .addEmployeeImage = '';
+                                                      });
+                                                      await showModalBottomSheet(
+                                                        isScrollControlled:
+                                                            true,
+                                                        backgroundColor:
+                                                            Colors.transparent,
+                                                        enableDrag: false,
+                                                        context: context,
+                                                        builder: (context) {
+                                                          return GestureDetector(
+                                                            onTap: () => FocusScope
+                                                                    .of(context)
+                                                                .requestFocus(_model
+                                                                    .unfocusNode),
+                                                            child: Padding(
+                                                              padding: MediaQuery
+                                                                  .viewInsetsOf(
+                                                                      context),
+                                                              child: Container(
+                                                                height: MediaQuery.sizeOf(
+                                                                            context)
+                                                                        .height *
+                                                                    1.0,
+                                                                child:
+                                                                    AddEmployeeWidget(
+                                                                  firmRef:
+                                                                      FFAppState()
+                                                                          .selectedFirm,
+                                                                ),
+                                                              ),
+                                                            ),
+                                                          );
+                                                        },
+                                                      ).then((value) =>
+                                                          setState(() {}));
+                                                    } else {
+                                                      await showDialog(
+                                                        context: context,
+                                                        builder:
+                                                            (alertDialogContext) {
+                                                          return AlertDialog(
+                                                            title:
+                                                                Text('Error!'),
+                                                            content: Text(
+                                                                'Firma nicht ausgewählt oder Limit erreicht.'),
+                                                            actions: [
+                                                              TextButton(
+                                                                onPressed: () =>
+                                                                    Navigator.pop(
+                                                                        alertDialogContext),
+                                                                child:
+                                                                    Text('Ok'),
+                                                              ),
+                                                            ],
+                                                          );
+                                                        },
+                                                      );
+                                                    }
+                                                  },
+                                                );
                                               },
                                             ),
                                           ),

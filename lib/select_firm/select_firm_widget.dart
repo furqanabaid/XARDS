@@ -135,6 +135,7 @@ class _SelectFirmWidgetState extends State<SelectFirmWidget> {
                                                 _model.textController.text,
                                             firmLogo: _model.uploadedFileUrl,
                                             uId: currentUserReference,
+                                            noOfEmployees: 0,
                                           ));
                                           _model.firmCreated =
                                               FirmRecord.getDocumentFromData(
@@ -144,6 +145,7 @@ class _SelectFirmWidgetState extends State<SelectFirmWidget> {
                                                     firmLogo:
                                                         _model.uploadedFileUrl,
                                                     uId: currentUserReference,
+                                                    noOfEmployees: 0,
                                                   ),
                                                   firmRecordReference);
                                           setState(() {

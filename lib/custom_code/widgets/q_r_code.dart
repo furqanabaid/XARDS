@@ -9,6 +9,8 @@ import 'package:flutter/material.dart';
 // Begin custom widget code
 // DO NOT REMOVE OR MODIFY THE CODE ABOVE!
 
+import 'index.dart'; // Imports other custom widgets
+
 import 'package:barcode_widget/barcode_widget.dart';
 
 import 'index.dart'; // Imports other custom widgets
@@ -78,6 +80,7 @@ class _QRCodeState extends State<QRCode> {
             ),
           ),
           Row(
+            mainAxisAlignment: MainAxisAlignment.spaceAround,
             children: [
               Padding(
                 padding: EdgeInsets.fromLTRB(0, 5, 0, 0),
@@ -122,7 +125,7 @@ class _QRCodeState extends State<QRCode> {
                                 context, Material(child: container)),
                             delay: Duration(seconds: 1))
                         .then((capturedImage) {
-                      ShowCapturedWidget(context, capturedImage);
+                      ShowCapturedWidget(context, capturedImage, "SVG");
                     });
                   },
                   child: Container(
@@ -131,7 +134,7 @@ class _QRCodeState extends State<QRCode> {
                     color: FlutterFlowTheme.of(context).secondaryBackground,
                     child: Align(
                       alignment: AlignmentDirectional.center,
-                      child: Text("Download"),
+                      child: Text("SVG"),
                     ),
                   ),
                 ),
@@ -179,7 +182,7 @@ class _QRCodeState extends State<QRCode> {
                                 context, Material(child: container)),
                             delay: Duration(seconds: 1))
                         .then((capturedImage) {
-                      ShowCapturedWidget(context, capturedImage);
+                      ShowCapturedWidget(context, capturedImage, "PNG");
                     });
                   },
                   child: Container(
@@ -188,7 +191,7 @@ class _QRCodeState extends State<QRCode> {
                     color: FlutterFlowTheme.of(context).secondaryBackground,
                     child: Align(
                       alignment: AlignmentDirectional.center,
-                      child: Text("Download"),
+                      child: Text("PNG"),
                     ),
                   ),
                 ),
@@ -202,7 +205,13 @@ class _QRCodeState extends State<QRCode> {
 }
 
 Future<dynamic> ShowCapturedWidget(
-    BuildContext context, Uint8List capturedImage) async {
-  await WebImageDownloader.downloadImageFromUInt8List(
-      uInt8List: capturedImage, imageQuality: 1, imageType: ImageType.png);
+    BuildContext context, Uint8List capturedImage, String typeToImage) async {
+  if (typeToImage == "SVG") {
+    print("HI");
+    await WebImageDownloader.downloadImageFromUInt8List(
+        uInt8List: capturedImage, imageQuality: 1, imageType: ImageType.svg);
+  } else {
+    await WebImageDownloader.downloadImageFromUInt8List(
+        uInt8List: capturedImage, imageQuality: 1, imageType: ImageType.png);
+  }
 }
