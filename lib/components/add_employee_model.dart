@@ -25,9 +25,9 @@ class AddEmployeeModel extends FlutterFlowModel {
 
   final formKey = GlobalKey<FormState>();
   // State field(s) for name widget.
-  TextEditingController? nameController1;
-  String? Function(BuildContext, String?)? nameController1Validator;
-  String? _nameController1Validator(BuildContext context, String? val) {
+  TextEditingController? nameController;
+  String? Function(BuildContext, String?)? nameControllerValidator;
+  String? _nameControllerValidator(BuildContext context, String? val) {
     if (val == null || val.isEmpty) {
       return FFLocalizations.of(context).getText(
         'bzlqmong' /* Field is required */,
@@ -37,14 +37,14 @@ class AddEmployeeModel extends FlutterFlowModel {
     return null;
   }
 
-  // State field(s) for name widget.
-  TextEditingController? nameController2;
-  String? Function(BuildContext, String?)? nameController2Validator;
   bool isDataUploading = false;
   FFUploadedFile uploadedLocalFile =
       FFUploadedFile(bytes: Uint8List.fromList([]));
   String uploadedFileUrl = '';
 
+  // State field(s) for TextField widget.
+  TextEditingController? textController2;
+  String? Function(BuildContext, String?)? textController2Validator;
   // State field(s) for TextField widget.
   TextEditingController? textController3;
   String? Function(BuildContext, String?)? textController3Validator;
@@ -57,9 +57,9 @@ class AddEmployeeModel extends FlutterFlowModel {
   // State field(s) for TextField widget.
   TextEditingController? textController6;
   String? Function(BuildContext, String?)? textController6Validator;
-  // State field(s) for TextField widget.
-  TextEditingController? textController7;
-  String? Function(BuildContext, String?)? textController7Validator;
+  // State field(s) for email widget.
+  TextEditingController? emailController;
+  String? Function(BuildContext, String?)? emailControllerValidator;
   // State field(s) for TextField widget.
   TextEditingController? textController8;
   String? Function(BuildContext, String?)? textController8Validator;
@@ -106,17 +106,17 @@ class AddEmployeeModel extends FlutterFlowModel {
   /// Initialization and disposal methods.
 
   void initState(BuildContext context) {
-    nameController1Validator = _nameController1Validator;
+    nameControllerValidator = _nameControllerValidator;
   }
 
   void dispose() {
-    nameController1?.dispose();
-    nameController2?.dispose();
+    nameController?.dispose();
+    textController2?.dispose();
     textController3?.dispose();
     textController4?.dispose();
     textController5?.dispose();
     textController6?.dispose();
-    textController7?.dispose();
+    emailController?.dispose();
     textController8?.dispose();
     textController9?.dispose();
     textController10?.dispose();

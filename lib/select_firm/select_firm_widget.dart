@@ -150,7 +150,7 @@ class _SelectFirmWidgetState extends State<SelectFirmWidget> {
                                                   firmRecordReference);
                                           setState(() {
                                             FFAppState().selectedFirm =
-                                                _model.firmCreated!.reference;
+                                                _model.firmCreated?.reference;
                                             FFAppState().selectedEmployee =
                                                 null;
                                           });

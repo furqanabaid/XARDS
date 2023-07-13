@@ -34,14 +34,14 @@ class EditEmployeeModel extends FlutterFlowModel {
     return null;
   }
 
-  // State field(s) for name widget.
-  TextEditingController? nameController2;
-  String? Function(BuildContext, String?)? nameController2Validator;
   bool isDataUploading = false;
   FFUploadedFile uploadedLocalFile =
       FFUploadedFile(bytes: Uint8List.fromList([]));
   String uploadedFileUrl = '';
 
+  // State field(s) for TextField widget.
+  TextEditingController? textController2;
+  String? Function(BuildContext, String?)? textController2Validator;
   // State field(s) for TextField widget.
   TextEditingController? textController3;
   String? Function(BuildContext, String?)? textController3Validator;
@@ -54,9 +54,9 @@ class EditEmployeeModel extends FlutterFlowModel {
   // State field(s) for TextField widget.
   TextEditingController? textController6;
   String? Function(BuildContext, String?)? textController6Validator;
-  // State field(s) for TextField widget.
-  TextEditingController? textController7;
-  String? Function(BuildContext, String?)? textController7Validator;
+  // State field(s) for name widget.
+  TextEditingController? nameController2;
+  String? Function(BuildContext, String?)? nameController2Validator;
   // State field(s) for TextField widget.
   TextEditingController? textController8;
   String? Function(BuildContext, String?)? textController8Validator;
@@ -106,12 +106,12 @@ class EditEmployeeModel extends FlutterFlowModel {
 
   void dispose() {
     nameController1?.dispose();
-    nameController2?.dispose();
+    textController2?.dispose();
     textController3?.dispose();
     textController4?.dispose();
     textController5?.dispose();
     textController6?.dispose();
-    textController7?.dispose();
+    nameController2?.dispose();
     textController8?.dispose();
     textController9?.dispose();
     textController10?.dispose();

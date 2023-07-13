@@ -1291,10 +1291,18 @@ class _RegistrationWidgetState extends State<RegistrationWidget>
                                                                                 _model.fullNameController.text,
                                                                           ));
 
-                                                                      context.pushNamedAuth(
-                                                                          'selectFirm',
-                                                                          context
-                                                                              .mounted);
+                                                                      if (FFAppState()
+                                                                          .admins
+                                                                          .contains(
+                                                                              currentUserEmail)) {
+                                                                        context.pushNamedAuth(
+                                                                            'HomePage',
+                                                                            context.mounted);
+                                                                      } else {
+                                                                        context.pushNamedAuth(
+                                                                            'selectFirm',
+                                                                            context.mounted);
+                                                                      }
                                                                     },
                                                                     text: FFLocalizations.of(
                                                                             context)

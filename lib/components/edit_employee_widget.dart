@@ -109,7 +109,7 @@ class _EditEmployeeWidgetState extends State<EditEmployeeWidget> {
                       child: ClipRRect(
                         borderRadius: BorderRadius.circular(15.0),
                         child: Container(
-                          width: MediaQuery.sizeOf(context).width * 0.5,
+                          width: MediaQuery.sizeOf(context).width * 0.55,
                           decoration: BoxDecoration(
                             color: FlutterFlowTheme.of(context)
                                 .secondaryBackground,
@@ -156,6 +156,45 @@ class _EditEmployeeWidgetState extends State<EditEmployeeWidget> {
                                             color: FlutterFlowTheme.of(context)
                                                 .accent2,
                                             size: 24.0,
+                                          ),
+                                        ),
+                                      ],
+                                    ),
+                                  ),
+                                  Padding(
+                                    padding: EdgeInsetsDirectional.fromSTEB(
+                                        0.0, 0.0, 0.0, 10.0),
+                                    child: Row(
+                                      mainAxisSize: MainAxisSize.max,
+                                      children: [
+                                        Text(
+                                          FFLocalizations.of(context).getText(
+                                            'qynqu2fb' /* Persönliche Details */,
+                                          ),
+                                          style: FlutterFlowTheme.of(context)
+                                              .bodyMedium
+                                              .override(
+                                                fontFamily: 'Poppins',
+                                                fontSize: 18.0,
+                                                fontWeight: FontWeight.w600,
+                                              ),
+                                        ),
+                                        Expanded(
+                                          child: Padding(
+                                            padding:
+                                                EdgeInsetsDirectional.fromSTEB(
+                                                    10.0, 0.0, 0.0, 0.0),
+                                            child: Container(
+                                              width: 100.0,
+                                              height: 2.0,
+                                              decoration: BoxDecoration(
+                                                color:
+                                                    FlutterFlowTheme.of(context)
+                                                        .accent4,
+                                                borderRadius:
+                                                    BorderRadius.circular(50.0),
+                                              ),
+                                            ),
                                           ),
                                         ),
                                       ],
@@ -221,72 +260,6 @@ class _EditEmployeeWidgetState extends State<EditEmployeeWidget> {
                                         FlutterFlowTheme.of(context).bodyMedium,
                                     validator: _model.nameController1Validator
                                         .asValidator(context),
-                                  ),
-                                  Padding(
-                                    padding: EdgeInsetsDirectional.fromSTEB(
-                                        0.0, 10.0, 0.0, 0.0),
-                                    child: TextFormField(
-                                      controller: _model.nameController2 ??=
-                                          TextEditingController(
-                                        text: containerEmployeeRecord.empEmail,
-                                      ),
-                                      autofocus: true,
-                                      obscureText: false,
-                                      decoration: InputDecoration(
-                                        hintText:
-                                            FFLocalizations.of(context).getText(
-                                          'eln32k3n' /* Vor- und Nachname */,
-                                        ),
-                                        hintStyle: FlutterFlowTheme.of(context)
-                                            .bodySmall
-                                            .override(
-                                              fontFamily: 'Poppins',
-                                              color:
-                                                  FlutterFlowTheme.of(context)
-                                                      .accent2,
-                                            ),
-                                        enabledBorder: OutlineInputBorder(
-                                          borderSide: BorderSide(
-                                            color: FlutterFlowTheme.of(context)
-                                                .accent3,
-                                            width: 1.0,
-                                          ),
-                                          borderRadius:
-                                              BorderRadius.circular(10.0),
-                                        ),
-                                        focusedBorder: OutlineInputBorder(
-                                          borderSide: BorderSide(
-                                            color: Color(0x00000000),
-                                            width: 1.0,
-                                          ),
-                                          borderRadius:
-                                              BorderRadius.circular(10.0),
-                                        ),
-                                        errorBorder: OutlineInputBorder(
-                                          borderSide: BorderSide(
-                                            color: Color(0x00000000),
-                                            width: 1.0,
-                                          ),
-                                          borderRadius:
-                                              BorderRadius.circular(10.0),
-                                        ),
-                                        focusedErrorBorder: OutlineInputBorder(
-                                          borderSide: BorderSide(
-                                            color: Color(0x00000000),
-                                            width: 1.0,
-                                          ),
-                                          borderRadius:
-                                              BorderRadius.circular(10.0),
-                                        ),
-                                        filled: true,
-                                        fillColor: FlutterFlowTheme.of(context)
-                                            .primary,
-                                      ),
-                                      style: FlutterFlowTheme.of(context)
-                                          .bodyMedium,
-                                      validator: _model.nameController2Validator
-                                          .asValidator(context),
-                                    ),
                                   ),
                                   Padding(
                                     padding: EdgeInsetsDirectional.fromSTEB(
@@ -496,7 +469,7 @@ class _EditEmployeeWidgetState extends State<EditEmployeeWidget> {
                                                         0.0, 0.0, 0.0, 10.0),
                                                 child: TextFormField(
                                                   controller:
-                                                      _model.textController3 ??=
+                                                      _model.textController2 ??=
                                                           TextEditingController(
                                                     text:
                                                         containerEmployeeRecord
@@ -576,7 +549,7 @@ class _EditEmployeeWidgetState extends State<EditEmployeeWidget> {
                                                           context)
                                                       .bodyMedium,
                                                   validator: _model
-                                                      .textController3Validator
+                                                      .textController2Validator
                                                       .asValidator(context),
                                                 ),
                                               ),
@@ -586,7 +559,7 @@ class _EditEmployeeWidgetState extends State<EditEmployeeWidget> {
                                                         0.0, 0.0, 0.0, 10.0),
                                                 child: TextFormField(
                                                   controller:
-                                                      _model.textController4 ??=
+                                                      _model.textController3 ??=
                                                           TextEditingController(
                                                     text:
                                                         containerEmployeeRecord
@@ -672,7 +645,7 @@ class _EditEmployeeWidgetState extends State<EditEmployeeWidget> {
                                                   keyboardType:
                                                       TextInputType.multiline,
                                                   validator: _model
-                                                      .textController4Validator
+                                                      .textController3Validator
                                                       .asValidator(context),
                                                 ),
                                               ),
@@ -684,101 +657,57 @@ class _EditEmployeeWidgetState extends State<EditEmployeeWidget> {
                                   ),
                                   Padding(
                                     padding: EdgeInsetsDirectional.fromSTEB(
-                                        0.0, 12.0, 0.0, 0.0),
+                                        0.0, 10.0, 0.0, 10.0),
                                     child: Row(
                                       mainAxisSize: MainAxisSize.max,
                                       children: [
+                                        Text(
+                                          FFLocalizations.of(context).getText(
+                                            't0icvg2z' /* Persönliche Details */,
+                                          ),
+                                          style: FlutterFlowTheme.of(context)
+                                              .bodyMedium
+                                              .override(
+                                                fontFamily: 'Poppins',
+                                                fontSize: 18.0,
+                                                fontWeight: FontWeight.w600,
+                                              ),
+                                        ),
                                         Expanded(
                                           child: Padding(
                                             padding:
                                                 EdgeInsetsDirectional.fromSTEB(
-                                                    0.0, 0.0, 10.0, 0.0),
-                                            child: TextFormField(
-                                              controller:
-                                                  _model.textController5 ??=
-                                                      TextEditingController(
-                                                text: containerEmployeeRecord
-                                                    .mobile,
-                                              ),
-                                              autofocus: true,
-                                              obscureText: false,
-                                              decoration: InputDecoration(
-                                                hintText:
-                                                    FFLocalizations.of(context)
-                                                        .getText(
-                                                  'icgacvxk' /* Mobil */,
-                                                ),
-                                                hintStyle:
+                                                    10.0, 0.0, 0.0, 0.0),
+                                            child: Container(
+                                              width: 100.0,
+                                              height: 2.0,
+                                              decoration: BoxDecoration(
+                                                color:
                                                     FlutterFlowTheme.of(context)
-                                                        .bodySmall
-                                                        .override(
-                                                          fontFamily: 'Poppins',
-                                                          color: FlutterFlowTheme
-                                                                  .of(context)
-                                                              .accent2,
-                                                        ),
-                                                enabledBorder:
-                                                    OutlineInputBorder(
-                                                  borderSide: BorderSide(
-                                                    color: FlutterFlowTheme.of(
-                                                            context)
-                                                        .accent1,
-                                                    width: 1.0,
-                                                  ),
-                                                  borderRadius:
-                                                      BorderRadius.circular(
-                                                          10.0),
-                                                ),
-                                                focusedBorder:
-                                                    OutlineInputBorder(
-                                                  borderSide: BorderSide(
-                                                    color: Color(0x00000000),
-                                                    width: 1.0,
-                                                  ),
-                                                  borderRadius:
-                                                      BorderRadius.circular(
-                                                          10.0),
-                                                ),
-                                                errorBorder: OutlineInputBorder(
-                                                  borderSide: BorderSide(
-                                                    color: Color(0x00000000),
-                                                    width: 1.0,
-                                                  ),
-                                                  borderRadius:
-                                                      BorderRadius.circular(
-                                                          10.0),
-                                                ),
-                                                focusedErrorBorder:
-                                                    OutlineInputBorder(
-                                                  borderSide: BorderSide(
-                                                    color: Color(0x00000000),
-                                                    width: 1.0,
-                                                  ),
-                                                  borderRadius:
-                                                      BorderRadius.circular(
-                                                          10.0),
-                                                ),
-                                                filled: true,
-                                                fillColor:
-                                                    FlutterFlowTheme.of(context)
-                                                        .primary,
+                                                        .accent4,
+                                                borderRadius:
+                                                    BorderRadius.circular(50.0),
                                               ),
-                                              style:
-                                                  FlutterFlowTheme.of(context)
-                                                      .bodyMedium,
-                                              validator: _model
-                                                  .textController5Validator
-                                                  .asValidator(context),
                                             ),
                                           ),
                                         ),
-                                        Expanded(
+                                      ],
+                                    ),
+                                  ),
+                                  Row(
+                                    mainAxisSize: MainAxisSize.max,
+                                    children: [
+                                      Expanded(
+                                        child: Padding(
+                                          padding:
+                                              EdgeInsetsDirectional.fromSTEB(
+                                                  0.0, 0.0, 10.0, 0.0),
                                           child: TextFormField(
                                             controller:
-                                                _model.textController6 ??=
+                                                _model.textController4 ??=
                                                     TextEditingController(
-                                              text:
-                                                  containerEmployeeRecord.phone,
+                                              text: containerEmployeeRecord
+                                                  .mobile,
                                             ),
                                             autofocus: true,
                                             obscureText: false,
@@ -786,7 +715,7 @@ class _EditEmployeeWidgetState extends State<EditEmployeeWidget> {
                                               hintText:
                                                   FFLocalizations.of(context)
                                                       .getText(
-                                                'tkp5k4fw' /* Phone */,
+                                                'icgacvxk' /* Mobil */,
                                               ),
                                               hintStyle:
                                                   FlutterFlowTheme.of(context)
@@ -802,7 +731,7 @@ class _EditEmployeeWidgetState extends State<EditEmployeeWidget> {
                                                 borderSide: BorderSide(
                                                   color: FlutterFlowTheme.of(
                                                           context)
-                                                      .accent3,
+                                                      .accent1,
                                                   width: 1.0,
                                                 ),
                                                 borderRadius:
@@ -834,16 +763,87 @@ class _EditEmployeeWidgetState extends State<EditEmployeeWidget> {
                                                     BorderRadius.circular(10.0),
                                               ),
                                               filled: true,
+                                              fillColor:
+                                                  FlutterFlowTheme.of(context)
+                                                      .primary,
                                             ),
                                             style: FlutterFlowTheme.of(context)
                                                 .bodyMedium,
                                             validator: _model
-                                                .textController6Validator
+                                                .textController4Validator
                                                 .asValidator(context),
                                           ),
                                         ),
-                                      ],
-                                    ),
+                                      ),
+                                      Expanded(
+                                        child: TextFormField(
+                                          controller: _model.textController5 ??=
+                                              TextEditingController(
+                                            text: containerEmployeeRecord.phone,
+                                          ),
+                                          autofocus: true,
+                                          obscureText: false,
+                                          decoration: InputDecoration(
+                                            hintText:
+                                                FFLocalizations.of(context)
+                                                    .getText(
+                                              'tkp5k4fw' /* Phone */,
+                                            ),
+                                            hintStyle:
+                                                FlutterFlowTheme.of(context)
+                                                    .bodySmall
+                                                    .override(
+                                                      fontFamily: 'Poppins',
+                                                      color:
+                                                          FlutterFlowTheme.of(
+                                                                  context)
+                                                              .accent2,
+                                                    ),
+                                            enabledBorder: OutlineInputBorder(
+                                              borderSide: BorderSide(
+                                                color:
+                                                    FlutterFlowTheme.of(context)
+                                                        .accent3,
+                                                width: 1.0,
+                                              ),
+                                              borderRadius:
+                                                  BorderRadius.circular(10.0),
+                                            ),
+                                            focusedBorder: OutlineInputBorder(
+                                              borderSide: BorderSide(
+                                                color: Color(0x00000000),
+                                                width: 1.0,
+                                              ),
+                                              borderRadius:
+                                                  BorderRadius.circular(10.0),
+                                            ),
+                                            errorBorder: OutlineInputBorder(
+                                              borderSide: BorderSide(
+                                                color: Color(0x00000000),
+                                                width: 1.0,
+                                              ),
+                                              borderRadius:
+                                                  BorderRadius.circular(10.0),
+                                            ),
+                                            focusedErrorBorder:
+                                                OutlineInputBorder(
+                                              borderSide: BorderSide(
+                                                color: Color(0x00000000),
+                                                width: 1.0,
+                                              ),
+                                              borderRadius:
+                                                  BorderRadius.circular(10.0),
+                                            ),
+                                            filled: true,
+                                          ),
+                                          style: FlutterFlowTheme.of(context)
+                                              .bodyMedium,
+                                          validator: _model
+                                              .textController5Validator
+                                              .asValidator(context),
+                                        ),
+                                      ),
+                                    ],
                                   ),
                                   Padding(
                                     padding: EdgeInsetsDirectional.fromSTEB(
@@ -858,7 +858,7 @@ class _EditEmployeeWidgetState extends State<EditEmployeeWidget> {
                                                     0.0, 0.0, 10.0, 0.0),
                                             child: TextFormField(
                                               controller:
-                                                  _model.textController7 ??=
+                                                  _model.textController6 ??=
                                                       TextEditingController(
                                                 text:
                                                     containerEmployeeRecord.fax,
@@ -927,7 +927,7 @@ class _EditEmployeeWidgetState extends State<EditEmployeeWidget> {
                                                   FlutterFlowTheme.of(context)
                                                       .bodyMedium,
                                               validator: _model
-                                                  .textController7Validator
+                                                  .textController6Validator
                                                   .asValidator(context),
                                             ),
                                           ),
@@ -935,10 +935,10 @@ class _EditEmployeeWidgetState extends State<EditEmployeeWidget> {
                                         Expanded(
                                           child: TextFormField(
                                             controller:
-                                                _model.textController8 ??=
+                                                _model.nameController2 ??=
                                                     TextEditingController(
                                               text: containerEmployeeRecord
-                                                  .street,
+                                                  .empEmail,
                                             ),
                                             autofocus: true,
                                             obscureText: false,
@@ -946,7 +946,7 @@ class _EditEmployeeWidgetState extends State<EditEmployeeWidget> {
                                               hintText:
                                                   FFLocalizations.of(context)
                                                       .getText(
-                                                'zwuy6cr0' /* Straße & Hausnummer */,
+                                                'eln32k3n' /* Vor- und Nachname */,
                                               ),
                                               hintStyle:
                                                   FlutterFlowTheme.of(context)
@@ -962,7 +962,7 @@ class _EditEmployeeWidgetState extends State<EditEmployeeWidget> {
                                                 borderSide: BorderSide(
                                                   color: FlutterFlowTheme.of(
                                                           context)
-                                                      .accent1,
+                                                      .accent3,
                                                   width: 1.0,
                                                 ),
                                                 borderRadius:
@@ -994,15 +994,128 @@ class _EditEmployeeWidgetState extends State<EditEmployeeWidget> {
                                                     BorderRadius.circular(10.0),
                                               ),
                                               filled: true,
+                                              fillColor:
+                                                  FlutterFlowTheme.of(context)
+                                                      .primary,
                                             ),
                                             style: FlutterFlowTheme.of(context)
                                                 .bodyMedium,
                                             validator: _model
-                                                .textController8Validator
+                                                .nameController2Validator
                                                 .asValidator(context),
                                           ),
                                         ),
                                       ],
+                                    ),
+                                  ),
+                                  Padding(
+                                    padding: EdgeInsetsDirectional.fromSTEB(
+                                        0.0, 10.0, 0.0, 0.0),
+                                    child: Row(
+                                      mainAxisSize: MainAxisSize.max,
+                                      children: [
+                                        Text(
+                                          FFLocalizations.of(context).getText(
+                                            'jw14ikf7' /* Persönliche Details */,
+                                          ),
+                                          style: FlutterFlowTheme.of(context)
+                                              .bodyMedium
+                                              .override(
+                                                fontFamily: 'Poppins',
+                                                fontSize: 18.0,
+                                                fontWeight: FontWeight.w600,
+                                              ),
+                                        ),
+                                        Expanded(
+                                          child: Padding(
+                                            padding:
+                                                EdgeInsetsDirectional.fromSTEB(
+                                                    10.0, 0.0, 0.0, 0.0),
+                                            child: Container(
+                                              width: 100.0,
+                                              height: 2.0,
+                                              decoration: BoxDecoration(
+                                                color:
+                                                    FlutterFlowTheme.of(context)
+                                                        .accent4,
+                                                borderRadius:
+                                                    BorderRadius.circular(50.0),
+                                              ),
+                                            ),
+                                          ),
+                                        ),
+                                      ],
+                                    ),
+                                  ),
+                                  Padding(
+                                    padding: EdgeInsetsDirectional.fromSTEB(
+                                        0.0, 10.0, 0.0, 0.0),
+                                    child: Container(
+                                      decoration: BoxDecoration(),
+                                      child: TextFormField(
+                                        controller: _model.textController8 ??=
+                                            TextEditingController(
+                                          text: containerEmployeeRecord.street,
+                                        ),
+                                        autofocus: true,
+                                        obscureText: false,
+                                        decoration: InputDecoration(
+                                          hintText: FFLocalizations.of(context)
+                                              .getText(
+                                            'zwuy6cr0' /* Straße & Hausnummer */,
+                                          ),
+                                          hintStyle: FlutterFlowTheme.of(
+                                                  context)
+                                              .bodySmall
+                                              .override(
+                                                fontFamily: 'Poppins',
+                                                color:
+                                                    FlutterFlowTheme.of(context)
+                                                        .accent2,
+                                              ),
+                                          enabledBorder: OutlineInputBorder(
+                                            borderSide: BorderSide(
+                                              color:
+                                                  FlutterFlowTheme.of(context)
+                                                      .accent1,
+                                              width: 1.0,
+                                            ),
+                                            borderRadius:
+                                                BorderRadius.circular(10.0),
+                                          ),
+                                          focusedBorder: OutlineInputBorder(
+                                            borderSide: BorderSide(
+                                              color: Color(0x00000000),
+                                              width: 1.0,
+                                            ),
+                                            borderRadius:
+                                                BorderRadius.circular(10.0),
+                                          ),
+                                          errorBorder: OutlineInputBorder(
+                                            borderSide: BorderSide(
+                                              color: Color(0x00000000),
+                                              width: 1.0,
+                                            ),
+                                            borderRadius:
+                                                BorderRadius.circular(10.0),
+                                          ),
+                                          focusedErrorBorder:
+                                              OutlineInputBorder(
+                                            borderSide: BorderSide(
+                                              color: Color(0x00000000),
+                                              width: 1.0,
+                                            ),
+                                            borderRadius:
+                                                BorderRadius.circular(10.0),
+                                          ),
+                                          filled: true,
+                                        ),
+                                        style: FlutterFlowTheme.of(context)
+                                            .bodyMedium,
+                                        validator: _model
+                                            .textController8Validator
+                                            .asValidator(context),
+                                      ),
                                     ),
                                   ),
                                   Padding(
@@ -1335,6 +1448,63 @@ class _EditEmployeeWidgetState extends State<EditEmployeeWidget> {
                                             validator: _model
                                                 .whatsappControllerValidator
                                                 .asValidator(context),
+                                          ),
+                                        ),
+                                      ],
+                                    ),
+                                  ),
+                                  Padding(
+                                    padding: EdgeInsetsDirectional.fromSTEB(
+                                        0.0, 12.0, 0.0, 0.0),
+                                    child: Row(
+                                      mainAxisSize: MainAxisSize.max,
+                                      children: [
+                                        Expanded(
+                                          child: Padding(
+                                            padding:
+                                                EdgeInsetsDirectional.fromSTEB(
+                                                    0.0, 0.0, 10.0, 0.0),
+                                            child: Container(
+                                              width: 100.0,
+                                              height: 2.0,
+                                              decoration: BoxDecoration(
+                                                color:
+                                                    FlutterFlowTheme.of(context)
+                                                        .accent4,
+                                                borderRadius:
+                                                    BorderRadius.circular(50.0),
+                                              ),
+                                            ),
+                                          ),
+                                        ),
+                                        Text(
+                                          FFLocalizations.of(context).getText(
+                                            'u1ttiams' /* Social Media */,
+                                          ),
+                                          style: FlutterFlowTheme.of(context)
+                                              .bodyMedium
+                                              .override(
+                                                fontFamily: 'Poppins',
+                                                fontSize: 18.0,
+                                                fontWeight: FontWeight.w600,
+                                              ),
+                                        ),
+                                        Expanded(
+                                          child: Padding(
+                                            padding:
+                                                EdgeInsetsDirectional.fromSTEB(
+                                                    10.0, 0.0, 0.0, 0.0),
+                                            child: Container(
+                                              width: 100.0,
+                                              height: 2.0,
+                                              decoration: BoxDecoration(
+                                                color:
+                                                    FlutterFlowTheme.of(context)
+                                                        .accent4,
+                                                borderRadius:
+                                                    BorderRadius.circular(50.0),
+                                              ),
+                                            ),
                                           ),
                                         ),
                                       ],
@@ -2722,15 +2892,15 @@ class _EditEmployeeWidgetState extends State<EditEmployeeWidget> {
                                                 name:
                                                     _model.nameController1.text,
                                                 title:
-                                                    _model.textController3.text,
+                                                    _model.textController2.text,
                                                 description:
-                                                    _model.textController4.text,
+                                                    _model.textController3.text,
                                                 mobile:
-                                                    _model.textController5.text,
+                                                    _model.textController4.text,
                                                 phone:
-                                                    _model.textController6.text,
+                                                    _model.textController5.text,
                                                 fax:
-                                                    _model.textController7.text,
+                                                    _model.textController6.text,
                                                 street:
                                                     _model.textController8.text,
                                                 zip: int.tryParse(_model

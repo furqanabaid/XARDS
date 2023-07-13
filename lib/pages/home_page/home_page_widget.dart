@@ -427,7 +427,10 @@ class _HomePageWidgetState extends State<HomePageWidget>
                                                 children: [
                                                   AuthUserStreamWidget(
                                                     builder: (context) => Text(
-                                                      currentUserDisplayName,
+                                                      valueOrDefault<String>(
+                                                        currentUserDisplayName,
+                                                        '  Unknown',
+                                                      ),
                                                       style:
                                                           FlutterFlowTheme.of(
                                                                   context)
@@ -446,7 +449,10 @@ class _HomePageWidgetState extends State<HomePageWidget>
                                                     ),
                                                   ),
                                                   Text(
-                                                    currentUserEmail,
+                                                    valueOrDefault<String>(
+                                                      currentUserEmail,
+                                                      'Unknown',
+                                                    ),
                                                     style: FlutterFlowTheme.of(
                                                             context)
                                                         .bodyMedium
@@ -763,6 +769,12 @@ class _HomePageWidgetState extends State<HomePageWidget>
                                                   List<FirmRecord>
                                                       firmsFirmRecordList =
                                                       snapshot.data!;
+                                                  if (firmsFirmRecordList
+                                                      .isEmpty) {
+                                                    return Image.network(
+                                                      'https://www.edgecrm.app/images/no-data.gif',
+                                                    );
+                                                  }
                                                   return SingleChildScrollView(
                                                     child: Column(
                                                       mainAxisSize:
@@ -849,10 +861,13 @@ class _HomePageWidgetState extends State<HomePageWidget>
                                                                       ),
                                                                       child: Image
                                                                           .network(
-                                                                        firmsFirmRecord.firmLogo != null &&
-                                                                                firmsFirmRecord.firmLogo != ''
-                                                                            ? firmsFirmRecord.firmLogo
-                                                                            : 'https://cdn-icons-png.flaticon.com/512/6010/6010131.png',
+                                                                        valueOrDefault<
+                                                                            String>(
+                                                                          firmsFirmRecord.firmLogo != null && firmsFirmRecord.firmLogo != ''
+                                                                              ? firmsFirmRecord.firmLogo
+                                                                              : 'https://cdn-icons-png.flaticon.com/512/6010/6010131.png',
+                                                                          'https://cdn-icons-png.flaticon.com/512/6010/6010131.png',
+                                                                        ),
                                                                         fit: BoxFit
                                                                             .fitWidth,
                                                                       ),
@@ -867,8 +882,11 @@ class _HomePageWidgetState extends State<HomePageWidget>
                                                                             0.0),
                                                                         child:
                                                                             Text(
-                                                                          firmsFirmRecord
-                                                                              .firmName,
+                                                                          valueOrDefault<
+                                                                              String>(
+                                                                            firmsFirmRecord.firmName,
+                                                                            'Unknown',
+                                                                          ),
                                                                           style:
                                                                               FlutterFlowTheme.of(context).bodyMedium,
                                                                         ),
@@ -901,6 +919,11 @@ class _HomePageWidgetState extends State<HomePageWidget>
                                                       .simpleSearchResults1
                                                       .map((e) => e)
                                                       .toList();
+                                                  if (searchedFIrm.isEmpty) {
+                                                    return Image.network(
+                                                      'https://www.edgecrm.app/images/no-data.gif',
+                                                    );
+                                                  }
                                                   return SingleChildScrollView(
                                                     child: Column(
                                                       mainAxisSize:
@@ -986,10 +1009,13 @@ class _HomePageWidgetState extends State<HomePageWidget>
                                                                       ),
                                                                       child: Image
                                                                           .network(
-                                                                        searchedFIrmItem.firmLogo != null &&
-                                                                                searchedFIrmItem.firmLogo != ''
-                                                                            ? searchedFIrmItem.firmLogo
-                                                                            : 'https://cdn-icons-png.flaticon.com/512/6010/6010131.png',
+                                                                        valueOrDefault<
+                                                                            String>(
+                                                                          searchedFIrmItem.firmLogo != null && searchedFIrmItem.firmLogo != ''
+                                                                              ? searchedFIrmItem.firmLogo
+                                                                              : 'https://cdn-icons-png.flaticon.com/512/6010/6010131.png',
+                                                                          'https://cdn-icons-png.flaticon.com/512/6010/6010131.png',
+                                                                        ),
                                                                         fit: BoxFit
                                                                             .fitWidth,
                                                                       ),
@@ -1004,8 +1030,11 @@ class _HomePageWidgetState extends State<HomePageWidget>
                                                                             0.0),
                                                                         child:
                                                                             Text(
-                                                                          searchedFIrmItem
-                                                                              .firmName,
+                                                                          valueOrDefault<
+                                                                              String>(
+                                                                            searchedFIrmItem.firmName,
+                                                                            'Unknown',
+                                                                          ),
                                                                           style:
                                                                               FlutterFlowTheme.of(context).bodyMedium,
                                                                         ),
@@ -1098,8 +1127,8 @@ class _HomePageWidgetState extends State<HomePageWidget>
                                                     setState(() {
                                                       FFAppState()
                                                               .selectedFirm =
-                                                          containerFirmRecord!
-                                                              .reference;
+                                                          containerFirmRecord
+                                                              ?.reference;
                                                     });
                                                   } else {
                                                     context.pushNamed(
@@ -1139,8 +1168,12 @@ class _HomePageWidgetState extends State<HomePageWidget>
                                                                 BoxShape.circle,
                                                           ),
                                                           child: Image.network(
-                                                            containerFirmRecord!
-                                                                .firmLogo,
+                                                            valueOrDefault<
+                                                                String>(
+                                                              containerFirmRecord
+                                                                  ?.firmLogo,
+                                                              'https://cdn-icons-png.flaticon.com/512/6010/6010131.png',
+                                                            ),
                                                             fit:
                                                                 BoxFit.fitWidth,
                                                           ),
@@ -1155,8 +1188,12 @@ class _HomePageWidgetState extends State<HomePageWidget>
                                                                         0.0,
                                                                         0.0),
                                                             child: Text(
-                                                              containerFirmRecord!
-                                                                  .firmName,
+                                                              valueOrDefault<
+                                                                  String>(
+                                                                containerFirmRecord
+                                                                    ?.firmName,
+                                                                'Unknown',
+                                                              ),
                                                               style: FlutterFlowTheme
                                                                       .of(context)
                                                                   .bodyMedium,
@@ -1283,6 +1320,12 @@ class _HomePageWidgetState extends State<HomePageWidget>
                                                   List<EmployeeRecord>
                                                       columnEmployeeRecordList =
                                                       snapshot.data!;
+                                                  if (columnEmployeeRecordList
+                                                      .isEmpty) {
+                                                    return Image.network(
+                                                      'https://www.edgecrm.app/images/no-data.gif',
+                                                    );
+                                                  }
                                                   return SingleChildScrollView(
                                                     primary: false,
                                                     child: Column(
@@ -1447,14 +1490,20 @@ class _HomePageWidgetState extends State<HomePageWidget>
                                                                                   crossAxisAlignment: CrossAxisAlignment.start,
                                                                                   children: [
                                                                                     Text(
-                                                                                      columnEmployeeRecord.name,
+                                                                                      valueOrDefault<String>(
+                                                                                        columnEmployeeRecord.name,
+                                                                                        'Unknown',
+                                                                                      ),
                                                                                       style: FlutterFlowTheme.of(context).bodyMedium,
                                                                                     ),
                                                                                     if (columnEmployeeRecord.empEmail != null && columnEmployeeRecord.empEmail != '')
                                                                                       Padding(
                                                                                         padding: EdgeInsetsDirectional.fromSTEB(0.0, 5.0, 0.0, 0.0),
                                                                                         child: Text(
-                                                                                          columnEmployeeRecord.empEmail,
+                                                                                          valueOrDefault<String>(
+                                                                                            columnEmployeeRecord.empEmail,
+                                                                                            'Unknown',
+                                                                                          ),
                                                                                           style: FlutterFlowTheme.of(context).bodyMedium.override(
                                                                                                 fontFamily: 'Poppins',
                                                                                                 fontSize: 10.0,
@@ -1474,7 +1523,10 @@ class _HomePageWidgetState extends State<HomePageWidget>
                                                                               Expanded(
                                                                                 flex: 5,
                                                                                 child: Text(
-                                                                                  columnEmployeeRecord.title,
+                                                                                  valueOrDefault<String>(
+                                                                                    columnEmployeeRecord.title,
+                                                                                    'Unknown',
+                                                                                  ),
                                                                                   style: FlutterFlowTheme.of(context).bodyMedium,
                                                                                 ),
                                                                               ),
@@ -1595,6 +1647,12 @@ class _HomePageWidgetState extends State<HomePageWidget>
                                                           FFAppState()
                                                               .selectedFirm)
                                                       .toList();
+                                                  if (employeeSearched
+                                                      .isEmpty) {
+                                                    return Image.network(
+                                                      'https://www.edgecrm.app/images/no-data.gif',
+                                                    );
+                                                  }
                                                   return SingleChildScrollView(
                                                     primary: false,
                                                     child: Column(
@@ -1755,14 +1813,20 @@ class _HomePageWidgetState extends State<HomePageWidget>
                                                                                 crossAxisAlignment: CrossAxisAlignment.start,
                                                                                 children: [
                                                                                   Text(
-                                                                                    employeeSearchedItem.name,
+                                                                                    valueOrDefault<String>(
+                                                                                      employeeSearchedItem.name,
+                                                                                      'Unknown',
+                                                                                    ),
                                                                                     style: FlutterFlowTheme.of(context).bodyMedium,
                                                                                   ),
                                                                                   if (employeeSearchedItem.empEmail != null && employeeSearchedItem.empEmail != '')
                                                                                     Padding(
                                                                                       padding: EdgeInsetsDirectional.fromSTEB(0.0, 5.0, 0.0, 0.0),
                                                                                       child: Text(
-                                                                                        employeeSearchedItem.empEmail,
+                                                                                        valueOrDefault<String>(
+                                                                                          employeeSearchedItem.empEmail,
+                                                                                          'Unknown',
+                                                                                        ),
                                                                                         style: FlutterFlowTheme.of(context).bodyMedium.override(
                                                                                               fontFamily: 'Poppins',
                                                                                               fontSize: 10.0,
@@ -1782,7 +1846,10 @@ class _HomePageWidgetState extends State<HomePageWidget>
                                                                             Expanded(
                                                                               flex: 5,
                                                                               child: Text(
-                                                                                employeeSearchedItem.title,
+                                                                                valueOrDefault<String>(
+                                                                                  employeeSearchedItem.title,
+                                                                                  'Unknown',
+                                                                                ),
                                                                                 style: FlutterFlowTheme.of(context).bodyMedium,
                                                                               ),
                                                                             ),
@@ -2516,8 +2583,12 @@ class _HomePageWidgetState extends State<HomePageWidget>
                                                                 children: [
                                                                   Expanded(
                                                                     child: Text(
-                                                                      columnEmployeeRecord
-                                                                          .name,
+                                                                      valueOrDefault<
+                                                                          String>(
+                                                                        columnEmployeeRecord
+                                                                            .name,
+                                                                        'Unknown',
+                                                                      ),
                                                                       style: FlutterFlowTheme.of(
                                                                               context)
                                                                           .bodyMedium
@@ -2547,8 +2618,12 @@ class _HomePageWidgetState extends State<HomePageWidget>
                                                                     Expanded(
                                                                       child:
                                                                           Text(
-                                                                        columnEmployeeRecord
-                                                                            .title,
+                                                                        valueOrDefault<
+                                                                            String>(
+                                                                          columnEmployeeRecord
+                                                                              .title,
+                                                                          'Unknown',
+                                                                        ),
                                                                         style: FlutterFlowTheme.of(context)
                                                                             .bodyMedium
                                                                             .override(

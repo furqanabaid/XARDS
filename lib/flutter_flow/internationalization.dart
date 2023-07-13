@@ -375,11 +375,11 @@ final kTranslationsMap = <Map<String, Map<String, String>>>[
       'de': 'Mitarbeiter bearbeiten',
       'en': 'edit employees',
     },
-    '5vhx92a5': {
-      'de': 'Vor- und Nachname',
-      'en': 'First and Last Name',
+    'qynqu2fb': {
+      'de': 'Persönliche Details',
+      'en': '',
     },
-    'eln32k3n': {
+    '5vhx92a5': {
       'de': 'Vor- und Nachname',
       'en': 'First and Last Name',
     },
@@ -399,6 +399,10 @@ final kTranslationsMap = <Map<String, Map<String, String>>>[
       'de': 'Kurzbeschreibung',
       'en': 'short description',
     },
+    't0icvg2z': {
+      'de': 'Persönliche Details',
+      'en': '',
+    },
     'icgacvxk': {
       'de': 'Mobil',
       'en': 'Mobile',
@@ -410,6 +414,14 @@ final kTranslationsMap = <Map<String, Map<String, String>>>[
     '2o937gqm': {
       'de': 'Fax',
       'en': 'fax',
+    },
+    'eln32k3n': {
+      'de': 'Vor- und Nachname',
+      'en': 'First and Last Name',
+    },
+    'jw14ikf7': {
+      'de': 'Persönliche Details',
+      'en': '',
     },
     'zwuy6cr0': {
       'de': 'Straße & Hausnummer',
@@ -430,6 +442,10 @@ final kTranslationsMap = <Map<String, Map<String, String>>>[
     'biq3vcdv': {
       'de': 'Website',
       'en': 'site',
+    },
+    'u1ttiams': {
+      'de': 'Social Media',
+      'en': '',
     },
     'il2qegkd': {
       'de': 'Whatsapp',
@@ -657,13 +673,13 @@ final kTranslationsMap = <Map<String, Map<String, String>>>[
       'de': 'Neuen Mitarbeiter hinzufügen',
       'en': 'Add new employee',
     },
+    'glhavtwd': {
+      'de': 'Persönliche Details',
+      'en': '',
+    },
     '4gws3r4k': {
       'de': 'Vor- und Nachname',
       'en': 'First and Last Name',
-    },
-    'o3nfgd1b': {
-      'de': 'Employee email',
-      'en': 'Employee email',
     },
     'fhlmcebf': {
       'de': 'Bild wird geladen...',
@@ -681,17 +697,29 @@ final kTranslationsMap = <Map<String, Map<String, String>>>[
       'de': 'Kurzbeschreibung',
       'en': 'short description',
     },
+    'ilsgl2k7': {
+      'de': 'Kontaktdetails',
+      'en': '',
+    },
     'q94di9pa': {
       'de': 'Mobil',
       'en': 'Mobile',
     },
     'ws0o3klx': {
-      'de': 'Phone',
+      'de': 'Festnetz',
       'en': 'phones',
     },
     'rv8mqxzn': {
       'de': 'Fax',
       'en': 'fax',
+    },
+    'o3nfgd1b': {
+      'de': 'E-Mail',
+      'en': 'Employee email',
+    },
+    '2mavbwb6': {
+      'de': 'Adresse',
+      'en': '',
     },
     'p984xr18': {
       'de': 'Straße & Hausnummer',
@@ -712,6 +740,10 @@ final kTranslationsMap = <Map<String, Map<String, String>>>[
     'yrahtgvw': {
       'de': 'Website',
       'en': 'site',
+    },
+    'uck2jxne': {
+      'de': 'Social Media',
+      'en': '',
     },
     'ugs2ugdd': {
       'de': 'Whatsapp',
