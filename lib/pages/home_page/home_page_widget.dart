@@ -129,6 +129,11 @@ class _HomePageWidgetState extends State<HomePageWidget>
     super.initState();
     _model = createModel(context, () => HomePageModel());
 
+    // On page load action.
+    SchedulerBinding.instance.addPostFrameCallback((_) async {
+      setAppLanguage(context, 'de');
+    });
+
     _model.textController1 ??= TextEditingController();
     _model.textController2 ??= TextEditingController();
 
