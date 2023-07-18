@@ -334,6 +334,66 @@ final kTranslationsMap = <Map<String, Map<String, String>>>[
       'en': 'Home',
     },
   },
+  // HomePageCopy
+  {
+    'o2rlpnyc': {
+      'de': 'Suchen',
+      'en': 'Seek',
+    },
+    'r9r0b9e5': {
+      'de': 'Firma hinzufügen +',
+      'en': 'Add company +',
+    },
+    'oyhdn7av': {
+      'de': 'Ihr Unternehmen',
+      'en': 'Your business',
+    },
+    '0wgti2kq': {
+      'de': 'Mitarbeiter suchen',
+      'en': 'search employees',
+    },
+    'a3ny8g6x': {
+      'de': ' ',
+      'en': '',
+    },
+    '1qp68lpp': {
+      'de': 'Name',
+      'en': 'Surname',
+    },
+    'yandnvpa': {
+      'de': 'Berufsbezeichnung',
+      'en': 'job title',
+    },
+    'h306zaof': {
+      'de':
+          'Firma am linken Rand auswählen, um zugehörige Visitenkarten anzeigen zu lassen',
+      'en': 'Select firm',
+    },
+    'epz0z85q': {
+      'de': 'Ausgewählte Person',
+      'en': 'Selected Employee',
+    },
+    'c2dsl7kq': {
+      'de': 'Vorschau',
+      'en': 'preview',
+    },
+    '5nx5m2fr': {
+      'de': 'Download',
+      'en': '',
+    },
+    'ji0v2pw7': {
+      'de': 'Manage Profile',
+      'en': 'Manage profiles',
+    },
+    'lmbb9y2c': {
+      'de': 'Logout',
+      'en': 'logout',
+    },
+    'z5bpxkmt': {
+      'de': 'Home',
+      'en': 'Home',
+    },
+  },
   // addNewFirm
   {
     '78xczqc7': {

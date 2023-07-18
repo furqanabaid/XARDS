@@ -1324,12 +1324,6 @@ class _HomePageWidgetState extends State<HomePageWidget>
                                                   List<EmployeeRecord>
                                                       columnEmployeeRecordList =
                                                       snapshot.data!;
-                                                  if (columnEmployeeRecordList
-                                                      .isEmpty) {
-                                                    return Image.network(
-                                                      'https://www.edgecrm.app/images/no-data.gif',
-                                                    );
-                                                  }
                                                   return SingleChildScrollView(
                                                     primary: false,
                                                     child: Column(
@@ -1651,12 +1645,6 @@ class _HomePageWidgetState extends State<HomePageWidget>
                                                           FFAppState()
                                                               .selectedFirm)
                                                       .toList();
-                                                  if (employeeSearched
-                                                      .isEmpty) {
-                                                    return Image.network(
-                                                      'https://www.edgecrm.app/images/no-data.gif',
-                                                    );
-                                                  }
                                                   return SingleChildScrollView(
                                                     primary: false,
                                                     child: Column(
