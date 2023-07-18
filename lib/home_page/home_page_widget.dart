@@ -1126,8 +1126,8 @@ class _HomePageWidgetState extends State<HomePageWidget>
                                                 highlightColor:
                                                     Colors.transparent,
                                                 onTap: () async {
-                                                  if (containerFirmRecord!
-                                                      .hasUId()) {
+                                                  if (containerFirmRecord !=
+                                                      null) {
                                                     setState(() {
                                                       FFAppState()
                                                               .selectedFirm =
