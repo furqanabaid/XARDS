@@ -1070,6 +1070,14 @@ final kTranslationsMap = <Map<String, Map<String, String>>>[
       'de': '',
       'en': '',
     },
+    'fakubdl0': {
+      'de': '',
+      'en': '',
+    },
+    'm74bzkz4': {
+      'de': '',
+      'en': '',
+    },
     'ft7c9fjs': {
       'de': '',
       'en': '',
