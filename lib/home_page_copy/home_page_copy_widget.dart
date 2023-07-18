@@ -132,7 +132,8 @@ class _HomePageCopyWidgetState extends State<HomePageCopyWidget>
     SchedulerBinding.instance.addPostFrameCallback((_) async {
       setAppLanguage(context, 'de');
       setState(() {
-        FFAppState().selectedFirm = null;
+        FFAppState().selectedFirm =
+            FirebaseFirestore.instance.doc('/firm/h48hK6NqzPXjaMx4NRID');
         FFAppState().selectedEmployee = null;
         FFAppState().selectedEmployeesList = [];
         FFAppState().addEmployeeImage = '';

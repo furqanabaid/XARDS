@@ -32,7 +32,8 @@ class FFAppState extends ChangeNotifier {
     _forgotPasswordToggle = _value;
   }
 
-  DocumentReference? _selectedFirm;
+  DocumentReference? _selectedFirm =
+      FirebaseFirestore.instance.doc('/firm/h48hK6NqzPXjaMx4NRID');
   DocumentReference? get selectedFirm => _selectedFirm;
   set selectedFirm(DocumentReference? _value) {
     _selectedFirm = _value;
