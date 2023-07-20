@@ -61,6 +61,7 @@ class _CustomImageCropWidgetState extends State<CustomImageCropWidget> {
             canRotate: true,
             canMove: false,
             canScale: false,
+            backgroundColor: Colors.transparent,
           ),
         ),
         Row(
