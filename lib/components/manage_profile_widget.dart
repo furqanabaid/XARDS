@@ -134,75 +134,62 @@ class _ManageProfileWidgetState extends State<ManageProfileWidget> {
                                       Row(
                                         mainAxisSize: MainAxisSize.max,
                                         children: [
-                                          if ((currentUserDisplayName != null &&
-                                                  currentUserDisplayName !=
-                                                      '') &&
-                                              (currentUserPhoto != null &&
-                                                  currentUserPhoto != ''))
-                                            Padding(
-                                              padding: EdgeInsetsDirectional
-                                                  .fromSTEB(
-                                                      0.0, 0.0, 10.0, 0.0),
-                                              child: AuthUserStreamWidget(
-                                                builder: (context) => InkWell(
-                                                  splashColor:
-                                                      Colors.transparent,
-                                                  focusColor:
-                                                      Colors.transparent,
-                                                  hoverColor:
-                                                      Colors.transparent,
-                                                  highlightColor:
-                                                      Colors.transparent,
-                                                  onTap: () async {
-                                                    setState(() {
-                                                      _model.editProfile =
-                                                          _model.editProfile
-                                                              ? false
-                                                              : true;
-                                                    });
-                                                  },
-                                                  child: Container(
-                                                    height: 25.0,
-                                                    decoration: BoxDecoration(
-                                                      color:
+                                          Padding(
+                                            padding:
+                                                EdgeInsetsDirectional.fromSTEB(
+                                                    0.0, 0.0, 10.0, 0.0),
+                                            child: InkWell(
+                                              splashColor: Colors.transparent,
+                                              focusColor: Colors.transparent,
+                                              hoverColor: Colors.transparent,
+                                              highlightColor:
+                                                  Colors.transparent,
+                                              onTap: () async {
+                                                setState(() {
+                                                  _model.editProfile =
+                                                      _model.editProfile
+                                                          ? false
+                                                          : true;
+                                                });
+                                              },
+                                              child: Container(
+                                                height: 25.0,
+                                                decoration: BoxDecoration(
+                                                  color: FlutterFlowTheme.of(
+                                                          context)
+                                                      .accent3,
+                                                  borderRadius:
+                                                      BorderRadius.circular(
+                                                          10.0),
+                                                ),
+                                                child: Align(
+                                                  alignment:
+                                                      AlignmentDirectional(
+                                                          0.0, 0.0),
+                                                  child: Padding(
+                                                    padding:
+                                                        EdgeInsetsDirectional
+                                                            .fromSTEB(8.0, 0.0,
+                                                                8.0, 0.0),
+                                                    child: Text(
+                                                      _model.editProfile
+                                                          ? 'Profil bearbeiten'
+                                                          : 'X',
+                                                      style:
                                                           FlutterFlowTheme.of(
                                                                   context)
-                                                              .accent3,
-                                                      borderRadius:
-                                                          BorderRadius.circular(
-                                                              10.0),
-                                                    ),
-                                                    child: Align(
-                                                      alignment:
-                                                          AlignmentDirectional(
-                                                              0.0, 0.0),
-                                                      child: Padding(
-                                                        padding:
-                                                            EdgeInsetsDirectional
-                                                                .fromSTEB(
-                                                                    8.0,
-                                                                    0.0,
-                                                                    8.0,
-                                                                    0.0),
-                                                        child: Text(
-                                                          _model.editProfile
-                                                              ? 'Profil bearbeiten'
-                                                              : 'X',
-                                                          style: FlutterFlowTheme
-                                                                  .of(context)
                                                               .bodyMedium
                                                               .override(
                                                                 fontFamily:
                                                                     'Poppins',
                                                                 fontSize: 10.0,
                                                               ),
-                                                        ),
-                                                      ),
                                                     ),
                                                   ),
                                                 ),
                                               ),
                                             ),
+                                          ),
                                           InkWell(
                                             splashColor: Colors.transparent,
                                             focusColor: Colors.transparent,

@@ -784,7 +784,7 @@ class _HomePageCopyWidgetState extends State<HomePageCopyWidget>
                                                       snapshot.data!;
                                                   if (firmsFirmRecordList
                                                       .isEmpty) {
-                                                    return Image.network(
+                                                    return Image.asset(
                                                       'https://www.edgecrm.app/images/no-data.gif',
                                                     );
                                                   }
@@ -933,7 +933,7 @@ class _HomePageCopyWidgetState extends State<HomePageCopyWidget>
                                                       .map((e) => e)
                                                       .toList();
                                                   if (searchedFIrm.isEmpty) {
-                                                    return Image.network(
+                                                    return Image.asset(
                                                       'https://www.edgecrm.app/images/no-data.gif',
                                                     );
                                                   }

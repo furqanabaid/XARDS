@@ -776,7 +776,7 @@ class _HomePageWidgetState extends State<HomePageWidget>
                                                       snapshot.data!;
                                                   if (firmsFirmRecordList
                                                       .isEmpty) {
-                                                    return Image.network(
+                                                    return Image.asset(
                                                       'https://www.edgecrm.app/images/no-data.gif',
                                                     );
                                                   }
@@ -925,7 +925,7 @@ class _HomePageWidgetState extends State<HomePageWidget>
                                                       .map((e) => e)
                                                       .toList();
                                                   if (searchedFIrm.isEmpty) {
-                                                    return Image.network(
+                                                    return Image.asset(
                                                       'https://www.edgecrm.app/images/no-data.gif',
                                                     );
                                                   }
@@ -2681,7 +2681,7 @@ class _HomePageWidgetState extends State<HomePageWidget>
                                                                         .max,
                                                                 crossAxisAlignment:
                                                                     CrossAxisAlignment
-                                                                        .start,
+                                                                        .center,
                                                                 children: [
                                                                   FaIcon(
                                                                     FontAwesomeIcons
