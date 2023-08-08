@@ -3,6 +3,7 @@ import '/flutter_flow/flutter_flow_animations.dart';
 import '/flutter_flow/flutter_flow_icon_button.dart';
 import '/flutter_flow/flutter_flow_theme.dart';
 import '/flutter_flow/flutter_flow_util.dart';
+import '/custom_code/actions/index.dart' as actions;
 import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/scheduler.dart';
@@ -2962,70 +2963,84 @@ class _EmployeeDetailsWidgetState extends State<EmployeeDetailsWidget>
                                                 mainAxisAlignment:
                                                     MainAxisAlignment.center,
                                                 children: [
-                                                  Container(
-                                                    width: MediaQuery.sizeOf(
-                                                                context)
-                                                            .width *
-                                                        0.2,
-                                                    decoration: BoxDecoration(
-                                                      color:
-                                                          FlutterFlowTheme.of(
+                                                  InkWell(
+                                                    splashColor:
+                                                        Colors.transparent,
+                                                    focusColor:
+                                                        Colors.transparent,
+                                                    hoverColor:
+                                                        Colors.transparent,
+                                                    highlightColor:
+                                                        Colors.transparent,
+                                                    onTap: () async {
+                                                      await actions
+                                                          .vCardDownload();
+                                                    },
+                                                    child: Container(
+                                                      width: MediaQuery.sizeOf(
                                                                   context)
-                                                              .primaryText,
-                                                      borderRadius:
-                                                          BorderRadius.circular(
-                                                              12.0),
-                                                    ),
-                                                    child: Padding(
-                                                      padding:
-                                                          EdgeInsetsDirectional
-                                                              .fromSTEB(
-                                                                  8.0,
-                                                                  8.0,
-                                                                  8.0,
-                                                                  8.0),
-                                                      child: Row(
-                                                        mainAxisSize:
-                                                            MainAxisSize.max,
-                                                        mainAxisAlignment:
-                                                            MainAxisAlignment
-                                                                .center,
-                                                        children: [
-                                                          Padding(
-                                                            padding:
-                                                                EdgeInsetsDirectional
-                                                                    .fromSTEB(
-                                                                        0.0,
-                                                                        0.0,
-                                                                        10.0,
-                                                                        0.0),
-                                                            child: Icon(
-                                                              Icons
-                                                                  .group_add_sharp,
-                                                              color: FlutterFlowTheme
-                                                                      .of(context)
-                                                                  .primaryBackground,
-                                                              size: 15.0,
-                                                            ),
-                                                          ),
-                                                          Text(
-                                                            FFLocalizations.of(
+                                                              .width *
+                                                          0.2,
+                                                      decoration: BoxDecoration(
+                                                        color:
+                                                            FlutterFlowTheme.of(
                                                                     context)
-                                                                .getText(
-                                                              'vrrtpk8q' /* Als Kontakt speichern */,
+                                                                .primaryText,
+                                                        borderRadius:
+                                                            BorderRadius
+                                                                .circular(12.0),
+                                                      ),
+                                                      child: Padding(
+                                                        padding:
+                                                            EdgeInsetsDirectional
+                                                                .fromSTEB(
+                                                                    8.0,
+                                                                    8.0,
+                                                                    8.0,
+                                                                    8.0),
+                                                        child: Row(
+                                                          mainAxisSize:
+                                                              MainAxisSize.max,
+                                                          mainAxisAlignment:
+                                                              MainAxisAlignment
+                                                                  .center,
+                                                          children: [
+                                                            Padding(
+                                                              padding:
+                                                                  EdgeInsetsDirectional
+                                                                      .fromSTEB(
+                                                                          0.0,
+                                                                          0.0,
+                                                                          10.0,
+                                                                          0.0),
+                                                              child: Icon(
+                                                                Icons
+                                                                    .group_add_sharp,
+                                                                color: FlutterFlowTheme.of(
+                                                                        context)
+                                                                    .primaryBackground,
+                                                                size: 15.0,
+                                                              ),
                                                             ),
-                                                            style: FlutterFlowTheme
-                                                                    .of(context)
-                                                                .bodyMedium
-                                                                .override(
-                                                                  fontFamily:
-                                                                      'Poppins',
-                                                                  color: FlutterFlowTheme.of(
-                                                                          context)
-                                                                      .primaryBackground,
-                                                                ),
-                                                          ),
-                                                        ],
+                                                            Text(
+                                                              FFLocalizations.of(
+                                                                      context)
+                                                                  .getText(
+                                                                'vrrtpk8q' /* Als Kontakt speichern */,
+                                                              ),
+                                                              style: FlutterFlowTheme
+                                                                      .of(context)
+                                                                  .bodyMedium
+                                                                  .override(
+                                                                    fontFamily:
+                                                                        'Poppins',
+                                                                    color: FlutterFlowTheme.of(
+                                                                            context)
+                                                                        .primaryBackground,
+                                                                  ),
+                                                            ),
+                                                          ],
+                                                        ),
                                                       ),
                                                     ),
                                                   ),
